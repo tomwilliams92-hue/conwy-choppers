@@ -79,6 +79,18 @@ async function extractTable(page, must) {
 
 const colIndex = (headers, name) => headers.findIndex(h => h.includes(name));
 
+/* Current handicap (display string) + recent trend from a {date,hi} series.
+ * trend < 0 = index dropping (improving); > 0 = rising (slipping). */
+function summariseHcp(series) {
+  const s = series.filter(x => x.hi != null && x.date).sort((a, b) => a.date < b.date ? -1 : 1);
+  if (!s.length) return { handicap: null, handicapTrend: null };
+  const latest = s[s.length - 1].hi;
+  const back = s[Math.max(0, s.length - 1 - 6)].hi; // ~6 rounds ago
+  const display = latest < 0 ? "+" + (-latest).toFixed(1) : latest.toFixed(1);
+  const handicapTrend = s.length >= 2 ? Math.round((latest - back) * 10) / 10 : null;
+  return { handicap: display, handicapTrend };
+}
+
 async function dumpDebug(page, tag) {
   if (!DEBUG) return;
   mkdirSync("./debug", { recursive: true });
@@ -109,18 +121,21 @@ async function dumpDebug(page, tag) {
     scores = await extractTable(page, ["adj", "course rating", "slope"]);
   }
 
-  const byId = Object.fromEntries(TARGETS.map(t => [t.id, { ...t, rounds: [], skipped: [] }]));
+  const byId = Object.fromEntries(TARGETS.map(t => [t.id, { ...t, rounds: [], skipped: [], hiSeries: [] }]));
 
   /* ---------- Tom (self) from My Overview ---------- */
   if (scores) {
     const H = scores.headers;
     const iDate = colIndex(H, "played"), iCT = colIndex(H, "course"),
-          iGross = colIndex(H, "adj"), iHcp = colIndex(H, "course hdcp");
+          iGross = colIndex(H, "adj"), iHcp = colIndex(H, "course hdcp"),
+          iHi = colIndex(H, "handicap");
     for (const r of scores.rows) {
       const ct = (r[iCT] || "").split("\n").map(s => s.trim()).filter(Boolean);
+      const date = toISO(r[iDate]);
+      byId.tom.hiSeries.push({ date, hi: parseHi(r[iHi]) });
       addRound(byId.tom, {
-        date: toISO(r[iDate]), course: ct[0], tee: ct[1],
-        adjGross: parseGross(r[iGross]), courseHcp: parseGross(r[iHcp]),
+        date, course: ct[0], tee: ct[1],
+        adjGross: parseGross(r[iGross]), courseHcp: parseHi(r[iHcp]), // parseHi keeps "+1" as −1
       });
     }
   } else {
@@ -140,8 +155,10 @@ async function dumpDebug(page, tag) {
       const name = (r[iName] || "").toLowerCase();
       const t = TARGETS.find(t => t.source === "friend" && name.includes(t.match));
       if (!t) continue;
+      const date = toISO(r[iDate]);
+      byId[t.id].hiSeries.push({ date, hi: parseHi(r[iHi]) });
       addRound(byId[t.id], {
-        date: toISO(r[iDate]), course: r[iCourse], tee: r[iTee],
+        date, course: r[iCourse], tee: r[iTee],
         adjGross: parseGross(r[iGross]), hi: parseHi(r[iHi]),
       });
     }
@@ -156,7 +173,8 @@ async function dumpDebug(page, tag) {
   const players = TARGETS.map(t => {
     const p = byId[t.id];
     const rounds = p.rounds.sort((a, b) => b.points - a.points).slice(0, COMPETITION.maxCards);
-    return { id: t.id, name: t.name, short: t.short, rounds };
+    const { handicap, handicapTrend } = summariseHcp(p.hiSeries);
+    return { id: t.id, name: t.name, short: t.short, handicap, handicapTrend, rounds };
   });
   writeDataJs("./data.js", COMPETITION, players);
 

@@ -201,17 +201,22 @@
   .pc-best b{font-size:21px;font-weight:600;color:var(--brass-lt)}
   .pc-best span{display:block;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
   .rounds{padding:8px 12px 14px}
-  .rnd{display:grid;grid-template-columns:24px 1fr auto auto;gap:12px;align-items:center;padding:9px 8px;border-radius:8px;transition:background .25s var(--ease)}
-  .rnd:hover{background:rgba(231,204,114,.05)}
-  .rnd .ri{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);text-align:center}
-  .rnd.counts .ri{color:var(--brass-lt)}
+  .rnd{display:grid;grid-template-columns:26px 1fr auto auto;gap:12px;align-items:center;padding:10px 8px;border-radius:8px;transition:background .25s var(--ease)}
+  .rnd:hover{background:rgba(231,204,114,.07)}
+  .rnd .ri{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);text-align:center}
+  .rnd.counts .ri{color:var(--brass-lt);font-weight:600}
   .rnd .rdate{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--cream-dim)}
-  .rnd .rcourse{font-size:11px;color:var(--muted);font-family:"IBM Plex Mono",monospace}
-  .rnd .rpts{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:15px;color:var(--cream);text-align:right;min-width:34px}
-  .rnd.dropped{opacity:.4}
-  .rnd.dropped .rpts{text-decoration:line-through;text-decoration-color:var(--muted)}
-  .star{width:7px;height:7px;border-radius:50%;background:var(--brass);box-shadow:0 0 8px rgba(201,162,39,.6)}
-  .rnd:not(.counts) .star{background:transparent;box-shadow:none;border:1px solid rgba(255,255,255,.12)}
+  .rnd .rcourse{font-size:10.5px;color:var(--muted);font-family:"IBM Plex Mono",monospace;margin-top:1px}
+  .rnd .rtag{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:99px;border:1px solid transparent;white-space:nowrap}
+  .rnd.counts .rtag{color:var(--brass-lt);border-color:rgba(231,204,114,.40);background:rgba(231,204,114,.06)}
+  .rnd.dropped .rtag{color:var(--muted);border-color:rgba(255,255,255,.10)}
+  .rnd .rpts{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:16px;color:var(--cream);text-align:right;min-width:34px}
+  .rnd.counts{background:rgba(231,204,114,.035)}
+  .rnd.dropped{opacity:.5}
+  .rnd.dropped .rpts{text-decoration:line-through;text-decoration-color:var(--muted);color:var(--cream-dim)}
+  .cutline{display:flex;align-items:center;gap:10px;margin:10px 8px 6px}
+  .cutline::before,.cutline::after{content:"";height:1px;flex:1;background:repeating-linear-gradient(90deg,var(--line) 0 5px,transparent 5px 11px)}
+  .cutline span{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
   .empty{padding:26px 20px;text-align:center;color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em}
   .pc-foot{padding:10px 20px 16px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);letter-spacing:.05em;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between}
 
@@ -225,6 +230,20 @@
   footer.foot{margin:clamp(40px,6vw,72px) 0 40px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
   .foot .fm{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);letter-spacing:.06em}
   .foot .crest{font-family:"Fraunces",serif;font-weight:900;font-size:15px;letter-spacing:.02em;color:var(--cream-dim)}
+
+  /* ---------- handicap + trend ---------- */
+  .hcap{display:inline-flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .hcap-val{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.04em;color:var(--cream-dim);white-space:nowrap}
+  .hcap-val b{color:var(--cream);font-weight:600}
+  .trend{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:99px;display:inline-flex;align-items:center;gap:3px;line-height:1;white-space:nowrap}
+  .trend.down{color:#86E6A8;background:rgba(123,224,160,.10);border:1px solid rgba(123,224,160,.35)}   /* improving */
+  .trend.up{color:#F0917C;background:rgba(232,128,107,.12);border:1px solid rgba(232,128,107,.40)}     /* slipping */
+  .trend.flat{color:var(--muted);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12)}
+  .pcard .hcap{justify-content:center;margin-top:9px}
+  .pcol.lead .hcap-val{color:#6A5E38}
+  .pcol.lead .hcap-val b{color:var(--plaque-ink)}
+  .st-name .st-sub{display:flex;align-items:center;gap:8px;margin-top:6px}
+  .st-sub-txt{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);letter-spacing:.04em}
 
   @media (max-width:720px){
     .podium{grid-template-columns:1fr;gap:14px}
@@ -315,13 +334,27 @@
   const fmtShort = iso => { const [y,m,d]=iso.split("-"); return d.replace(/^0/,'')+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m-1]; };
   const fmtLong  = iso => fmtShort(iso)+" "+iso.slice(0,4);
 
+  /* Handicap value + trend chip. trend < 0 = improving (green ▼), > 0 = slipping (red ▲). */
+  function hcapChip(p){
+    const hi = (p.handicap!=null && p.handicap!=="") ? p.handicap : "—";
+    let chip="";
+    const d = p.handicapTrend;
+    if(typeof d==="number"){
+      if(d<=-0.05)      chip=`<span class="trend down" title="Handicap improving">▼ ${Math.abs(d).toFixed(1)}</span>`;
+      else if(d>=0.05)  chip=`<span class="trend up" title="Handicap rising">▲ ${Math.abs(d).toFixed(1)}</span>`;
+      else              chip=`<span class="trend flat" title="Handicap steady">▬ steady</span>`;
+    }
+    return `<span class="hcap"><span class="hcap-val">HCP <b>${hi}</b></span>${chip}</span>`;
+  }
+
   /* ----- compute ----- */
   const players = D.players.map(p=>{
     const sorted=[...p.rounds].sort((a,b)=>b.points-a.points);
     const counting=sorted.slice(0,C.bestN);
     const countSet=new Set(counting);
     const best6=counting.reduce((s,r)=>s+r.points,0);
-    return {...p,sorted,countSet,best6,played:p.rounds.length,cpts:counting.map(r=>r.points)};
+    const lastDate=p.rounds.reduce((m,r)=>r.date>m?r.date:m,"");
+    return {...p,sorted,countSet,best6,played:p.rounds.length,cpts:counting.map(r=>r.points),lastDate};
   });
 
   const tie=(a,b)=>{ if(a.best6!==b.best6)return false; const n=Math.max(a.cpts.length,b.cpts.length); for(let i=0;i<n;i++){if((a.cpts[i]||0)!==(b.cpts[i]||0))return false;} return true; };
@@ -374,6 +407,7 @@
         <div class="medal ${medalClass(p.pos)}">${p.pos}</div>
         <div class="ppos">${p.posLabel}</div>
         <div class="pname">${p.name}</div>
+        ${hcapChip(p)}
         <div class="ptotal">${p.best6}</div>
         <div class="punit">Best-6 points</div>
         <div class="pmeta">${p.played} ${p.played===1?"card":"cards"} in${p.played?" · top "+Math.min(p.played,C.bestN)+" count":""}</div>
@@ -392,7 +426,7 @@
     row.className="st-row";row.style.animationDelay=(0.15+i*0.08)+"s";
     row.innerHTML=`
       <div class="st-pos"><span class="pip ${pipClass(p.pos)}"></span>${p.posLabel.replace(/[a-z]/g,'')}</div>
-      <div class="st-name">${p.name}<small>${p.played?fmtShort(p.sorted.length?p.rounds[p.rounds.length-1].date:C.startDate)+" · last card":"No cards yet"}</small></div>
+      <div class="st-name">${p.name}<small class="st-sub">${hcapChip(p)}<span class="st-sub-txt">${p.played?fmtShort(p.lastDate)+" last":"no cards yet"}</span></small></div>
       <div class="st-played">${p.played}/${C.maxCards}</div>
       <div class="st-gap">${gapTxt}</div>
       <div class="st-total">${p.best6}</div>`;
@@ -408,24 +442,26 @@
     if(!p.played){
       body=`<div class="empty">No cards submitted yet — first round drops here.</div>`;
     }else{
-      const byDate=[...p.rounds].sort((a,b)=>a.date<b.date?1:-1);
-      body=`<div class="rounds">`+byDate.map(r=>{
-        const counts=p.countSet.has(r);
-        return `<div class="rnd ${counts?'counts':'dropped'}">
-          <div class="ri">${counts?'<span class="star"></span>':'<span class="star"></span>'}</div>
+      const rows=p.sorted.map((r,i)=>{
+        const counts=i<C.bestN;
+        const cut=(i===C.bestN)?`<div class="cutline"><span>best ${C.bestN} cut · below don't count</span></div>`:"";
+        return cut+`<div class="rnd ${counts?'counts':'dropped'}">
+          <div class="ri">${i+1}</div>
           <div><div class="rdate">${fmtLong(r.date)}</div><div class="rcourse">${(r.course||'').toUpperCase()}</div></div>
-          <div></div>
+          <div class="rtag">${counts?'Counting':'Dropped'}</div>
           <div class="rpts">${r.points}</div>
         </div>`;
-      }).join("")+`</div>`;
+      }).join("");
+      body=`<div class="rounds">${rows}</div>`;
     }
+    const countingN=Math.min(p.played,C.bestN);
     card.innerHTML=`
       <div class="pc-head">
         <div class="pc-name">${p.name}<small>${p.posLabel} · order of merit</small></div>
         <div class="pc-best"><b>${p.best6}</b><span>Best 6</span></div>
       </div>
       ${body}
-      <div class="pc-foot"><span>${p.played}/${C.maxCards} cards</span><span>${p.played>=C.bestN?'★ counting':'all count so far'}</span></div>`;
+      <div class="pc-foot"><span>${p.played}/${C.maxCards} cards played</span><span>${p.played?countingN+' counting · best 6 of '+p.played:''}</span></div>`;
     sc.appendChild(card);
   });
 })();
