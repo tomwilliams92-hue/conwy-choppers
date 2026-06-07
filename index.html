@@ -385,7 +385,7 @@
   <div class="hero-in wrap">
     <div class="topbar">
       <div class="brand">
-        <span class="logoslot" data-size="42"></span>
+        <span class="logoslot" data-size="44" data-logo="white"></span>
         <div class="bt">Conwy Golf Club<b>Conwy Choppers</b></div>
       </div>
       <div class="tbr">
@@ -508,7 +508,7 @@
     img.alt="Conwy Golf Club";img.style.height=sz+"px";img.style.width="auto";img.style.display="block";
     img.onload=()=>{slot.innerHTML="";slot.appendChild(img);};
     img.onerror=useCrest;
-    img.src="assets/conwy-logo.png";
+    img.src=slot.dataset.logo==="white"?"assets/conwy-logo-white.png":"assets/conwy-logo.png";
   });
 
   /* compute */
