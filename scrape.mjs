@@ -32,6 +32,9 @@ const COMPETITION = {
   lastUpdated: new Date().toISOString().slice(0, 10),
   bestN: 6,
   maxCards: 12,
+  recap: "",          // weekly summary line (computed below)
+  moverId: null,      // biggest gainer this week
+  celebrate: false,   // lead changed -> confetti
 };
 
 // source:"self" → read from /my-overview ; source:"friend" → match a row on /my-friends
@@ -92,8 +95,8 @@ function summariseHcp(series) {
   return { handicap: display, handicapTrend, handicapHistory };
 }
 
-/* Previous order (by best 6) from the existing data.js, to work out position movement. */
-function prevPositions() {
+/* Previous state (position + best 6) from the existing data.js — for movement, mover, recap. */
+function prevState() {
   try {
     const txt = readFileSync("./data.js", "utf8");
     const m = txt.match(/window\.CHOPPERS_DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/);
@@ -104,9 +107,27 @@ function prevPositions() {
       best6: [...p.rounds].sort((a, b) => b.points - a.points).slice(0, data.competition.bestN)
         .reduce((s, r) => s + r.points, 0),
     })).sort((a, b) => b.best6 - a.best6);
-    const pos = {}; ps.forEach((p, i) => pos[p.id] = i + 1);
-    return pos;
+    const out = {}; ps.forEach((p, i) => out[p.id] = { pos: i + 1, best6: p.best6 });
+    return out;
   } catch { return {}; }
+}
+
+/* Build the weekly recap line, mover of the week, and lead-change flag. */
+function weeklySummary(built, prev) {
+  const first = p => p.name.split(" ")[0];
+  const ranked = [...built].sort((a, b) => b._best6 - a._best6);
+  const leader = ranked[0];
+  let prevLeaderId = null;
+  for (const id in prev) if (prev[id].pos === 1) prevLeaderId = id;
+  const celebrate = !!(leader._best6 > 0 && prevLeaderId && prevLeaderId !== leader.id);
+  let moverId = null, bestGain = 0;
+  for (const p of built) { const g = p._best6 - (prev[p.id] ? prev[p.id].best6 : 0); if (g > bestGain) { bestGain = g; moverId = p.id; } }
+  const parts = [];
+  if (celebrate) parts.push(`<b>New leader!</b> ${first(leader)} tops the board on ${leader._best6}.`);
+  else if (leader._best6 > 0) parts.push(`<b>${first(leader)}</b> leads on ${leader._best6}.`);
+  if (moverId && bestGain > 0) { const m = built.find(x => x.id === moverId); parts.push(`${first(m)}'s best week (+${bestGain}).`); }
+  built.forEach(p => { const pb = prev[p.id]; if ((!pb || pb.best6 === 0) && p._best6 > 0 && p.id !== moverId && p.id !== leader.id) parts.push(`${first(p)} is on the board.`); });
+  return { recap: parts.join(" ") || "The race is on.", moverId, celebrate };
 }
 
 async function dumpDebug(page, tag) {
@@ -188,7 +209,7 @@ async function dumpDebug(page, tag) {
   await browser.close();
 
   /* ---------- build + write ---------- */
-  const prev = prevPositions(); // read BEFORE we overwrite data.js
+  const prev = prevState(); // read BEFORE we overwrite data.js
   const built = TARGETS.map(t => {
     const p = byId[t.id];
     const rounds = p.rounds.sort((a, b) => b.points - a.points).slice(0, COMPETITION.maxCards);
@@ -199,7 +220,11 @@ async function dumpDebug(page, tag) {
   // position movement since last update
   const ranked = [...built].sort((a, b) => b._best6 - a._best6);
   const newPos = {}; ranked.forEach((p, i) => newPos[p.id] = i + 1);
-  built.forEach(p => { if (prev[p.id] != null) p.movement = prev[p.id] - newPos[p.id]; delete p._best6; });
+  built.forEach(p => { if (prev[p.id] != null) p.movement = prev[p.id].pos - newPos[p.id]; });
+  // weekly recap + mover + lead-change confetti
+  const sum = weeklySummary(built, prev);
+  COMPETITION.recap = sum.recap; COMPETITION.moverId = sum.moverId; COMPETITION.celebrate = sum.celebrate;
+  built.forEach(p => delete p._best6);
   const players = built;
   writeDataJs("./data.js", COMPETITION, players);
 
