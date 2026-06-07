@@ -361,19 +361,24 @@
 <body>
 
 <!-- fallback crest used if assets/conwy-logo.png is absent -->
-<template id="crestTpl"><svg class="crest" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M23 24 H97 V73 C97 101 75 121 60 130 C45 121 23 101 23 73 Z" stroke="currentColor" stroke-width="4.2" stroke-linejoin="round"/>
-  <path d="M35 67 V47 H41 V41 H48 V47 H54 V41 H60 V47 H66 V41 H72 V47 H79 V41 H85 V67 Z" fill="currentColor"/>
-  <path d="M60 47 V31" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
-  <path d="M60.5 31.5 L73 36 L60.5 40.5 Z" fill="currentColor"/>
-  <g stroke="currentColor" stroke-width="3.1" stroke-linecap="round">
-    <path d="M34 86 q6 -5 12 0 t12 0 t12 0 t12 0"/>
-    <path d="M34 96 q6 -5 12 0 t12 0 t12 0 t12 0"/>
-    <path d="M34 106 q6 -5 12 0 t12 0 t12 0 t12 0"/>
+<template id="crestTpl"><svg class="crest" viewBox="0 0 128 142" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 22 H106 V72 C106 101 84 123 64 132 C44 123 22 101 22 72 Z" stroke="currentColor" stroke-width="4.2" stroke-linejoin="round"/>
+  <g fill="currentColor">
+    <rect x="34" y="58" width="60" height="8"/>
+    <rect x="34" y="49" width="12" height="13"/><rect x="34" y="45" width="5" height="5"/><rect x="41" y="45" width="5" height="5"/>
+    <rect x="82" y="49" width="12" height="13"/><rect x="82" y="45" width="5" height="5"/><rect x="89" y="45" width="5" height="5"/>
+    <rect x="54" y="41" width="20" height="22"/><rect x="54" y="36" width="6" height="6"/><rect x="68" y="36" width="6" height="6"/>
   </g>
-  <path d="M60 115 V89" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
-  <path d="M60 89 L70 92 L60 95 Z" fill="currentColor"/>
-  <ellipse cx="60" cy="116" rx="6.5" ry="2.4" fill="currentColor"/>
+  <path d="M64 41 V25" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+  <path d="M64.5 25.5 L77 30 L64.5 34.5 Z" fill="currentColor"/>
+  <g stroke="currentColor" stroke-width="3.1" stroke-linecap="round">
+    <path d="M36 88 q6.5 -5 13 0 t13 0 t13 0 t13 0"/>
+    <path d="M36 98 q6.5 -5 13 0 t13 0 t13 0 t13 0"/>
+    <path d="M36 108 q6.5 -5 13 0 t13 0 t13 0 t13 0"/>
+  </g>
+  <path d="M64 116 V92" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M64 92 L74 95 L64 98 Z" fill="currentColor"/>
+  <ellipse cx="64" cy="117" rx="6.5" ry="2.4" fill="currentColor"/>
 </svg></template>
 
 <header class="hero">
@@ -494,12 +499,16 @@
   const PHEX={tom:"#2E73B8",josh:"#D99A2B",callum:"#2FA36A"};
   const initials=n=>n.split(/\s+/).map(w=>w[0]).slice(0,2).join("").toUpperCase();
 
-  /* Conwy crest — inline SVG, recolours via currentColor per context */
+  /* Logo: use assets/conwy-logo.png if you drop one in, else the inline Conwy crest (recolours via currentColor) */
   const crestSVG=$("crestTpl").innerHTML;
   document.querySelectorAll(".logoslot").forEach(slot=>{
-    const sz=slot.dataset.size||40;
-    slot.innerHTML=crestSVG;
-    const c=slot.querySelector(".crest");if(c){c.style.width=c.style.height=sz+"px";}
+    const sz=+slot.dataset.size||40;
+    const useCrest=()=>{slot.innerHTML=crestSVG;const c=slot.querySelector(".crest");if(c){c.style.width=c.style.height=sz+"px";}};
+    const img=new Image();
+    img.alt="Conwy Golf Club";img.style.height=sz+"px";img.style.width="auto";img.style.display="block";
+    img.onload=()=>{slot.innerHTML="";slot.appendChild(img);};
+    img.onerror=useCrest;
+    img.src="assets/conwy-logo.png";
   });
 
   /* compute */
