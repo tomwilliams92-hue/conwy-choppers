@@ -18,7 +18,7 @@
 <meta name="theme-color" content="#0C2244" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,500;9..144,0,600;9..144,0,900;9..144,1,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,500;1,6..72,600&family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy-900:#0A1E3D; --navy-800:#102B52; --navy-700:#163766; --navy-600:#1F4880;
@@ -35,7 +35,7 @@
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;background:var(--cloud);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;
+  body{margin:0;background:var(--cloud);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;
     line-height:1.5;-webkit-font-smoothing:antialiased}
   .mono{font-family:"IBM Plex Mono",monospace}
   .num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
@@ -58,8 +58,9 @@
   .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 0}
   .brand{display:flex;align-items:center;gap:12px;min-width:0}
   .brand .logo,.brand .crest{width:42px;height:42px;flex:none;filter:drop-shadow(0 3px 8px rgba(0,0,0,.4))}
+  .brand .logoslot{color:#fff;display:inline-flex;line-height:0;flex:none}
   .brand .bt{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:#A9C2E4;line-height:1.7}
-  .brand .bt b{display:block;font-family:"Fraunces",serif;font-weight:600;font-size:15px;letter-spacing:.01em;color:#fff}
+  .brand .bt b{display:block;font-family:"Newsreader",serif;font-weight:600;font-size:15px;letter-spacing:.01em;color:#fff}
   .live{display:inline-flex;align-items:center;gap:7px;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
     letter-spacing:.16em;text-transform:uppercase;color:#CFE0F2;border:1px solid rgba(255,255,255,.18);
     padding:6px 11px;border-radius:999px;white-space:nowrap}
@@ -71,7 +72,7 @@
     color:var(--gold-lt);display:flex;gap:12px;justify-content:center;align-items:center}
   .eyebrow i{height:1px;width:26px;background:linear-gradient(90deg,transparent,var(--gold-lt))}
   .eyebrow i:last-child{background:linear-gradient(90deg,var(--gold-lt),transparent)}
-  .title{font-family:"Fraunces",serif;font-weight:900;letter-spacing:-.02em;line-height:.9;margin:14px 0 0;
+  .title{font-family:"Newsreader",serif;font-weight:800;letter-spacing:-.02em;line-height:.9;margin:14px 0 0;
     font-size:clamp(44px,12vw,118px);color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.25)}
   .title em{font-style:italic;font-weight:500;background:linear-gradient(180deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
   .tagline{margin:16px auto 0;font-family:"IBM Plex Mono",monospace;font-size:clamp(10px,1.4vw,12.5px);letter-spacing:.12em;text-transform:uppercase;color:#B8CCE6}
@@ -80,7 +81,7 @@
   .status{display:grid;grid-template-columns:1fr;gap:10px;padding-bottom:clamp(20px,4vw,34px)}
   .stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;backdrop-filter:blur(4px)}
   .stat .k{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#9DB6D6}
-  .stat .v{font-family:"Fraunces",serif;font-weight:600;font-size:19px;margin-top:4px;color:#fff;display:flex;align-items:baseline;gap:8px}
+  .stat .v{font-family:"Newsreader",serif;font-weight:600;font-size:19px;margin-top:4px;color:#fff;display:flex;align-items:baseline;gap:8px}
   .stat .v small{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:400;color:var(--gold-lt)}
   .track{height:6px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden;margin-top:9px}
   .fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--gold-lt));transition:width 1.5s var(--ease) .4s}
@@ -107,7 +108,7 @@
 
   .sec-pad{padding:clamp(26px,4vw,42px) 0 0}
   .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
-  .sec-head h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(19px,2.6vw,26px);margin:0;color:var(--ink)}
+  .sec-head h2{font-family:"Newsreader",serif;font-weight:600;font-size:clamp(19px,2.6vw,26px);margin:0;color:var(--ink)}
   .sec-head .rule{flex:1;height:1px;background:var(--line)}
   .sec-head .ix{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--gold-dp);letter-spacing:.18em}
 
@@ -118,7 +119,7 @@
   .leadcard-in{position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:clamp(18px,3vw,28px) clamp(18px,3vw,30px);flex-wrap:wrap}
   .lc-left{display:flex;align-items:center;gap:16px;min-width:0}
   .crown{width:42px;height:34px;flex:none}
-  .lc-name{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(26px,5vw,46px);line-height:.95;letter-spacing:-.01em}
+  .lc-name{font-family:"Newsreader",serif;font-weight:800;font-size:clamp(26px,5vw,46px);line-height:.95;letter-spacing:-.01em}
   .lc-pos{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:5px}
   .lc-sub{display:flex;align-items:center;gap:10px;margin-top:9px;flex-wrap:wrap}
   .lc-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end}
@@ -127,7 +128,7 @@
   .lc-unit{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#A9C2E4;margin-top:4px}
   .lc-gap{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:#CFE0F2;margin-top:10px}
   .lc-gap b{color:#7BE6AC}
-  .avatar{border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;color:#fff;flex:none;
+  .avatar{border-radius:50%;display:grid;place-items:center;font-family:"Newsreader",serif;font-weight:700;color:#fff;flex:none;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 4px 12px -4px rgba(0,0,0,.4)}
 
   /* ---------------- LEADERBOARD (light, mobile-first) ---------------- */
@@ -142,9 +143,9 @@
   .pip{width:8px;height:8px;border-radius:50%;flex:none}
   .pip-g{background:var(--gold)} .pip-s{background:var(--silver)} .pip-b{background:var(--bronze)}
   .lb-player{display:flex;align-items:center;gap:12px;min-width:0}
-  .lb-av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:15px;color:#fff;flex:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+  .lb-av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:"Newsreader",serif;font-weight:700;font-size:15px;color:#fff;flex:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
   .lb-id{min-width:0}
-  .lb-nm{font-family:"Hanken Grotesk",sans-serif;font-weight:700;font-size:16.5px;line-height:1.15;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lb-nm{font-family:"Archivo",sans-serif;font-weight:700;font-size:16.5px;line-height:1.15;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .lb-sub{display:flex;align-items:center;gap:8px;margin-top:3px;flex-wrap:wrap}
   .hcp{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);white-space:nowrap}
   .hcp b{color:var(--ink)}
@@ -181,8 +182,8 @@
   .card:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
   .pc-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 16px;border-bottom:1px solid var(--line2)}
   .pc-id{display:flex;align-items:center;gap:11px;min-width:0}
-  .pc-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:13px;color:#fff;flex:none}
-  .pc-nm{font-family:"Hanken Grotesk";font-weight:700;font-size:16px;color:var(--ink)}
+  .pc-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:"Newsreader",serif;font-weight:700;font-size:13px;color:#fff;flex:none}
+  .pc-nm{font-family:"Archivo";font-weight:700;font-size:16px;color:var(--ink)}
   .pc-nm small{display:block;font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-top:1px}
   .pc-best{text-align:right;font-family:"IBM Plex Mono",monospace}
   .pc-best b{font-size:21px;font-weight:600;color:var(--gold-dp)}
@@ -216,8 +217,60 @@
   footer{margin:clamp(40px,6vw,72px) 0 36px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
   footer .fl{display:flex;align-items:center;gap:10px}
   footer .logo,footer .crest{width:28px;height:28px}
-  footer .fc{font-family:"Fraunces",serif;font-weight:700;font-size:14px;color:var(--ink2)}
+  footer .logoslot{color:var(--navy-700);display:inline-flex;line-height:0;flex:none}
+  footer .fc{font-family:"Newsreader",serif;font-weight:700;font-size:14px;color:var(--ink2)}
   footer .fm{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);letter-spacing:.05em}
+
+  /* ---------------- share button ---------------- */
+  .tbr{display:flex;align-items:center;gap:10px}
+  .share{appearance:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+    font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:#0A1E3D;background:linear-gradient(180deg,var(--gold-lt),var(--gold));border:0;
+    padding:7px 13px;border-radius:999px;font-weight:600;box-shadow:0 4px 12px -5px rgba(224,190,84,.6);
+    transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+  .share:hover{transform:translateY(-1px);box-shadow:0 7px 16px -5px rgba(224,190,84,.7)}
+  .share:active{transform:translateY(0)}
+  .share:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+  /* ---------------- row affordance + modal ---------------- */
+  .lb-row{cursor:pointer;transition:background .2s var(--ease)}
+  .lb-row:hover{background:var(--cloud)}
+  .lb-row.lead:hover{background:linear-gradient(90deg,rgba(224,190,84,.18),rgba(224,190,84,.04) 70%)}
+  .lb-row:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+  .modal{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:18px}
+  .modal.open{display:flex}
+  .modal-bg{position:absolute;inset:0;background:rgba(10,30,61,.55);backdrop-filter:blur(3px);animation:fade .3s var(--ease)}
+  .modal-card{position:relative;width:100%;max-width:560px;max-height:88vh;overflow:auto;background:var(--paper);
+    border-radius:18px;box-shadow:0 40px 90px -30px rgba(10,30,61,.6);padding:24px;animation:pop .35s var(--ease)}
+  @keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+  .modal-x{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
+    background:var(--cloud);color:var(--ink2);cursor:pointer;font-size:13px;display:grid;place-items:center;transition:background .2s}
+  .modal-x:hover{background:var(--cloud2)}
+  .m-head{display:flex;align-items:center;gap:14px;padding-right:30px}
+  .m-av{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-family:"Newsreader",serif;font-weight:700;font-size:19px;color:#fff;flex:none}
+  .m-pos{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dp)}
+  .m-name{font-family:"Newsreader",serif;font-weight:700;font-size:26px;line-height:1.05;color:var(--ink)}
+  .m-sub{display:flex;align-items:center;gap:8px;margin-top:5px;flex-wrap:wrap}
+  .m-sub .spark{display:block!important}
+  .m-total{margin-left:auto;text-align:right;font-family:"IBM Plex Mono",monospace}
+  .m-total b{display:block;font-size:30px;font-weight:600;color:var(--gold-dp);line-height:1}
+  .m-total span{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+  .m-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0}
+  .m-stats>div{background:var(--cloud);border:1px solid var(--line2);border-radius:10px;padding:11px 8px;text-align:center;
+    font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .m-stats>div span{display:block;font-size:20px;font-weight:600;color:var(--ink);letter-spacing:0;margin-bottom:3px}
+  .m-rounds{border-top:1px solid var(--line2);padding-top:6px}
+  .mrow{display:grid;grid-template-columns:22px 1fr auto auto;gap:10px;align-items:center;padding:9px 4px;border-bottom:1px solid var(--line2)}
+  .mrow:last-child{border-bottom:none}
+  .mrow>span:first-child{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint);text-align:center}
+  .mrow.c>span:first-child{color:var(--gold-dp);font-weight:600}
+  .mrow>span:nth-child(2){font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink2)}
+  .rtag2{font-family:"IBM Plex Mono",monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:99px}
+  .mrow.c .rtag2{color:var(--gold-dp);background:rgba(196,154,43,.12);border:1px solid rgba(196,154,43,.3)}
+  .mrow.d .rtag2{color:var(--faint);background:var(--cloud);border:1px solid var(--line)}
+  .mrow b{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:15px;color:var(--ink);min-width:28px;text-align:right}
+  .mrow.d{opacity:.55}.mrow.d b{text-decoration:line-through;text-decoration-color:var(--faint)}
+  .card{cursor:pointer}
 
   /* ============ DESKTOP ============ */
   @media (min-width:760px){
@@ -241,12 +294,32 @@
   @media (max-width:759px){
     .lb-formcol{display:none}
   }
+  @media (max-width:430px){
+    .brand .bt{display:none}
+    .topbar{padding:14px 0}
+    .live{padding:6px 9px}
+    .m-stats{grid-template-columns:repeat(2,1fr)}
+    .m-name{font-size:23px}
+  }
 </style>
 </head>
 <body>
 
 <!-- fallback crest used if assets/conwy-logo.png is absent -->
-<template id="crestTpl"><svg class="crest" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0BE54"/><stop offset="1" stop-color="#C49A2B"/></linearGradient></defs><path d="M50 5 L88 17 V47 C88 72 70 88 50 96 C30 88 12 72 12 47 V17 Z" fill="#102B52" stroke="url(#cg)" stroke-width="3"/><path d="M37 65 V35 L62 42 L37 48" fill="none" stroke="url(#cg)" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="37" cy="71" r="3" fill="#E0BE54"/></svg></template>
+<template id="crestTpl"><svg class="crest" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M23 24 H97 V73 C97 101 75 121 60 130 C45 121 23 101 23 73 Z" stroke="currentColor" stroke-width="4.2" stroke-linejoin="round"/>
+  <path d="M35 67 V47 H41 V41 H48 V47 H54 V41 H60 V47 H66 V41 H72 V47 H79 V41 H85 V67 Z" fill="currentColor"/>
+  <path d="M60 47 V31" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M60.5 31.5 L73 36 L60.5 40.5 Z" fill="currentColor"/>
+  <g stroke="currentColor" stroke-width="3.1" stroke-linecap="round">
+    <path d="M34 86 q6 -5 12 0 t12 0 t12 0 t12 0"/>
+    <path d="M34 96 q6 -5 12 0 t12 0 t12 0 t12 0"/>
+    <path d="M34 106 q6 -5 12 0 t12 0 t12 0 t12 0"/>
+  </g>
+  <path d="M60 115 V89" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M60 89 L70 92 L60 95 Z" fill="currentColor"/>
+  <ellipse cx="60" cy="116" rx="6.5" ry="2.4" fill="currentColor"/>
+</svg></template>
 
 <header class="hero">
   <div class="hero-in wrap">
@@ -255,7 +328,10 @@
         <span class="logoslot" data-size="42"></span>
         <div class="bt">Conwy Golf Club<b>Conwy Choppers</b></div>
       </div>
-      <span class="live"><span class="pulse"></span> <span id="liveUpdated">Live</span></span>
+      <div class="tbr">
+        <button class="share" id="shareBtn" aria-label="Share leaderboard"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 3v13"/><path d="m7 8 5-5 5 5"/></svg> Share</button>
+        <span class="live"><span class="pulse"></span> <span id="liveUpdated">Live</span></span>
+      </div>
     </div>
 
     <div class="hero-mid">
@@ -329,6 +405,14 @@
   </footer>
 </div>
 
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-bg" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-label="Player record">
+    <button class="modal-x" data-close aria-label="Close">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
 <script src="data.js"></script>
 <script>
 (function(){
@@ -343,15 +427,12 @@
   const PHEX={tom:"#2E73B8",josh:"#D99A2B",callum:"#2FA36A"};
   const initials=n=>n.split(/\s+/).map(w=>w[0]).slice(0,2).join("").toUpperCase();
 
-  /* logo with graceful fallback to crest */
+  /* Conwy crest — inline SVG, recolours via currentColor per context */
   const crestSVG=$("crestTpl").innerHTML;
   document.querySelectorAll(".logoslot").forEach(slot=>{
     const sz=slot.dataset.size||40;
-    const img=new Image();
-    img.className="logo";img.alt="Conwy Golf Club";img.style.width=img.style.height=sz+"px";
-    img.onerror=()=>{slot.innerHTML=crestSVG;const c=slot.querySelector(".crest");if(c){c.style.width=c.style.height=sz+"px";}};
-    img.onload=()=>{slot.innerHTML="";slot.appendChild(img);};
-    img.src="assets/conwy-logo.png";
+    slot.innerHTML=crestSVG;
+    const c=slot.querySelector(".crest");if(c){c.style.width=c.style.height=sz+"px";}
   });
 
   /* compute */
@@ -432,6 +513,9 @@
     const row=document.createElement("div");
     row.className="lb-row"+(p.pos===1&&p.best6>0?" lead":"");
     row.style.animationDelay=(0.12+i*0.08)+"s";
+    row.tabIndex=0;row.setAttribute("role","button");row.setAttribute("aria-label",p.name+" — view record");
+    row.addEventListener("click",()=>openPlayer(p.id));
+    row.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openPlayer(p.id);}});
     const pip=p.pos===1?"pip-g":p.pos===2?"pip-s":"pip-b";
     row.innerHTML=`
       <div class="lb-pos"><span class="pip ${pip}"></span>${p.posLabel.replace(/[a-z]/g,'')}</div>
@@ -445,7 +529,7 @@
       </div>
       <div class="lb-cards num">${p.played}<span class="sl">/${C.maxCards}</span></div>
       <div class="lb-formcol ta-r">${formStrip(p)}</div>
-      <div class="lb-total"><span class="n" data-to="${p.best6}">0</span><small>${gap===0&&p.pos===1?(p.best6>0?'leader':'level'):gap+' pts'}</small></div>
+      <div class="lb-total"><span class="n" data-to="${p.best6}">0</span><small>${p.pos===1?(p.best6>0?'leader':'level'):(gap===0?'level':Math.abs(gap)+' to gold')}</small></div>
       <div class="lb-mobform">${formStrip(p)}</div>`;
     board.appendChild(row);
   });
@@ -474,9 +558,47 @@
     let body;
     if(!p.played)body=`<div class="empty">No cards in yet — first round drops here.</div>`;
     else body=`<div class="rounds">`+p.sorted.map((r,i)=>{const counts=i<C.bestN;const cut=(i===C.bestN)?`<div class="cut"><span>best ${C.bestN} cut</span></div>`:"";return cut+`<div class="rnd ${counts?'counts':'dropped'}"><div class="ri">${i+1}</div><div><div class="rdate">${fL(r.date)}</div><div class="rcourse">${(r.course||'').toUpperCase()}</div></div><div class="rtag">${counts?'Counting':'Dropped'}</div><div class="rpts">${r.points}</div></div>`;}).join("")+`</div>`;
-    const c=document.createElement("div");c.className="card";
+    const c=document.createElement("div");c.className="card";c.tabIndex=0;c.setAttribute("role","button");
     c.innerHTML=`<div class="pc-head"><div class="pc-id"><span class="pc-av" style="background:${PCOL[p.id]||'var(--gold)'}">${initials(p.name)}</span><div class="pc-nm">${p.name}<small>${p.posLabel} · order of merit</small></div></div><div class="pc-best"><b>${p.best6}</b><span>Best 6</span></div></div>${body}<div class="pc-foot"><span>${p.played}/${C.maxCards} cards</span><span>${p.played?Math.min(p.played,C.bestN)+' counting':''}</span></div>`;
+    c.addEventListener("click",()=>openPlayer(p.id));
+    c.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openPlayer(p.id);}});
     cards.appendChild(c);
+  });
+
+  /* player detail modal */
+  function openPlayer(id){
+    const p=players.find(x=>x.id===id);if(!p)return;
+    const avg=p.played?Math.round(p.rounds.reduce((s,r)=>s+r.points,0)/p.played*10)/10:0;
+    const best=p.played?Math.max(...p.rounds.map(r=>r.points)):0;
+    const cut=p.cpts.length?p.cpts[p.cpts.length-1]:0;
+    const rows=p.played?p.sorted.map((r,i)=>{const counts=i<C.bestN;return `<div class="mrow ${counts?'c':'d'}"><span>${i+1}</span><span>${fL(r.date)} · ${(r.course||'').toUpperCase()}</span><span class="rtag2">${counts?'Counting':'Dropped'}</span><b>${r.points}</b></div>`;}).join(""):`<div class="empty">No cards in yet.</div>`;
+    $("modalBody").innerHTML=`
+      <div class="m-head">
+        <span class="m-av" style="background:${PCOL[p.id]||'var(--gold)'}">${initials(p.name)}</span>
+        <div><div class="m-pos">${p.posLabel} · order of merit</div><div class="m-name">${p.name}</div>
+          <div class="m-sub"><span class="hcp">HCP <b>${p.handicap??'—'}</b></span>${trendChip(p)}${sparkline(p.handicapHistory,PHEX[p.id])}</div></div>
+        <div class="m-total"><b>${p.best6}</b><span>Best 6</span></div>
+      </div>
+      <div class="m-stats">
+        <div><span>${p.played}</span>Rounds</div>
+        <div><span>${avg||'—'}</span>Avg pts</div>
+        <div><span>${best||'—'}</span>Best card</div>
+        <div><span>${p.played>=C.bestN?cut:'—'}</span>Cut score</div>
+      </div>
+      <div class="m-rounds">${rows}</div>`;
+    $("modal").classList.add("open");$("modal").setAttribute("aria-hidden","false");document.body.style.overflow="hidden";
+  }
+  function closeModal(){$("modal").classList.remove("open");$("modal").setAttribute("aria-hidden","true");document.body.style.overflow="";}
+  $("modal").addEventListener("click",e=>{if(e.target.hasAttribute("data-close"))closeModal();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+
+  /* share */
+  $("shareBtn").addEventListener("click",async()=>{
+    const url="https://tomwilliams92-hue.github.io/conwy-choppers/";
+    const text=`🏌️ Conwy Choppers — Order of Merit. ${leader.best6>0?leader.name.split(" ")[0]+" leads on "+leader.best6+".":"It's all to play for."} Check the board:`;
+    if(navigator.share){try{await navigator.share({title:"Conwy Choppers",text,url});return;}catch(e){if(e.name==="AbortError")return;}}
+    try{await navigator.clipboard.writeText(url);const b=$("shareBtn");const o=b.innerHTML;b.innerHTML="Copied!";setTimeout(()=>b.innerHTML=o,1400);}
+    catch(e){window.open("https://wa.me/?text="+encodeURIComponent(text+" "+url),"_blank");}
   });
 
   /* tabs */
