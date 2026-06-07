@@ -14,11 +14,14 @@ window.CHOPPERS_DATA = {
     name:        "Conwy Choppers",
     subtitle:    "Order of Merit",
     format:      "Best 6 Stableford",
-    startDate:   "2026-06-05",   // this past Friday
+    startDate:   "2026-05-30",   // first counting rounds
     endDate:     "2026-09-30",   // season close
-    lastUpdated: "2026-06-06",
+    lastUpdated: "2026-06-07",
     bestN:       6,
-    maxCards:    12
+    maxCards:    12,
+    recap:       "Three cards on the board. <b>Callum</b> leads on 36, <b>Tom</b> right behind on 33, <b>Josh</b> on 30 — it's tight at the top.",
+    moverId:     null,    // player id with the biggest jump this week (scraper fills)
+    celebrate:   false    // true triggers lead-change confetti
   },
 
   players: [
@@ -31,7 +34,7 @@ window.CHOPPERS_DATA = {
       handicapHistory: [-1.2, -1.3, -1.3, -1.2, -1.3],  // recent HI values (plus golfers are negative)
       movement: null,             // places moved since last update (+ up / − down / null = n/a)
       rounds: [
-        // no rounds yet — add as they come in
+        { date: "2026-05-30", course: "Conwy", points: 33 }
       ]
     },
     {
@@ -43,7 +46,7 @@ window.CHOPPERS_DATA = {
       handicapHistory: [2.5, 2.6, 2.7],
       movement: null,
       rounds: [
-        // no rounds yet
+        { date: "2026-05-30", course: "Conwy", points: 30 }
       ]
     },
     {

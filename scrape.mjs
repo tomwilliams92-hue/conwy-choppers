@@ -27,7 +27,7 @@ const COMPETITION = {
   name: "Conwy Choppers",
   subtitle: "Order of Merit",
   format: "Best 6 Stableford",
-  startDate: "2026-06-05",
+  startDate: "2026-05-30",
   endDate: "2026-09-30",
   lastUpdated: new Date().toISOString().slice(0, 10),
   bestN: 6,
