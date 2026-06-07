@@ -26,8 +26,10 @@ window.CHOPPERS_DATA = {
       id: "tom",
       name: "Tom Williams",
       short: "Tom",
-      handicap: "+1.3",       // current WHS Handicap Index
-      handicapTrend: 0,        // change over recent rounds (− = improving/green, + = slipping/red, 0 = flat, null = n/a)
+      handicap: "+1.3",            // current WHS Handicap Index
+      handicapTrend: 0,            // change over recent rounds (− improving/green, + slipping/red, 0 flat, null n/a)
+      handicapHistory: [-1.2, -1.3, -1.3, -1.2, -1.3],  // recent HI values (plus golfers are negative)
+      movement: null,             // places moved since last update (+ up / − down / null = n/a)
       rounds: [
         // no rounds yet — add as they come in
       ]
@@ -38,6 +40,8 @@ window.CHOPPERS_DATA = {
       short: "Josh",
       handicap: "2.7",
       handicapTrend: null,
+      handicapHistory: [2.5, 2.6, 2.7],
+      movement: null,
       rounds: [
         // no rounds yet
       ]
@@ -48,6 +52,8 @@ window.CHOPPERS_DATA = {
       short: "Callum",
       handicap: "21.3",
       handicapTrend: -0.3,
+      handicapHistory: [21.9, 21.6, 21.5, 21.3],
+      movement: null,
       rounds: [
         { date: "2026-06-05", course: "Conwy", points: 36 }
       ]

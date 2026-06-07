@@ -6,7 +6,6 @@
 <title>Conwy Choppers — Order of Merit</title>
 <meta name="description" content="Conwy Choppers · Best 6 Stableford order of merit · Conwy Golf Club." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230C2519'/%3E%3Cpath d='M11 25V7l11 3.3L11 13.6' fill='none' stroke='%23E7CC72' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E" />
-<!-- Link preview (WhatsApp / iMessage / socials) -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Conwy Choppers" />
 <meta property="og:title" content="Conwy Choppers — Order of Merit" />
@@ -19,355 +18,364 @@
 <meta name="twitter:title" content="Conwy Choppers — Order of Merit" />
 <meta name="twitter:description" content="Best 6 Stableford · Conwy Golf Club · 5 Jun – 30 Sep 2026" />
 <meta name="twitter:image" content="https://tomwilliams92-hue.github.io/conwy-choppers/og.png" />
-<meta name="theme-color" content="#0C2519" />
+<meta name="theme-color" content="#07140E" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,0,900;9..144,1,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* canvas */
-    --green-950:#0A1F16;
-    --green-900:#0C2519;
-    --green-850:#0E2B1F;
-    --green-800:#123524;
-    --panel:#143A2A;
-    --panel-2:#173F2E;
-    --line:rgba(226,198,106,.20);
-    --line-soft:rgba(226,198,106,.10);
-
-    /* ink */
-    --cream:#F2EBDB;
-    --cream-2:#E4DAC4;
-    --cream-dim:#B9B49E;
-    --muted:#8FA293;
-
-    /* metals */
-    --brass:#C9A227;
-    --brass-lt:#E7CC72;
-    --gold:#E6B93B;
-    --silver:#C6CDD4;
-    --bronze:#C5803F;
-
-    --plaque:#EFE6D2;       /* parchment for leader plaque */
-    --plaque-ink:#1A2C20;
-
-    --maxw:1180px;
-    --ease:cubic-bezier(.22,1,.36,1);
-    --shadow-lo:0 1px 0 rgba(255,255,255,.03), 0 10px 24px -14px rgba(0,0,0,.6);
-    --shadow-hi:0 24px 60px -28px rgba(0,0,0,.75), 0 2px 0 rgba(231,204,114,.10) inset;
+    --bg:#06120C; --bg2:#0A1C13; --stage:#0B2017;
+    --panel:#10271B; --panel2:#143020; --rise:#173824;
+    --line:rgba(233,196,90,.18); --line-soft:rgba(233,196,90,.09); --hair:rgba(255,255,255,.06);
+    --cream:#F4F1E9; --cream2:#E3DAC6; --dim:#A7B3A6; --faint:#7C8C7E;
+    --gold:#E9C45A; --gold-deep:#C9A227; --gold-lt:#F3DC92;
+    --silver:#C8CFD6; --bronze:#C5803F;
+    --up:#34D17F; --down:#F2685A;            /* up = good/green, down = bad/red */
+    --plaque:#F1E8D4; --plaque-ink:#16271C;
+    --tom:#5AB6F0; --josh:#E0A93B; --callum:#56C271;
+    --maxw:1200px; --ease:cubic-bezier(.22,1,.36,1); --spring:cubic-bezier(.34,1.56,.64,1);
   }
-
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    margin:0;
-    font-family:"Hanken Grotesk",-apple-system,sans-serif;
-    color:var(--cream);
-    background:var(--green-950);
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-    line-height:1.5;
-    position:relative;
-    overflow-x:hidden;
-  }
+  body{margin:0;background:var(--bg);color:var(--cream);font-family:"Hanken Grotesk",system-ui,sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(16px,4vw,40px);position:relative;z-index:3}
+  ::selection{background:rgba(233,196,90,.25)}
 
-  /* atmosphere: layered radial light + grain + vignette */
-  body::before{
-    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-    background:
-      radial-gradient(120% 80% at 50% -10%, rgba(231,204,114,.10), transparent 55%),
-      radial-gradient(90% 60% at 85% 10%, rgba(59,107,78,.35), transparent 60%),
-      radial-gradient(120% 100% at 50% 120%, rgba(0,0,0,.6), transparent 55%),
-      linear-gradient(180deg,var(--green-900),var(--green-950));
-  }
-  body::after{
-    content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    mix-blend-mode:overlay;
-  }
-  .wrap{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+  .mono{font-family:"IBM Plex Mono",monospace}
+  .num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
 
-  /* ---------- masthead ---------- */
-  header.mast{padding:clamp(28px,5vw,52px) 0 clamp(20px,3vw,32px)}
-  .mast-top{
-    display:flex;justify-content:space-between;align-items:flex-start;gap:20px;
-    border-bottom:1px solid var(--line);padding-bottom:18px;flex-wrap:wrap;
-  }
-  .eyebrow{
-    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.34em;
-    text-transform:uppercase;color:var(--brass-lt);font-weight:500;
-    display:flex;align-items:center;gap:10px;
-  }
-  .eyebrow .pin{display:inline-flex}
-  .wordmark{
-    font-family:"Fraunces",serif;font-weight:900;
-    font-size:clamp(40px,9vw,92px);line-height:.92;letter-spacing:-.02em;
-    margin:14px 0 0;color:var(--cream);
-    text-shadow:0 1px 0 rgba(231,204,114,.18);
-  }
-  .wordmark em{
-    font-style:italic;font-weight:500;
-    background:linear-gradient(180deg,var(--brass-lt),var(--brass));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .mast-meta{
-    text-align:right;font-family:"IBM Plex Mono",monospace;font-size:11.5px;
-    letter-spacing:.06em;color:var(--cream-dim);line-height:1.9;
-  }
-  .live{
-    display:inline-flex;align-items:center;gap:7px;color:var(--cream);
-    font-weight:500;text-transform:uppercase;letter-spacing:.18em;font-size:10.5px;
-  }
-  .dot{width:7px;height:7px;border-radius:50%;background:#7BE0A0;box-shadow:0 0 0 0 rgba(123,224,160,.6);animation:pulse 2.4s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(123,224,160,.5)}70%{box-shadow:0 0 0 8px rgba(123,224,160,0)}100%{box-shadow:0 0 0 0 rgba(123,224,160,0)}}
+  /* ---------------- HERO ---------------- */
+  .hero{position:relative;min-height:92vh;display:flex;flex-direction:column;justify-content:space-between;
+    overflow:hidden;isolation:isolate}
+  .scene{position:absolute;inset:0;z-index:0}
+  .sky{position:absolute;inset:0;background:
+      radial-gradient(120% 90% at 50% 8%, rgba(243,220,146,.20), transparent 46%),
+      radial-gradient(90% 70% at 78% 0%, rgba(233,196,90,.16), transparent 55%),
+      linear-gradient(180deg,#0A2016 0%, #0C2418 38%, #0A1C13 70%, var(--bg) 100%)}
+  .sun{position:absolute;top:9%;left:50%;transform:translateX(-50%);width:340px;height:340px;border-radius:50%;
+    background:radial-gradient(circle,rgba(243,220,146,.5),rgba(233,196,90,.08) 45%,transparent 62%);filter:blur(6px);z-index:0}
+  .dunes{position:absolute;left:0;right:0;bottom:0;width:100%;height:62%;z-index:1}
+  .grain{position:absolute;inset:0;z-index:2;opacity:.05;mix-blend-mode:overlay;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .vig{position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:radial-gradient(120% 80% at 50% 120%, rgba(0,0,0,.55), transparent 55%)}
+  .flagstick{position:absolute;z-index:1;right:14%;bottom:30%;transform-origin:bottom center;
+    animation:sway 6s ease-in-out infinite}
+  @keyframes sway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.2deg)}}
 
-  .subline{
-    margin-top:18px;display:flex;gap:26px;flex-wrap:wrap;align-items:center;
-    font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--cream-dim);
-    letter-spacing:.04em;
-  }
-  .subline b{color:var(--cream);font-weight:600}
-  .chip{
-    border:1px solid var(--line);border-radius:999px;padding:5px 13px;
-    color:var(--brass-lt);background:rgba(231,204,114,.04);
-  }
+  /* top bar */
+  .topbar{position:relative;z-index:4;display:flex;justify-content:space-between;align-items:center;
+    padding:22px clamp(16px,4vw,40px);max-width:var(--maxw);margin:0 auto;width:100%}
+  .brandline{display:flex;align-items:center;gap:13px}
+  .crest{width:46px;height:46px;flex:none;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
+  .brandtxt{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.7}
+  .brandtxt b{display:block;color:var(--cream);font-family:"Fraunces",serif;font-weight:600;font-size:15px;letter-spacing:.02em}
+  .live{display:inline-flex;align-items:center;gap:8px;font-family:"IBM Plex Mono",monospace;font-size:10px;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--cream2);border:1px solid var(--line);
+    padding:7px 13px;border-radius:999px;background:rgba(0,0,0,.25);backdrop-filter:blur(6px)}
+  .pulse{width:7px;height:7px;border-radius:50%;background:var(--up);box-shadow:0 0 0 0 rgba(52,209,127,.6);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,209,127,.5)}70%{box-shadow:0 0 0 9px rgba(52,209,127,0)}100%{box-shadow:0 0 0 0 rgba(52,209,127,0)}}
 
-  /* season progress */
-  .season{margin-top:22px}
-  .season-track{height:6px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden;border:1px solid var(--line-soft)}
-  .season-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--brass),var(--brass-lt));width:0;transition:width 1.4s var(--ease) .3s}
-  .season-labels{display:flex;justify-content:space-between;margin-top:8px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+  /* hero centre */
+  .hero-mid{position:relative;z-index:4;text-align:center;padding:clamp(10px,3vw,30px) 20px 0;max-width:var(--maxw);margin:0 auto;width:100%}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:clamp(10px,1.4vw,12px);letter-spacing:.4em;
+    text-transform:uppercase;color:var(--gold-lt);display:flex;gap:14px;justify-content:center;align-items:center}
+  .eyebrow span{height:1px;width:34px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .eyebrow span:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
+  .title{font-family:"Fraunces",serif;font-weight:900;letter-spacing:-.025em;line-height:.86;
+    font-size:clamp(58px,13vw,168px);margin:18px 0 0;color:var(--cream);text-shadow:0 2px 0 rgba(243,220,146,.12)}
+  .title em{display:block;font-style:italic;font-weight:500;
+    background:linear-gradient(180deg,var(--gold-lt),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tagline{margin:22px auto 0;font-family:"IBM Plex Mono",monospace;font-size:clamp(11px,1.5vw,13.5px);
+    letter-spacing:.14em;text-transform:uppercase;color:var(--cream2)}
+  .tagline b{color:var(--gold-lt)}
 
-  /* ---------- section title ---------- */
-  .sec-head{display:flex;align-items:baseline;gap:14px;margin:clamp(34px,5vw,56px) 0 22px}
-  .sec-head h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(20px,3vw,26px);margin:0;letter-spacing:-.01em}
-  .sec-head .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
-  .sec-head .num{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--brass-lt);letter-spacing:.2em}
-
-  /* ---------- podium ---------- */
-  .podium{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,22px);align-items:end}
-  .pcol{display:flex;flex-direction:column;align-items:stretch;opacity:0;transform:translateY(26px);animation:rise .9s var(--ease) forwards}
-  .pcol:nth-child(1){animation-delay:.18s}
-  .pcol:nth-child(2){animation-delay:.06s}
-  .pcol:nth-child(3){animation-delay:.30s}
+  .reveal{opacity:0;transform:translateY(22px);animation:rise .9s var(--ease) forwards}
+  .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.27s}.d4{animation-delay:.4s}.d5{animation-delay:.52s}
   @keyframes rise{to{opacity:1;transform:none}}
 
-  .card{
-    position:relative;border:1px solid var(--line);border-radius:14px;
-    background:linear-gradient(180deg,var(--panel-2),var(--panel));
-    box-shadow:var(--shadow-hi);overflow:hidden;
-  }
-  .pcard{padding:22px 20px 24px;text-align:center}
-  .pcol.lead .pcard{background:linear-gradient(180deg,var(--plaque),#E4D8BD);color:var(--plaque-ink);border-color:rgba(201,162,39,.55)}
-  .pcol.lead .pname{color:var(--plaque-ink)}
-  .pcol.lead .ptotal{color:var(--plaque-ink)}
-  .pcol.lead .punit,.pcol.lead .pmeta{color:#5C5234}
-  .pcol.lead .pcard::after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.5);border-radius:13px;margin:5px;pointer-events:none}
+  /* hero status strip */
+  .status{position:relative;z-index:4;max-width:var(--maxw);margin:0 auto;width:100%;padding:0 clamp(16px,4vw,40px) clamp(26px,4vw,46px)}
+  .status-inner{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:var(--line-soft);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;backdrop-filter:blur(8px)}
+  .stat{background:rgba(7,18,12,.66);padding:16px 20px}
+  .stat .k{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+  .stat .v{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(16px,2.2vw,21px);margin-top:5px;color:var(--cream);display:flex;align-items:baseline;gap:8px}
+  .stat .v small{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:400;color:var(--gold-lt);letter-spacing:.04em}
+  .leadname{color:var(--gold-lt)}
+  .track{height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;margin-top:10px;border:1px solid var(--line-soft)}
+  .fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--gold-deep),var(--gold-lt));transition:width 1.5s var(--ease) .4s}
+  .scrollcue{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:4;color:var(--faint);font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.24em;text-transform:uppercase;animation:bob 2.2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,5px)}}
 
-  .medal{
-    width:54px;height:54px;border-radius:50%;margin:0 auto 14px;
-    display:grid;place-items:center;font-family:"IBM Plex Mono",monospace;
-    font-weight:600;font-size:15px;color:#1a1a14;position:relative;
-    box-shadow:0 6px 16px -6px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.6);
-  }
-  .medal::before{content:"";position:absolute;inset:4px;border-radius:50%;border:1px solid rgba(0,0,0,.18)}
-  .m-gold{background:radial-gradient(circle at 32% 28%,#FBE9A8,var(--gold) 60%,#B98E18)}
-  .m-silver{background:radial-gradient(circle at 32% 28%,#FBFCFE,var(--silver) 58%,#9AA2AA)}
-  .m-bronze{background:radial-gradient(circle at 32% 28%,#F0CBA0,var(--bronze) 60%,#8C5424)}
+  /* ---------------- SECTION FRAME ---------------- */
+  .sec{padding:clamp(46px,7vw,88px) 0 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px}
+  .sec-head .ix{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--gold-lt);letter-spacing:.2em}
+  .sec-head h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(21px,3vw,30px);margin:0;letter-spacing:-.01em}
+  .sec-head .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
 
-  .ppos{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-lt);margin-bottom:4px}
-  .pcol.lead .ppos{color:#9A7C1E}
-  .pname{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(20px,2.6vw,27px);line-height:1.05;color:var(--cream);letter-spacing:-.01em}
-  .ptotal{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:clamp(40px,6vw,58px);line-height:1;margin-top:14px;color:var(--cream);letter-spacing:-.02em}
-  .punit{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:6px}
-  .pmeta{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--cream-dim);margin-top:14px;padding-top:12px;border-top:1px solid var(--line-soft)}
-  .pcol.lead .pmeta{border-top-color:rgba(0,0,0,.12)}
+  /* ---------------- WINNER'S CIRCLE ---------------- */
+  .circle{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+    background:linear-gradient(135deg,#1a3a26,#0e2418 60%);box-shadow:0 40px 80px -40px rgba(0,0,0,.8)}
+  .circle::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(80% 120% at 12% -10%, rgba(243,220,146,.18), transparent 50%),
+    radial-gradient(60% 100% at 100% 120%, rgba(86,194,113,.12), transparent 55%)}
+  .circle::after{content:"";position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .circle-in{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(20px,4vw,52px);padding:clamp(26px,4vw,46px)}
+  .wc-left{display:flex;flex-direction:column;justify-content:center}
+  .crown{width:54px;height:42px;margin-bottom:14px}
+  .wc-pos{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-lt)}
+  .wc-name{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(40px,7vw,76px);line-height:.95;letter-spacing:-.02em;margin:6px 0 0}
+  .wc-meta{display:flex;align-items:center;gap:14px;margin-top:18px;flex-wrap:wrap}
+  .avatar{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:18px;color:#0b1f15;flex:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 6px 14px -6px rgba(0,0,0,.6)}
+  .wc-right{display:flex;flex-direction:column;justify-content:center;align-items:flex-end;text-align:right}
+  .wc-total{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:clamp(76px,15vw,150px);line-height:.84;
+    letter-spacing:-.04em;background:linear-gradient(180deg,var(--cream),var(--gold-lt));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .wc-unit{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-top:6px}
+  .wc-gap{margin-top:16px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--cream2)}
+  .wc-gap b{color:var(--up)}
 
-  .plinth{height:var(--h);background:linear-gradient(180deg,rgba(231,204,114,.16),rgba(231,204,114,.02));border:1px solid var(--line);border-top:none;border-radius:0 0 14px 14px;margin-top:-1px;display:grid;place-items:center}
-  .plinth .pl-num{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(26px,4vw,40px);color:rgba(231,204,114,.35)}
+  /* ---------------- LEADERBOARD ---------------- */
+  .board{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:linear-gradient(180deg,var(--panel2),var(--panel))}
+  .lb-head,.lb-row{display:grid;grid-template-columns:54px 40px 1fr 92px 116px 96px;align-items:center;gap:12px;padding:0 clamp(14px,2vw,22px)}
+  .lb-head{height:46px;background:rgba(0,0,0,.28);border-bottom:1px solid var(--line)}
+  .lb-head span{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .ta-r{text-align:right;justify-self:end}
+  .ta-c{text-align:center;justify-self:center}
+  .lb-row{min-height:78px;border-bottom:1px solid var(--hair);position:relative;
+    opacity:0;transform:translateY(14px);animation:rise .7s var(--ease) forwards}
+  .lb-row:last-child{border-bottom:none}
+  .lb-row.lead{background:linear-gradient(90deg,rgba(233,196,90,.14),rgba(233,196,90,.02) 60%)}
+  .lb-row.lead::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold-lt),var(--gold-deep))}
+  .lb-pos{font-family:"Fraunces",serif;font-weight:700;font-size:22px;display:flex;align-items:center;gap:9px}
+  .pos-pip{width:9px;height:9px;border-radius:50%;flex:none}
+  .pip-g{background:var(--gold);box-shadow:0 0 10px rgba(233,196,90,.6)} .pip-s{background:var(--silver)} .pip-b{background:var(--bronze)}
+  .mov{font-family:"IBM Plex Mono",monospace;font-size:12px;display:flex;align-items:center;gap:2px;justify-content:center}
+  .mov.up{color:var(--up)} .mov.down{color:var(--down)} .mov.flat{color:var(--faint)}
+  .lb-player{display:flex;align-items:center;gap:14px;min-width:0}
+  .lb-av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:16px;color:#0b1f15;flex:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+  .lb-id{min-width:0}
+  .lb-nm{font-family:"Fraunces",serif;font-weight:600;font-size:19px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lb-sub{display:flex;align-items:center;gap:9px;margin-top:3px}
+  .hcp{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--dim);white-space:nowrap}
+  .hcp b{color:var(--cream)}
+  .trend{font-family:"IBM Plex Mono",monospace;font-size:9.5px;font-weight:500;padding:2px 7px;border-radius:99px;display:inline-flex;gap:3px;align-items:center;line-height:1;white-space:nowrap}
+  .trend.good{color:var(--up);background:rgba(52,209,127,.12);border:1px solid rgba(52,209,127,.4)}
+  .trend.bad{color:var(--down);background:rgba(242,104,90,.12);border:1px solid rgba(242,104,90,.42)}
+  .trend.flat{color:var(--cream2);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14)}
+  .spark{width:62px;height:22px;display:block}
+  .form{display:flex;gap:4px;justify-content:flex-end}
+  .fdot{width:20px;height:20px;border-radius:6px;display:grid;place-items:center;font-family:"IBM Plex Mono",monospace;font-size:9px;color:#06120c;font-weight:600}
+  .fdot.empty{background:rgba(255,255,255,.06);color:var(--faint)}
+  .lb-total{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:30px;justify-self:end;color:var(--cream)}
+  .lb-total small{display:block;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:400;text-align:right;margin-top:1px}
 
-  /* ---------- standings table ---------- */
-  .standings{overflow:hidden}
-  .st-row{
-    display:grid;grid-template-columns:46px 1fr auto auto auto;gap:14px;align-items:center;
-    padding:16px 20px;border-bottom:1px solid var(--line-soft);
-    opacity:0;transform:translateY(12px);animation:rise .7s var(--ease) forwards;
-  }
-  .st-row:last-child{border-bottom:none}
-  .st-row.head{padding:12px 20px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.12)}
-  .st-row.head span{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);opacity:1;transform:none;animation:none}
-  .st-pos{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:15px;color:var(--brass-lt);display:flex;align-items:center;gap:8px}
-  .st-pos .pip{width:8px;height:8px;border-radius:50%}
-  .pip.g{background:var(--gold)} .pip.s{background:var(--silver)} .pip.b{background:var(--bronze)}
-  .st-name{font-family:"Fraunces",serif;font-weight:600;font-size:18px}
-  .st-name small{display:block;font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:10.5px;color:var(--muted);letter-spacing:.06em;margin-top:2px}
-  .st-played{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--cream-dim);text-align:right;min-width:64px}
-  .st-gap{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted);text-align:right;min-width:56px}
-  .st-total{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:22px;text-align:right;min-width:60px;color:var(--cream)}
-  .col-label{display:none}
+  /* ---------------- RACE CHART ---------------- */
+  .chartwrap{border:1px solid var(--line);border-radius:16px;padding:clamp(18px,3vw,28px);background:linear-gradient(180deg,var(--panel2),var(--panel))}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px}
+  .lg{display:flex;align-items:center;gap:8px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--cream2)}
+  .lg i{width:14px;height:3px;border-radius:2px}
+  .chart{width:100%;height:auto;display:block;overflow:visible}
+  .chart-empty{text-align:center;color:var(--faint);font-family:"IBM Plex Mono",monospace;font-size:12px;padding:40px 0}
 
-  /* ---------- scorecards ---------- */
-  .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
-  .pcardful{padding:0}
-  .pc-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line-soft)}
-  .pc-name{font-family:"Fraunces",serif;font-weight:600;font-size:19px}
-  .pc-name small{font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:10.5px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:2px}
+  /* ---------------- SCORECARDS ---------------- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,var(--panel2),var(--panel));
+    transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+  .card:hover{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(0,0,0,.8)}
+  .pc-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--hair)}
+  .pc-id{display:flex;align-items:center;gap:11px;min-width:0}
+  .pc-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:13px;color:#0b1f15;flex:none}
+  .pc-nm{font-family:"Fraunces",serif;font-weight:600;font-size:17px;line-height:1.1}
+  .pc-nm small{display:block;font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-top:1px}
   .pc-best{text-align:right;font-family:"IBM Plex Mono",monospace}
-  .pc-best b{font-size:21px;font-weight:600;color:var(--brass-lt)}
-  .pc-best span{display:block;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-  .rounds{padding:8px 12px 14px}
-  .rnd{display:grid;grid-template-columns:26px 1fr auto auto;gap:12px;align-items:center;padding:10px 8px;border-radius:8px;transition:background .25s var(--ease)}
-  .rnd:hover{background:rgba(231,204,114,.07)}
-  .rnd .ri{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);text-align:center}
-  .rnd.counts .ri{color:var(--brass-lt);font-weight:600}
-  .rnd .rdate{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--cream-dim)}
-  .rnd .rcourse{font-size:10.5px;color:var(--muted);font-family:"IBM Plex Mono",monospace;margin-top:1px}
-  .rnd .rtag{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:99px;border:1px solid transparent;white-space:nowrap}
-  .rnd.counts .rtag{color:var(--brass-lt);border-color:rgba(231,204,114,.40);background:rgba(231,204,114,.06)}
-  .rnd.dropped .rtag{color:var(--muted);border-color:rgba(255,255,255,.10)}
-  .rnd .rpts{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:16px;color:var(--cream);text-align:right;min-width:34px}
-  .rnd.counts{background:rgba(231,204,114,.035)}
+  .pc-best b{font-size:22px;font-weight:600;color:var(--gold-lt)}
+  .pc-best span{display:block;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+  .rounds{padding:8px 10px 12px}
+  .rnd{display:grid;grid-template-columns:24px 1fr auto auto;gap:11px;align-items:center;padding:9px 8px;border-radius:8px;transition:background .25s var(--ease)}
+  .rnd:hover{background:rgba(233,196,90,.06)}
+  .rnd .ri{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--faint);text-align:center}
+  .rnd.counts .ri{color:var(--gold-lt);font-weight:600}
+  .rnd .rdate{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--cream2)}
+  .rnd .rcourse{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);margin-top:1px}
+  .rtag{font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:99px;border:1px solid transparent;white-space:nowrap}
+  .rnd.counts .rtag{color:var(--gold-lt);border-color:rgba(233,196,90,.4);background:rgba(233,196,90,.06)}
+  .rnd.dropped .rtag{color:var(--faint);border-color:rgba(255,255,255,.1)}
+  .rnd.counts{background:rgba(233,196,90,.035)}
   .rnd.dropped{opacity:.5}
-  .rnd.dropped .rpts{text-decoration:line-through;text-decoration-color:var(--muted);color:var(--cream-dim)}
-  .cutline{display:flex;align-items:center;gap:10px;margin:10px 8px 6px}
-  .cutline::before,.cutline::after{content:"";height:1px;flex:1;background:repeating-linear-gradient(90deg,var(--line) 0 5px,transparent 5px 11px)}
-  .cutline span{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-  .empty{padding:26px 20px;text-align:center;color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em}
-  .pc-foot{padding:10px 20px 16px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);letter-spacing:.05em;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between}
+  .rnd .rpts{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:16px;color:var(--cream);text-align:right;min-width:32px}
+  .rnd.dropped .rpts{text-decoration:line-through;text-decoration-color:var(--faint);color:var(--cream2)}
+  .cut{display:flex;align-items:center;gap:10px;margin:9px 8px 5px}
+  .cut::before,.cut::after{content:"";height:1px;flex:1;background:repeating-linear-gradient(90deg,var(--line) 0 5px,transparent 5px 11px)}
+  .cut span{font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+  .empty{padding:26px 18px;text-align:center;color:var(--faint);font-family:"IBM Plex Mono",monospace;font-size:12px}
+  .pc-foot{display:flex;justify-content:space-between;padding:10px 18px 14px;border-top:1px solid var(--hair);font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--faint);letter-spacing:.05em}
 
-  /* ---------- rules / footer ---------- */
-  .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:8px}
-  .rule-cell{background:linear-gradient(180deg,var(--panel-2),var(--panel));padding:22px 22px}
-  .rule-cell .rk{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-lt);margin-bottom:9px}
-  .rule-cell .rv{font-size:13.5px;color:var(--cream-2);line-height:1.55}
-  .rule-cell .rv b{color:var(--cream)}
+  /* ---------------- RULES + FOOTER ---------------- */
+  .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .rc{background:linear-gradient(180deg,var(--panel2),var(--panel));padding:22px}
+  .rc .rk{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:9px}
+  .rc .rv{font-size:13.5px;color:var(--cream2);line-height:1.55}
+  .rc .rv b{color:var(--cream)}
+  footer{margin:clamp(50px,7vw,90px) 0 44px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+  footer .fl{display:flex;align-items:center;gap:11px}
+  footer .crest{width:30px;height:30px}
+  footer .fc{font-family:"Fraunces",serif;font-weight:700;font-size:14px;letter-spacing:.02em;color:var(--cream2)}
+  footer .fm{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint);letter-spacing:.06em}
 
-  footer.foot{margin:clamp(40px,6vw,72px) 0 40px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-  .foot .fm{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);letter-spacing:.06em}
-  .foot .crest{font-family:"Fraunces",serif;font-weight:900;font-size:15px;letter-spacing:.02em;color:var(--cream-dim)}
-
-  /* ---------- handicap + trend ---------- */
-  .hcap{display:inline-flex;align-items:center;gap:7px;flex-wrap:wrap}
-  .hcap-val{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.04em;color:var(--cream-dim);white-space:nowrap}
-  .hcap-val b{color:var(--cream);font-weight:600}
-  .trend{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:500;letter-spacing:.03em;padding:3px 8px;border-radius:99px;display:inline-flex;align-items:center;gap:4px;line-height:1;white-space:nowrap}
-  .trend.down{color:#8FEAAF;background:rgba(123,224,160,.12);border:1px solid rgba(123,224,160,.40)}   /* improving */
-  .trend.up{color:#F39A85;background:rgba(232,128,107,.14);border:1px solid rgba(232,128,107,.45)}     /* slipping */
-  .trend.flat{color:var(--cream-dim);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.16)}
-  .pcard .hcap{justify-content:center;margin-top:9px}
-  .pcol.lead .hcap-val{color:#6A5E38}
-  .pcol.lead .hcap-val b{color:var(--plaque-ink)}
-  /* high-contrast trend pills on the parchment leader card */
-  .pcol.lead .trend.down{color:#0E5A30;background:rgba(22,120,62,.16);border-color:rgba(14,90,48,.55);font-weight:600}
-  .pcol.lead .trend.up{color:#9A2A14;background:rgba(176,46,24,.14);border-color:rgba(154,42,20,.55);font-weight:600}
-  .pcol.lead .trend.flat{color:#5A4F30;background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.22)}
-  .st-name .st-sub{display:flex;align-items:center;gap:8px;margin-top:6px}
-  .st-sub-txt{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);letter-spacing:.04em}
-
-  @media (max-width:720px){
-    .podium{grid-template-columns:1fr;gap:14px}
-    .plinth{display:none}
-    .pcol{order:0 !important}
-    .st-row{grid-template-columns:38px 1fr auto;gap:10px;padding:14px 16px}
-    .st-played,.st-gap{display:none}
-    .st-row.head span.h-played,.st-row.head span.h-gap{display:none}
+  @media (max-width:760px){
+    .status-inner{grid-template-columns:1fr}
+    .circle-in{grid-template-columns:1fr;text-align:center}
+    .wc-left{align-items:center} .wc-right{align-items:center;text-align:center}
+    .lb-head{display:none}
+    .lb-row{grid-template-columns:30px 1fr 80px;grid-auto-rows:min-content;min-height:0;padding:14px 14px;gap:8px 10px}
+    .lb-mov,.lb-form,.lb-cards{display:none}
+    .lb-total{font-size:24px}
   }
 </style>
 </head>
 <body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="scene">
+    <div class="sky"></div>
+    <div class="sun"></div>
+    <svg class="dunes" viewBox="0 0 1440 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="d1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#163a26"/><stop offset="1" stop-color="#0e2a1b"/></linearGradient>
+        <linearGradient id="d2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#103019"/><stop offset="1" stop-color="#0a2013"/></linearGradient>
+        <linearGradient id="d3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b2415"/><stop offset="1" stop-color="#06120c"/></linearGradient>
+      </defs>
+      <path d="M0,210 C260,150 430,235 700,205 C980,174 1150,250 1440,200 L1440,500 L0,500 Z" fill="url(#d1)" opacity=".85"/>
+      <path d="M0,300 C300,250 520,330 800,300 C1080,270 1250,340 1440,300 L1440,500 L0,500 Z" fill="url(#d2)"/>
+      <path d="M0,390 C280,355 560,420 860,392 C1120,368 1300,420 1440,395 L1440,500 L0,500 Z" fill="url(#d3)"/>
+    </svg>
+    <svg class="flagstick" width="60" height="150" viewBox="0 0 60 150" aria-hidden="true">
+      <rect x="28" y="6" width="2.4" height="140" rx="1.2" fill="#E8E3D6"/>
+      <path d="M30 8 L58 18 L30 30 Z" fill="#E9C45A"/>
+      <ellipse cx="29" cy="147" rx="16" ry="4" fill="rgba(0,0,0,.35)"/>
+    </svg>
+    <div class="grain"></div>
+    <div class="vig"></div>
+  </div>
+
+  <div class="topbar">
+    <div class="brandline">
+      <span id="crest1"></span>
+      <div class="brandtxt">Conwy Golf Club<b>Conwy Choppers</b></div>
+    </div>
+    <span class="live"><span class="pulse"></span> <span id="liveUpdated">Live</span></span>
+  </div>
+
+  <div class="hero-mid">
+    <div class="eyebrow reveal d1"><span></span> Order of Merit · Best 6 Stableford <span></span></div>
+    <h1 class="title reveal d2">CONWY<em>Choppers</em></h1>
+    <div class="tagline reveal d3" id="heroTag">The summer race · 2026</div>
+  </div>
+
+  <div class="status reveal d4">
+    <div class="status-inner">
+      <div class="stat">
+        <div class="k">Current leader</div>
+        <div class="v"><span class="leadname" id="sLeader">—</span> <small id="sLeaderPts"></small></div>
+      </div>
+      <div class="stat">
+        <div class="k">Season</div>
+        <div class="v"><span id="sPct">—%</span></div>
+        <div class="track"><div class="fill" id="sFill"></div></div>
+      </div>
+      <div class="stat">
+        <div class="k">To the clubhouse</div>
+        <div class="v"><span id="sDays">—</span> <small>days left</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="scrollcue">scroll</div>
+</header>
+
 <div class="wrap">
 
-  <header class="mast">
-    <div class="mast-top">
-      <div>
-        <div class="eyebrow">
-          <span class="pin" aria-hidden="true">
-            <svg width="13" height="15" viewBox="0 0 13 15" fill="none"><path d="M3 14V1l8 2.4L3 6.2" stroke="#E7CC72" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"/></svg>
-          </span>
-          <span id="clubLabel">Conwy Golf Club · Order of Merit</span>
-        </div>
-        <h1 class="wordmark">CONWY <em>Choppers</em></h1>
-      </div>
-      <div class="mast-meta">
-        <div class="live"><span class="dot"></span> Live Board</div>
-        <div id="updated">Updated —</div>
-        <div id="daysleft">— days remaining</div>
-      </div>
-    </div>
-
-    <div class="subline">
-      <span class="chip" id="formatChip">Best 6 Stableford</span>
-      <span>Top six of up to <b>12</b> cards · <b id="playerCount">3</b> players</span>
-      <span id="dateRange">— → —</span>
-    </div>
-
-    <div class="season">
-      <div class="season-track"><div class="season-fill" id="seasonFill"></div></div>
-      <div class="season-labels">
-        <span id="seasonStart">Start</span>
-        <span id="seasonPct">Season —%</span>
-        <span id="seasonEnd">End</span>
-      </div>
-    </div>
-  </header>
-
-  <section>
-    <div class="sec-head"><span class="num">01</span><h2>The Podium</h2><div class="rule"></div></div>
-    <div class="podium" id="podium"></div>
+  <!-- WINNER'S CIRCLE -->
+  <section class="sec" id="wcSec">
+    <div class="sec-head"><span class="ix">01</span><h2>Winner's Circle</h2><div class="rule"></div></div>
+    <div class="circle"><div class="circle-in" id="circle"></div></div>
   </section>
 
-  <section>
-    <div class="sec-head"><span class="num">02</span><h2>Standings</h2><div class="rule"></div></div>
-    <div class="card standings" id="standings"></div>
+  <!-- LEADERBOARD -->
+  <section class="sec">
+    <div class="sec-head"><span class="ix">02</span><h2>Leaderboard</h2><div class="rule"></div></div>
+    <div class="board">
+      <div class="lb-head">
+        <span>Pos</span><span class="ta-c">Mov</span><span>Player</span>
+        <span class="lb-cards ta-c">Cards</span><span class="lb-form ta-r">Form</span><span class="ta-r">Best 6</span>
+      </div>
+      <div id="board"></div>
+    </div>
   </section>
 
-  <section>
-    <div class="sec-head"><span class="num">03</span><h2>Scorecards</h2><div class="rule"></div></div>
-    <div class="cards-grid" id="scorecards"></div>
+  <!-- RACE CHART -->
+  <section class="sec">
+    <div class="sec-head"><span class="ix">03</span><h2>The Race</h2><div class="rule"></div></div>
+    <div class="chartwrap">
+      <div class="legend" id="legend"></div>
+      <div id="chartHost"></div>
+    </div>
   </section>
 
-  <section>
-    <div class="sec-head"><span class="num">04</span><h2>How it works</h2><div class="rule"></div></div>
+  <!-- SCORECARDS -->
+  <section class="sec">
+    <div class="sec-head"><span class="ix">04</span><h2>Scorecards</h2><div class="rule"></div></div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <!-- RULES -->
+  <section class="sec">
+    <div class="sec-head"><span class="ix">05</span><h2>How it works</h2><div class="rule"></div></div>
     <div class="rules">
-      <div class="rule-cell"><div class="rk">The format</div><div class="rv">Every round is scored in <b>Stableford points</b>. Your <b>best 6</b> rounds count — submit up to <b>12</b>.</div></div>
-      <div class="rule-cell"><div class="rk">The total</div><div class="rv">Your six highest scores are <b>added together</b>. Highest combined total leads the order of merit.</div></div>
-      <div class="rule-cell"><div class="rk">Ties</div><div class="rv">Split on <b>countback</b> — best single round, then second-best, and so on. Genuine ties share the spot.</div></div>
-      <div class="rule-cell"><div class="rk">The season</div><div class="rv">Runs to <b id="endLabel">—</b>. Gold, silver and bronze are decided when the last card lands.</div></div>
+      <div class="rc"><div class="rk">The format</div><div class="rv">Every round scored in <b>Stableford points</b>. Your <b>best 6</b> count — submit up to <b>12</b>.</div></div>
+      <div class="rc"><div class="rk">The total</div><div class="rv">Six highest scores are <b>added together</b>. Biggest combined total leads the order of merit.</div></div>
+      <div class="rc"><div class="rk">Any course</div><div class="rv">Play anywhere — slope &amp; rating <b>normalise</b> every card, so it's a fair fight.</div></div>
+      <div class="rc"><div class="rk">The season</div><div class="rv">Runs to <b id="endLabel">—</b>. Gold, silver and bronze settle when the last card lands.</div></div>
     </div>
   </section>
 
-  <footer class="foot">
-    <span class="crest">CONWY CHOPPERS</span>
+  <footer>
+    <div class="fl"><span id="crest2"></span><span class="fc">Conwy Choppers</span></div>
     <span class="fm" id="footMeta">Order of Merit · Best 6 Stableford</span>
   </footer>
-
 </div>
 
 <script src="data.js"></script>
 <script>
 (function(){
-  const D = window.CHOPPERS_DATA;
+  const D=window.CHOPPERS_DATA;
   if(!D){document.body.innerHTML='<p style="padding:40px;font-family:monospace;color:#fff">data.js failed to load.</p>';return;}
-  const C = D.competition;
-  const ord = n => n+(["th","st","nd","rd"][(n%100>>3^1&&n%10)||0]||"th");
-  const fmtShort = iso => { const [y,m,d]=iso.split("-"); return d.replace(/^0/,'')+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m-1]; };
-  const fmtLong  = iso => fmtShort(iso)+" "+iso.slice(0,4);
+  const C=D.competition, $=id=>document.getElementById(id);
+  const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const ord=n=>n+(["th","st","nd","rd"][(n%100>>3^1&&n%10)||0]||"th");
+  const fS=iso=>{const[y,m,d]=iso.split("-");return (+d)+" "+MON[+m-1];};
+  const fL=iso=>fS(iso)+" "+iso.slice(0,4);
+  const PCOL={tom:"var(--tom)",josh:"var(--josh)",callum:"var(--callum)"};
+  const PHEX={tom:"#5AB6F0",josh:"#E0A93B",callum:"#56C271"};
+  const initials=n=>n.split(/\s+/).map(w=>w[0]).slice(0,2).join("").toUpperCase();
 
-  /* Handicap value + trend chip. trend < 0 = improving (green ▼), > 0 = slipping (red ▲). */
-  function hcapChip(p){
-    const hi = (p.handicap!=null && p.handicap!=="") ? p.handicap : "—";
-    let chip="";
-    const d = p.handicapTrend;
-    if(typeof d==="number"){
-      if(d<=-0.05)      chip=`<span class="trend down" title="Handicap improving">▼ ${Math.abs(d).toFixed(1)}</span>`;
-      else if(d>=0.05)  chip=`<span class="trend up" title="Handicap rising">▲ ${Math.abs(d).toFixed(1)}</span>`;
-      else              chip=`<span class="trend flat" title="Handicap steady">▬ steady</span>`;
-    }
-    return `<span class="hcap"><span class="hcap-val">HCP <b>${hi}</b></span>${chip}</span>`;
-  }
+  /* crest */
+  const CREST=`<svg viewBox="0 0 100 100" class="crest" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3DC92"/><stop offset="1" stop-color="#C9A227"/></linearGradient></defs>
+    <path d="M50 4 L88 16 V46 C88 72 70 88 50 96 C30 88 12 72 12 46 V16 Z" fill="#0B2017" stroke="url(#cg)" stroke-width="2.5"/>
+    <path d="M50 12 L81 22 V46 C81 67 66 81 50 88 C34 81 19 67 19 46 V22 Z" fill="none" stroke="rgba(243,220,146,.3)" stroke-width="1"/>
+    <path d="M37 64 V34 L62 41 L37 47" fill="none" stroke="url(#cg)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="37" cy="70" r="3" fill="#F3DC92"/>
+    <text x="50" y="84" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7" fill="#F3DC92" letter-spacing="1">EST 26</text>
+  </svg>`;
+  $("crest1").innerHTML=CREST; $("crest2").innerHTML=CREST.replace('class="crest"','class="crest" style="width:30px;height:30px"');
 
-  /* ----- compute ----- */
-  const players = D.players.map(p=>{
+  /* ---- compute ---- */
+  const players=D.players.map(p=>{
     const sorted=[...p.rounds].sort((a,b)=>b.points-a.points);
     const counting=sorted.slice(0,C.bestN);
     const countSet=new Set(counting);
@@ -375,113 +383,177 @@
     const lastDate=p.rounds.reduce((m,r)=>r.date>m?r.date:m,"");
     return {...p,sorted,countSet,best6,played:p.rounds.length,cpts:counting.map(r=>r.points),lastDate};
   });
-
-  const tie=(a,b)=>{ if(a.best6!==b.best6)return false; const n=Math.max(a.cpts.length,b.cpts.length); for(let i=0;i<n;i++){if((a.cpts[i]||0)!==(b.cpts[i]||0))return false;} return true; };
+  const same=(a,b)=>{if(a.best6!==b.best6)return false;const n=Math.max(a.cpts.length,b.cpts.length);for(let i=0;i<n;i++)if((a.cpts[i]||0)!==(b.cpts[i]||0))return false;return true;};
   players.sort((a,b)=>{
     if(b.best6!==a.best6)return b.best6-a.best6;
     const n=Math.max(a.cpts.length,b.cpts.length);
-    for(let i=0;i<n;i++){const av=a.cpts[i]||0,bv=b.cpts[i]||0;if(bv!==av)return bv-av;}
+    for(let i=0;i<n;i++){const d=(b.cpts[i]||0)-(a.cpts[i]||0);if(d)return d;}
     if(b.played!==a.played)return b.played-a.played;
     return a.name.localeCompare(b.name);
   });
-  players.forEach((p,i)=>{ p.pos = (i>0 && tie(players[i-1],p)) ? players[i-1].pos : i+1; });
-  const jointMap={}; players.forEach(p=>jointMap[p.pos]=(jointMap[p.pos]||0)+1);
-  players.forEach(p=>{ p.joint=jointMap[p.pos]>1; p.posLabel=(p.joint?"T":"")+ord(p.pos); });
-  const leader=players[0];
+  players.forEach((p,i)=>p.pos=(i>0&&same(players[i-1],p))?players[i-1].pos:i+1);
+  const jc={};players.forEach(p=>jc[p.pos]=(jc[p.pos]||0)+1);
+  players.forEach(p=>{p.joint=jc[p.pos]>1;p.posLabel=(p.joint?"T":"")+ord(p.pos);});
+  const leader=players[0], second=players[1];
 
-  const medalClass=pos=>pos===1?"m-gold":pos===2?"m-silver":pos===3?"m-bronze":"m-bronze";
-  const pipClass=pos=>pos===1?"g":pos===2?"s":"b";
-
-  /* ----- masthead ----- */
-  const $=id=>document.getElementById(id);
-  $("clubLabel").textContent=C.club+" · "+C.subtitle;
-  $("formatChip").textContent=C.format;
-  $("playerCount").textContent=D.players.length;
-  $("dateRange").textContent=fmtShort(C.startDate)+" → "+fmtShort(C.endDate);
-  $("updated").textContent="Updated "+fmtShort(C.lastUpdated);
-  $("seasonStart").textContent=fmtShort(C.startDate);
-  $("seasonEnd").textContent=fmtShort(C.endDate);
-  $("endLabel").textContent=fmtLong(C.endDate);
+  /* ---- masthead status ---- */
+  const start=new Date(C.startDate+"T00:00:00"),end=new Date(C.endDate+"T23:59:59"),now=new Date();
+  const span=end-start,done=Math.min(Math.max(now-start,0),span),pct=Math.round(done/span*100);
+  const daysLeft=Math.max(0,Math.ceil((end-now)/864e5));
+  $("liveUpdated").textContent="Updated "+fS(C.lastUpdated);
+  $("heroTag").innerHTML=`<b>${fS(C.startDate)}</b> &nbsp;—&nbsp; <b>${fS(C.endDate)}</b> · ${D.players.length} players`;
+  $("sLeader").textContent=leader.best6>0?leader.name:"All level";
+  $("sLeaderPts").textContent=leader.best6>0?leader.best6+" pts":"";
+  $("sPct").textContent=pct+"%";
+  $("sDays").textContent=daysLeft;
+  $("endLabel").textContent=fL(C.endDate);
   $("footMeta").textContent=C.subtitle+" · "+C.format;
+  requestAnimationFrame(()=>$("sFill").style.width=pct+"%");
 
-  const start=new Date(C.startDate+"T00:00:00"), end=new Date(C.endDate+"T23:59:59"), now=new Date();
-  const span=end-start, done=Math.min(Math.max(now-start,0),span);
-  const pct=Math.round(done/span*100);
-  const daysLeft=Math.max(0,Math.ceil((end-now)/86400000));
-  $("daysleft").textContent=daysLeft+" days remaining";
-  $("seasonPct").textContent="Season "+pct+"%";
-  requestAnimationFrame(()=>$("seasonFill").style.width=pct+"%");
+  /* ---- count-up ---- */
+  function countUp(el,to,ms){
+    if(to<=0){el.textContent="0";return;}
+    const t0=performance.now();
+    (function tick(t){const k=Math.min(1,(t-t0)/ms);const e=1-Math.pow(1-k,3);
+      el.textContent=Math.round(e*to);if(k<1)requestAnimationFrame(tick);})(t0);
+  }
+  function whenVisible(el,fn){const o=new IntersectionObserver((es,ob)=>es.forEach(e=>{if(e.isIntersecting){fn();ob.disconnect();}}),{threshold:.3});o.observe(el);}
 
-  /* ----- podium (2nd · 1st · 3rd) ----- */
-  const podium=$("podium");
-  const heights=[112,150,86]; // left(2nd), center(1st), right(3rd)
-  const order=[players[1],players[0],players[2]];
-  order.forEach((p,idx)=>{
-    if(!p)return;
-    const isLead=p.pos===1;
-    const col=document.createElement("div");
-    col.className="pcol"+(isLead?" lead":"");
-    col.innerHTML=`
-      <div class="card pcard">
-        <div class="medal ${medalClass(p.pos)}">${p.pos}</div>
-        <div class="ppos">${p.posLabel}</div>
-        <div class="pname">${p.name}</div>
-        ${hcapChip(p)}
-        <div class="ptotal">${p.best6}</div>
-        <div class="punit">Best-6 points</div>
-        <div class="pmeta">${p.played} ${p.played===1?"card":"cards"} in${p.played?" · top "+Math.min(p.played,C.bestN)+" count":""}</div>
+  /* ---- sparkline (handicap history; lower = better) ---- */
+  function sparkline(hist,hex){
+    if(!hist||hist.length<2)return `<svg class="spark" viewBox="0 0 62 22"></svg>`;
+    const min=Math.min(...hist),max=Math.max(...hist),rng=(max-min)||1;
+    const pts=hist.map((v,i)=>{const x=i/(hist.length-1)*60+1;const y=20-((v-min)/rng)*18;return [x,y];});
+    const dpath=pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" ");
+    const improving=hist[hist.length-1]<hist[0];
+    const col=improving?"var(--up)":(hist[hist.length-1]>hist[0]?"var(--down)":hex);
+    const last=pts[pts.length-1];
+    return `<svg class="spark" viewBox="0 0 62 22"><path d="${dpath}" fill="none" stroke="${col}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="1.8" fill="${col}"/></svg>`;
+  }
+  function trendChip(p){
+    const d=p.handicapTrend;if(typeof d!=="number")return "";
+    if(d<=-0.05)return `<span class="trend good" title="improving">▼ ${Math.abs(d).toFixed(1)}</span>`;
+    if(d>=0.05)return `<span class="trend bad" title="slipping">▲ ${Math.abs(d).toFixed(1)}</span>`;
+    return `<span class="trend flat">▬</span>`;
+  }
+  function movChip(p){
+    const m=p.movement;
+    if(typeof m!=="number"||m===0)return `<span class="mov flat">–</span>`;
+    return m>0?`<span class="mov up">▲${m}</span>`:`<span class="mov down">▼${Math.abs(m)}</span>`;
+  }
+  function formStrip(p){
+    const byDate=[...p.rounds].sort((a,b)=>a.date<b.date?-1:1).slice(-5);
+    let cells=byDate.map(r=>{
+      const counts=p.countSet.has(r);
+      const hue=r.points>=38?"var(--up)":r.points>=34?"var(--gold)":r.points>=30?"#D9A24A":"var(--down)";
+      return `<span class="fdot" style="background:${hue};opacity:${counts?1:.55}">${r.points}</span>`;
+    });
+    while(cells.length<5)cells.unshift(`<span class="fdot empty">·</span>`);
+    return `<div class="form">${cells.join("")}</div>`;
+  }
+
+  /* ---- winner's circle ---- */
+  (function(){
+    const p=leader;
+    const crown=`<svg class="crown" viewBox="0 0 60 46" aria-hidden="true"><defs><linearGradient id="cr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3DC92"/><stop offset="1" stop-color="#C9A227"/></linearGradient></defs><path d="M6 40 L4 14 L19 26 L30 6 L41 26 L56 14 L54 40 Z" fill="url(#cr)" stroke="#8a6f15" stroke-width="1"/><circle cx="30" cy="5" r="3" fill="#F3DC92"/><rect x="6" y="40" width="48" height="5" rx="2" fill="url(#cr)"/></svg>`;
+    const gapTxt= leader.best6>0
+      ? (second && leader.best6>second.best6 ? `<b>${leader.best6-second.best6} clear</b> of ${second.name.split(" ")[0]}` : `Out in front`)
+      : `The race is level — first card takes the lead`;
+    $("circle").innerHTML=`
+      <div class="wc-left">
+        ${leader.best6>0?crown:""}
+        <div class="wc-pos">${leader.best6>0?"Gold Position · "+leader.posLabel:"Tee it up"}</div>
+        <div class="wc-name">${leader.best6>0?leader.name:"Anyone's"}</div>
+        <div class="wc-meta">
+          <span class="avatar" style="background:${PCOL[p.id]||'var(--gold)'}">${initials(leader.name)}</span>
+          <span class="hcp">HCP <b>${leader.handicap??"—"}</b></span> ${trendChip(leader)}
+          ${sparkline(leader.handicapHistory,PHEX[p.id])}
+        </div>
       </div>
-      <div class="plinth" style="--h:${heights[idx]}px"><span class="pl-num">${p.pos}</span></div>`;
-    podium.appendChild(col);
-  });
+      <div class="wc-right">
+        <div class="wc-total" id="wcTotal">0</div>
+        <div class="wc-unit">Best-6 points</div>
+        <div class="wc-gap">${gapTxt}</div>
+      </div>`;
+    whenVisible($("wcSec"),()=>countUp($("wcTotal"),leader.best6,1100));
+  })();
 
-  /* ----- standings ----- */
-  const st=$("standings");
-  st.innerHTML=`<div class="st-row head"><span>Pos</span><span>Player</span><span class="h-played" style="text-align:right">Cards</span><span class="h-gap" style="text-align:right">Gap</span><span style="text-align:right">Best 6</span></div>`;
+  /* ---- leaderboard ---- */
+  const board=$("board");
   players.forEach((p,i)=>{
     const gap=p.best6-leader.best6;
-    const gapTxt=gap===0?(p.pos===1?"—":"0"):gap;
     const row=document.createElement("div");
-    row.className="st-row";row.style.animationDelay=(0.15+i*0.08)+"s";
+    row.className="lb-row"+(p.pos===1&&p.best6>0?" lead":"");
+    row.style.animationDelay=(0.15+i*0.09)+"s";
+    const pip=p.pos===1?"pip-g":p.pos===2?"pip-s":"pip-b";
     row.innerHTML=`
-      <div class="st-pos"><span class="pip ${pipClass(p.pos)}"></span>${p.posLabel.replace(/[a-z]/g,'')}</div>
-      <div class="st-name">${p.name}<small class="st-sub">${hcapChip(p)}<span class="st-sub-txt">${p.played?fmtShort(p.lastDate)+" last":"no cards yet"}</span></small></div>
-      <div class="st-played">${p.played}/${C.maxCards}</div>
-      <div class="st-gap">${gapTxt}</div>
-      <div class="st-total">${p.best6}</div>`;
-    st.appendChild(row);
-  });
-
-  /* ----- scorecards ----- */
-  const sc=$("scorecards");
-  players.forEach(p=>{
-    const card=document.createElement("div");
-    card.className="card pcardful";
-    let body;
-    if(!p.played){
-      body=`<div class="empty">No cards submitted yet — first round drops here.</div>`;
-    }else{
-      const rows=p.sorted.map((r,i)=>{
-        const counts=i<C.bestN;
-        const cut=(i===C.bestN)?`<div class="cutline"><span>best ${C.bestN} cut · below don't count</span></div>`:"";
-        return cut+`<div class="rnd ${counts?'counts':'dropped'}">
-          <div class="ri">${i+1}</div>
-          <div><div class="rdate">${fmtLong(r.date)}</div><div class="rcourse">${(r.course||'').toUpperCase()}</div></div>
-          <div class="rtag">${counts?'Counting':'Dropped'}</div>
-          <div class="rpts">${r.points}</div>
-        </div>`;
-      }).join("");
-      body=`<div class="rounds">${rows}</div>`;
-    }
-    const countingN=Math.min(p.played,C.bestN);
-    card.innerHTML=`
-      <div class="pc-head">
-        <div class="pc-name">${p.name}<small>${p.posLabel} · order of merit</small></div>
-        <div class="pc-best"><b>${p.best6}</b><span>Best 6</span></div>
+      <div class="lb-pos"><span class="pos-pip ${pip}"></span>${p.posLabel.replace(/[a-z]/g,'')}</div>
+      <div class="lb-mov">${movChip(p)}</div>
+      <div class="lb-player">
+        <span class="lb-av" style="background:${PCOL[p.id]||'var(--gold)'}">${initials(p.name)}</span>
+        <div class="lb-id">
+          <div class="lb-nm">${p.name}</div>
+          <div class="lb-sub"><span class="hcp">HCP <b>${p.handicap??"—"}</b></span>${trendChip(p)}${sparkline(p.handicapHistory,PHEX[p.id])}</div>
+        </div>
       </div>
+      <div class="lb-cards num ta-c">${p.played}<span style="color:var(--faint)">/${C.maxCards}</span></div>
+      <div class="lb-form">${formStrip(p)}</div>
+      <div class="lb-total"><span class="lb-total-n" data-to="${p.best6}">0</span><small>${gap===0&&p.pos===1?(p.best6>0?'leader':'—'):gap+' pts'}</small></div>`;
+    board.appendChild(row);
+  });
+  whenVisible(board,()=>board.querySelectorAll(".lb-total-n").forEach((el,i)=>
+    setTimeout(()=>countUp(el,+el.dataset.to,900),120+i*110)));
+
+  /* ---- race chart ---- */
+  (function(){
+    const host=$("chartHost"),legend=$("legend");
+    legend.innerHTML=players.map(p=>`<span class="lg"><i style="background:${PCOL[p.id]}"></i>${p.name.split(" ")[0]} · ${p.best6}</span>`).join("");
+    const dates=[...new Set(D.players.flatMap(p=>p.rounds.map(r=>r.date)))].sort();
+    const totalRounds=D.players.reduce((s,p)=>s+p.rounds.length,0);
+    if(totalRounds<2||dates.length<1){
+      host.innerHTML=`<div class="chart-empty">The race chart draws itself as cards come in — check back after a few rounds.</div>`;return;
+    }
+    const bestAt=(p,iso)=>p.rounds.filter(r=>r.date<=iso).map(r=>r.points).sort((a,b)=>b-a).slice(0,C.bestN).reduce((s,x)=>s+x,0);
+    const xs=[C.startDate,...dates];
+    const maxY=Math.max(10,...players.flatMap(p=>xs.map(d=>bestAt(p,d))));
+    const W=1000,H=320,PAD={l:40,r:20,t:18,b:34};
+    const x=i=>PAD.l+(i/(xs.length-1||1))*(W-PAD.l-PAD.r);
+    const y=v=>H-PAD.b-(v/maxY)*(H-PAD.t-PAD.b);
+    let grid="";for(let g=0;g<=4;g++){const gv=Math.round(maxY*g/4);const gy=y(gv);grid+=`<line x1="${PAD.l}" y1="${gy}" x2="${W-PAD.r}" y2="${gy}" stroke="rgba(255,255,255,.06)"/><text x="${PAD.l-8}" y="${gy+3}" text-anchor="end" font-family="IBM Plex Mono" font-size="9" fill="#7C8C7E">${gv}</text>`;}
+    let xlabels="";xs.forEach((d,i)=>{if(i===0||i===xs.length-1||i%Math.ceil(xs.length/5)===0)xlabels+=`<text x="${x(i)}" y="${H-12}" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#7C8C7E">${fS(d)}</text>`;});
+    let lines="";players.forEach(p=>{
+      const pts=xs.map((d,i)=>[x(i),y(bestAt(p,d))]);
+      const dpath=pts.map((q,i)=>(i?"L":"M")+q[0].toFixed(1)+" "+q[1].toFixed(1)).join(" ");
+      const last=pts[pts.length-1];
+      lines+=`<path d="${dpath}" fill="none" stroke="${PHEX[p.id]}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" opacity=".95" style="stroke-dasharray:2000;stroke-dashoffset:2000;animation:draw 1.6s var(--ease) forwards .3s"/>
+        <circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="3.4" fill="${PHEX[p.id]}"/>`;
+    });
+    host.innerHTML=`<svg class="chart" viewBox="0 0 ${W} ${H}">${grid}${xlabels}${lines}</svg>
+      <style>@keyframes draw{to{stroke-dashoffset:0}}</style>`;
+  })();
+
+  /* ---- scorecards ---- */
+  const cards=$("cards");
+  players.forEach(p=>{
+    let body;
+    if(!p.played){body=`<div class="empty">No cards in yet — first round drops here.</div>`;}
+    else{
+      body=`<div class="rounds">`+p.sorted.map((r,i)=>{
+        const counts=i<C.bestN;
+        const cut=(i===C.bestN)?`<div class="cut"><span>best ${C.bestN} cut · below don't count</span></div>`:"";
+        return cut+`<div class="rnd ${counts?'counts':'dropped'}"><div class="ri">${i+1}</div>
+          <div><div class="rdate">${fL(r.date)}</div><div class="rcourse">${(r.course||'').toUpperCase()}</div></div>
+          <div class="rtag">${counts?'Counting':'Dropped'}</div><div class="rpts">${r.points}</div></div>`;
+      }).join("")+`</div>`;
+    }
+    const c=document.createElement("div");c.className="card";
+    c.innerHTML=`<div class="pc-head"><div class="pc-id">
+        <span class="pc-av" style="background:${PCOL[p.id]||'var(--gold)'}">${initials(p.name)}</span>
+        <div class="pc-nm">${p.name}<small>${p.posLabel} · order of merit</small></div></div>
+      <div class="pc-best"><b>${p.best6}</b><span>Best 6</span></div></div>
       ${body}
-      <div class="pc-foot"><span>${p.played}/${C.maxCards} cards played</span><span>${p.played?countingN+' counting · best 6 of '+p.played:''}</span></div>`;
-    sc.appendChild(card);
+      <div class="pc-foot"><span>${p.played}/${C.maxCards} cards</span><span>${p.played?Math.min(p.played,C.bestN)+' counting':''}</span></div>`;
+    cards.appendChild(c);
   });
 })();
 </script>

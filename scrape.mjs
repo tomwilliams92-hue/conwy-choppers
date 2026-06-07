@@ -15,7 +15,7 @@
  * ================================================================== */
 import puppeteer from "puppeteer-core";
 import readline from "node:readline";
-import { writeFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, mkdirSync, readFileSync } from "node:fs";
 import { parseHi, parseGross, toStableford, writeDataJs } from "./lib.mjs";
 
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
@@ -88,7 +88,25 @@ function summariseHcp(series) {
   const back = s[Math.max(0, s.length - 1 - 6)].hi; // ~6 rounds ago
   const display = latest < 0 ? "+" + (-latest).toFixed(1) : latest.toFixed(1);
   const handicapTrend = s.length >= 2 ? Math.round((latest - back) * 10) / 10 : null;
-  return { handicap: display, handicapTrend };
+  const handicapHistory = s.slice(-8).map(x => Math.round(x.hi * 10) / 10); // for the sparkline
+  return { handicap: display, handicapTrend, handicapHistory };
+}
+
+/* Previous order (by best 6) from the existing data.js, to work out position movement. */
+function prevPositions() {
+  try {
+    const txt = readFileSync("./data.js", "utf8");
+    const m = txt.match(/window\.CHOPPERS_DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/);
+    if (!m) return {};
+    const data = Function('"use strict";return (' + m[1] + ')')();
+    const ps = data.players.map(p => ({
+      id: p.id,
+      best6: [...p.rounds].sort((a, b) => b.points - a.points).slice(0, data.competition.bestN)
+        .reduce((s, r) => s + r.points, 0),
+    })).sort((a, b) => b.best6 - a.best6);
+    const pos = {}; ps.forEach((p, i) => pos[p.id] = i + 1);
+    return pos;
+  } catch { return {}; }
 }
 
 async function dumpDebug(page, tag) {
@@ -170,12 +188,19 @@ async function dumpDebug(page, tag) {
   await browser.close();
 
   /* ---------- build + write ---------- */
-  const players = TARGETS.map(t => {
+  const prev = prevPositions(); // read BEFORE we overwrite data.js
+  const built = TARGETS.map(t => {
     const p = byId[t.id];
     const rounds = p.rounds.sort((a, b) => b.points - a.points).slice(0, COMPETITION.maxCards);
-    const { handicap, handicapTrend } = summariseHcp(p.hiSeries);
-    return { id: t.id, name: t.name, short: t.short, handicap, handicapTrend, rounds };
+    const best6 = rounds.slice(0, COMPETITION.bestN).reduce((s, r) => s + r.points, 0);
+    const { handicap, handicapTrend, handicapHistory } = summariseHcp(p.hiSeries);
+    return { id: t.id, name: t.name, short: t.short, handicap, handicapTrend, handicapHistory, movement: null, rounds, _best6: best6 };
   });
+  // position movement since last update
+  const ranked = [...built].sort((a, b) => b._best6 - a._best6);
+  const newPos = {}; ranked.forEach((p, i) => newPos[p.id] = i + 1);
+  built.forEach(p => { if (prev[p.id] != null) p.movement = prev[p.id] - newPos[p.id]; delete p._best6; });
+  const players = built;
   writeDataJs("./data.js", COMPETITION, players);
 
   console.log("\n──────── SUMMARY ────────");
