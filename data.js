@@ -4,7 +4,9 @@
  *
  *  • Add a round:  { date: "YYYY-MM-DD", course: "Conwy", points: 36 }
  *  • points = the Stableford total Wales Golf already calculated.
- *  • Up to 12 rounds per player; the board auto-counts the best 6.
+ *  • Optional (scraper fills these): gross, net, chcp (course handicap).
+ *    They power the gross/net records & awards — leave them off if unknown.
+ *  • No cap — submit as many rounds as you like; the board auto-counts the best 6.
  *  • Set competition.lastUpdated to today's date when you update.
  * ------------------------------------------------------------------ */
 
@@ -18,7 +20,6 @@ window.CHOPPERS_DATA = {
     endDate:     "2026-09-30",   // season close
     lastUpdated: "2026-06-07",
     bestN:       6,
-    maxCards:    12,
     recap:       "Three cards on the board. <b>Callum</b> leads on 36, <b>Tom</b> right behind on 33, <b>Josh</b> on 30 — it's tight at the top.",
     moverId:     null,    // player id with the biggest jump this week (scraper fills)
     celebrate:   false    // true triggers lead-change confetti

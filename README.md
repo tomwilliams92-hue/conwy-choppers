@@ -1,7 +1,8 @@
 # Conwy Choppers — Order of Merit
 
 A best-6 Stableford leaderboard for Tom, Josh & Callum.
-Season: **5 Jun → 30 Sep 2026**. Best 6 of up to 12 cards, highest combined total leads.
+Season: **5 Jun → 30 Sep 2026**. No cap on rounds — your best 6 count, highest combined total leads.
+Prize: every losing player owes the winner **two dozen balls** (or the cash equivalent).
 
 ## Files
 | File | What it is |

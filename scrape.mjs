@@ -31,7 +31,6 @@ const COMPETITION = {
   endDate: "2026-09-30",
   lastUpdated: new Date().toISOString().slice(0, 10),
   bestN: 6,
-  maxCards: 12,
   recap: "",          // weekly summary line (computed below)
   moverId: null,      // biggest gainer this week
   celebrate: false,   // lead changed -> confetti
@@ -212,7 +211,7 @@ async function dumpDebug(page, tag) {
   const prev = prevState(); // read BEFORE we overwrite data.js
   const built = TARGETS.map(t => {
     const p = byId[t.id];
-    const rounds = p.rounds.sort((a, b) => b.points - a.points).slice(0, COMPETITION.maxCards);
+    const rounds = p.rounds.sort((a, b) => b.points - a.points); // no cap — keep every card
     const best6 = rounds.slice(0, COMPETITION.bestN).reduce((s, r) => s + r.points, 0);
     const { handicap, handicapTrend, handicapHistory } = summariseHcp(p.hiSeries);
     return { id: t.id, name: t.name, short: t.short, handicap, handicapTrend, handicapHistory, movement: null, rounds, _best6: best6 };
@@ -243,6 +242,9 @@ async function dumpDebug(page, tag) {
     if (!res.ok) { player.skipped.push({ date: raw.date, reason: res.reason }); return; }
     // de-dupe on date+course
     if (player.rounds.some(r => r.date === raw.date && r.course === raw.course)) return;
-    player.rounds.push({ date: raw.date, course: (raw.course || "").trim(), points: res.points });
+    const gross = raw.adjGross ?? null;
+    const chcp  = res.courseHcp ?? null;
+    const net   = (gross != null && chcp != null) ? gross - chcp : null;
+    player.rounds.push({ date: raw.date, course: (raw.course || "").trim(), points: res.points, gross, net, chcp });
   }
 })().catch(e => { console.error("Fatal:", e.message); process.exit(1); });

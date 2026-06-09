@@ -327,6 +327,128 @@
   @keyframes conf{to{transform:translateY(108vh) rotate(var(--r));opacity:0}}
   .crown{cursor:pointer}
 
+  /* ---------------- sub-headings + shared bits ---------------- */
+  .subhead{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dp);
+    margin:clamp(24px,4vw,34px) 0 13px;display:flex;align-items:center;gap:12px}
+  .subhead:first-child{margin-top:clamp(20px,4vw,28px)}
+  .subhead::after{content:"";flex:1;height:1px;background:var(--line)}
+  .note{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);margin-top:16px;line-height:1.7}
+  .note b{color:var(--muted)}
+
+  /* ---------------- story so far + quick stats (home) ---------------- */
+  .story{display:grid;grid-template-columns:1fr;gap:11px}
+  .scard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:15px 17px;box-shadow:var(--sh-sm);position:relative;overflow:hidden}
+  .scard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold-lt),var(--gold));opacity:.0;transition:opacity .3s}
+  .scard.hot::before{opacity:1}
+  .scard .sk{font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dp);display:flex;align-items:center;gap:7px}
+  .scard .sv{font-family:"Newsreader",serif;font-weight:700;font-size:21px;color:var(--ink);line-height:1.12;margin-top:7px}
+  .scard .sm{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);margin-top:5px;line-height:1.5}
+  .scard .sm b{color:var(--ink2)}
+  .qs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .qcell{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 12px;text-align:center;box-shadow:var(--sh-sm)}
+  .qcell .v{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:25px;color:var(--ink);line-height:1}
+  .qcell .k{font-family:"IBM Plex Mono",monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+  /* ---------------- player metric rows (reuses board shell) ---------------- */
+  .metablock{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--sh-sm)}
+  .merow{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line2);flex-wrap:wrap}
+  .merow:last-child{border-bottom:none}
+  .meplayer{display:flex;align-items:center;gap:11px;min-width:148px;flex:1}
+  .mechips{display:flex;gap:7px;flex-wrap:wrap}
+  .mechip{background:var(--cloud);border:1px solid var(--line2);border-radius:9px;padding:7px 11px;text-align:center;min-width:54px}
+  .mechip .v{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:15px;color:var(--ink);line-height:1}
+  .mechip .v.imp{color:var(--up)} .mechip .v.dec{color:var(--down)}
+  .mechip .k{font-family:"IBM Plex Mono",monospace;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+  .mechip.hl{background:rgba(196,154,43,.1);border-color:rgba(196,154,43,.32)}
+  .mechip.hl .v{color:var(--gold-dp)}
+
+  /* momentum pill */
+  .mpill{font-family:"IBM Plex Mono",monospace;font-size:8.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:99px;white-space:nowrap}
+  .mpill.up{color:var(--up);background:rgba(30,158,90,.1);border:1px solid rgba(30,158,90,.3)}
+  .mpill.down{color:var(--down);background:rgba(216,70,60,.1);border:1px solid rgba(216,70,60,.3)}
+  .mpill.flat{color:var(--muted);background:var(--cloud);border:1px solid var(--line)}
+
+  /* ranked lists (improvement / form) */
+  .ranklist{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--sh-sm)}
+  .ranklist .rl-h{font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:12px 14px 0}
+  .rankrow{display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid var(--line2)}
+  .rankrow:last-child{border-bottom:none}
+  .rankrow .rp{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:14px;color:var(--faint);width:18px;flex:none}
+  .rankrow .rnm{flex:1;font-family:"Archivo",sans-serif;font-weight:700;font-size:14.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rankrow .rvv{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:15px;color:var(--ink)}
+  .rankrow .rvv.imp{color:var(--up)} .rankrow .rvv.dec{color:var(--down)}
+  .rankcols{display:grid;grid-template-columns:1fr;gap:12px}
+
+  /* ---------------- records + awards ---------------- */
+  .recgrid{display:grid;grid-template-columns:1fr;gap:11px}
+  .rec{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:15px 16px;box-shadow:var(--sh-sm)}
+  .rec .rk{font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dp)}
+  .rec .rv{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:30px;color:var(--ink);line-height:1;margin-top:8px}
+  .rec .rv.pend{color:var(--faint);font-size:20px}
+  .rec .rwho{font-family:"Newsreader",serif;font-weight:600;font-size:14px;color:var(--ink2);margin-top:6px}
+  .rec .rwhen{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--faint);margin-top:2px}
+
+  .awards{display:grid;grid-template-columns:1fr;gap:10px}
+  .award{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 15px;box-shadow:var(--sh-sm);display:flex;gap:13px;align-items:center}
+  .award.pending{opacity:.62}
+  .award .tphy{font-size:25px;flex:none;line-height:1;filter:drop-shadow(0 2px 5px rgba(196,154,43,.35))}
+  .award .ai{min-width:0;flex:1}
+  .award .at{font-family:"IBM Plex Mono",monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dp)}
+  .award .aw{font-family:"Newsreader",serif;font-weight:700;font-size:16.5px;color:var(--ink);line-height:1.08;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .award .av{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--muted);margin-top:2px}
+
+  /* ---------------- weather ---------------- */
+  .wx-now{background:linear-gradient(150deg,var(--navy-700),var(--navy-900));color:#fff;border-radius:16px;padding:clamp(18px,3vw,26px);box-shadow:var(--sh-md);position:relative;overflow:hidden;isolation:isolate}
+  .wx-now::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(70% 120% at 88% -10%,rgba(91,154,216,.25),transparent 55%)}
+  .wx-top{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap}
+  .wx-temp{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:clamp(42px,10vw,66px);line-height:.88;letter-spacing:-.02em}
+  .wx-temp small{font-size:.42em;color:#A9C2E4;font-weight:400}
+  .wx-place{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#A9C2E4}
+  .wx-desc{font-family:"Newsreader",serif;font-size:19px;margin-top:5px;color:#EAF0F8}
+  .wx-rate{text-align:right;flex:none}
+  .wx-rate .rn{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:46px;line-height:1;
+    background:linear-gradient(180deg,#fff,var(--gold-lt));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .wx-rate .rn small{font-size:.42em;color:#A9C2E4;-webkit-text-fill-color:#A9C2E4}
+  .wx-rate .rl{font-family:"IBM Plex Mono",monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#A9C2E4;margin-top:2px}
+  .wx-metrics{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:20px}
+  .wx-m{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:11px 13px}
+  .wx-m .k{font-family:"IBM Plex Mono",monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#9DB6D6}
+  .wx-m .v{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:19px;color:#fff;margin-top:4px}
+  .wx-advice{position:relative;z-index:1;margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+  .wx-tip{font-family:"Archivo",sans-serif;font-size:12.5px;color:#DCE7F4;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    border-radius:10px;padding:10px 13px;flex:1;min-width:190px;line-height:1.45}
+  .wx-tip b{color:#fff}
+  .wx-day{display:grid;grid-template-columns:96px 1fr auto;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--line);
+    border-radius:11px;padding:11px 14px;box-shadow:var(--sh-sm);margin-bottom:8px}
+  .wx-day.best{border-color:rgba(196,154,43,.42);background:rgba(196,154,43,.05)}
+  .wx-day .d{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink2)}
+  .wx-day .d b{display:block;font-weight:600;color:var(--ink)}
+  .wx-day .meta{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);display:flex;gap:10px 14px;flex-wrap:wrap}
+  .wx-day .sc{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:19px;color:var(--gold-dp);text-align:right}
+  .wx-day .sc small{display:block;font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .wx-scale{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .wband{border-radius:11px;padding:12px 14px;border:1px solid var(--line);background:var(--paper);box-shadow:var(--sh-sm)}
+  .wband.on{border-color:var(--gold);box-shadow:0 0 0 2px rgba(196,154,43,.3) inset,var(--sh-sm)}
+  .wband .wn{font-family:"Newsreader",serif;font-weight:700;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:7px}
+  .wband.on .wn::after{content:"NOW";font-family:"IBM Plex Mono",monospace;font-size:7.5px;letter-spacing:.1em;color:#0A1E3D;background:var(--gold-lt);padding:2px 6px;border-radius:99px}
+  .wband .wr{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--muted);margin-top:3px}
+  .wx-loading,.wx-error{text-align:center;color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:12px;padding:40px 12px;line-height:1.7}
+
+  /* ---------------- the prize banner ---------------- */
+  .prize{position:relative;overflow:hidden;border-radius:16px;background:linear-gradient(135deg,var(--navy-700),var(--navy-900));
+    color:#fff;box-shadow:var(--sh-md);display:flex;align-items:center;gap:16px;padding:clamp(18px,3vw,26px) clamp(18px,3.4vw,28px);flex-wrap:wrap}
+  .prize::before{content:"";position:absolute;inset:0;background:radial-gradient(78% 130% at 93% -12%,rgba(224,190,84,.30),transparent 55%)}
+  .prize-ic{position:relative;width:54px;height:54px;border-radius:14px;background:linear-gradient(180deg,var(--gold-lt),var(--gold));
+    display:grid;place-items:center;font-size:27px;flex:none;box-shadow:0 6px 18px -6px rgba(224,190,84,.6)}
+  .prize-tx{position:relative;min-width:0;flex:1}
+  .prize-k{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt)}
+  .prize-v{font-family:"Newsreader",serif;font-weight:700;font-size:clamp(19px,3.2vw,27px);line-height:1.14;margin-top:6px;color:#fff}
+  .prize-v b{color:var(--gold-lt);font-weight:600;font-style:italic}
+  .prize-sub{font-family:"IBM Plex Mono",monospace;font-size:11px;color:#B8CCE6;margin-top:9px;line-height:1.55}
+  .prize-pills{position:relative;display:flex;gap:8px;flex-wrap:wrap;flex-basis:100%;margin-top:2px}
+  .prize-pill{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:#EAF0F8;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 12px;white-space:nowrap}
+
   /* ============ DESKTOP ============ */
   @media (min-width:760px){
     .status{grid-template-columns:1.5fr 1fr 1fr;gap:12px}
@@ -345,6 +467,14 @@
     .ta-c{text-align:center;justify-self:center}.ta-r{text-align:right;justify-self:end}
     .cards{grid-template-columns:repeat(3,1fr)}
     .rules{grid-template-columns:repeat(4,1fr)}
+    .story{grid-template-columns:repeat(3,1fr)}
+    .qs{grid-template-columns:repeat(4,1fr)}
+    .awards{grid-template-columns:repeat(3,1fr)}
+    .recgrid{grid-template-columns:repeat(3,1fr)}
+    .rankcols{grid-template-columns:repeat(3,1fr)}
+    .wx-metrics{grid-template-columns:repeat(4,1fr)}
+    .wx-scale{grid-template-columns:repeat(4,1fr)}
+    .wx-day{grid-template-columns:120px 1fr auto}
   }
   @media (max-width:759px){
     .lb-formcol{display:none}
@@ -411,7 +541,11 @@
 <div class="tabs-bar">
   <div class="tabs" role="tablist">
     <button class="tab on" data-tab="board" role="tab">Order of Merit</button>
+    <button class="tab" data-tab="form" role="tab">Form</button>
+    <button class="tab" data-tab="hcp" role="tab">Handicap</button>
     <button class="tab" data-tab="stats" role="tab">Stats</button>
+    <button class="tab" data-tab="records" role="tab">Records</button>
+    <button class="tab" data-tab="weather" role="tab">Weather</button>
     <button class="tab" data-tab="race" role="tab">The Race</button>
     <button class="tab" data-tab="cards" role="tab">Scorecards</button>
   </div>
@@ -432,6 +566,12 @@
         <div id="board"></div>
       </div>
     </div>
+    <div class="sec-pad">
+      <div class="subhead">The story so far</div>
+      <div class="story" id="story"></div>
+      <div class="subhead">Quick stats</div>
+      <div class="qs" id="quickStats"></div>
+    </div>
   </section>
 
   <!-- STATS & FORM -->
@@ -441,6 +581,52 @@
       <div class="board" id="statsTable"></div>
       <div class="sec-head" style="margin-top:34px"><span class="ix">⚔</span><h2>Head to Head</h2><div class="rule"></div></div>
       <div id="h2h"></div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="panel" id="tab-form">
+    <div class="sec-pad">
+      <div class="sec-head"><span class="ix">~</span><h2>Form Guide</h2><div class="rule"></div></div>
+      <div class="subhead">Current form</div>
+      <div class="metablock" id="formTable"></div>
+      <div class="subhead">Form rankings</div>
+      <div class="rankcols" id="formRanks"></div>
+      <p class="note">Rolling averages of Stableford points. <b>Momentum</b> compares your last three cards with the three before — <b>Improving</b> if you're trending up, <b>Declining</b> if you're slipping.</p>
+    </div>
+  </section>
+
+  <!-- HANDICAP -->
+  <section class="panel" id="tab-hcp">
+    <div class="sec-pad">
+      <div class="sec-head"><span class="ix">⌁</span><h2>Handicap Centre</h2><div class="rule"></div></div>
+      <div class="subhead">Handicap trend</div>
+      <div class="metablock" id="hcpTable"></div>
+      <div class="subhead">Improvement tracker</div>
+      <div class="rankcols" id="improveBlock"></div>
+      <p class="note">Trend is read from your recent WHS index history. <b>Projected</b> is a simple "if the current trend holds" estimate through season end — a bit of fun, not gospel.</p>
+    </div>
+  </section>
+
+  <!-- RECORDS & AWARDS -->
+  <section class="panel" id="tab-records">
+    <div class="sec-pad">
+      <div class="sec-head"><span class="ix">★</span><h2>Season Records</h2><div class="rule"></div></div>
+      <div class="subhead">Best rounds</div>
+      <div class="recgrid" id="recBest"></div>
+      <div class="subhead">Consistency</div>
+      <div class="recgrid" id="recConsistency"></div>
+      <div class="sec-head" style="margin-top:34px"><span class="ix">🏆</span><h2>Season Awards</h2><div class="rule"></div></div>
+      <div class="awards" id="awards"></div>
+      <p class="note" id="awardsNote"></p>
+    </div>
+  </section>
+
+  <!-- WEATHER -->
+  <section class="panel" id="tab-weather">
+    <div class="sec-pad">
+      <div class="sec-head"><span class="ix">☼</span><h2>Weather Centre</h2><div class="rule"></div></div>
+      <div id="weatherHost"></div>
     </div>
   </section>
 
@@ -460,11 +646,29 @@
     </div>
   </section>
 
+  <!-- THE PRIZE (always) -->
+  <section class="sec-pad">
+    <div class="sec-head"><span class="ix">♛</span><h2>The Prize</h2><div class="rule"></div></div>
+    <div class="prize">
+      <div class="prize-ic">🏆</div>
+      <div class="prize-tx">
+        <div class="prize-k">Winner takes all</div>
+        <div class="prize-v">Every losing player owes the champion <b>two dozen balls</b> — or the cash equivalent.</div>
+        <div class="prize-sub">Settled when the season closes on <span id="prizeEnd">—</span>. With the current field that's 24 balls from each rival, straight to the winner.</div>
+      </div>
+      <div class="prize-pills">
+        <span class="prize-pill">🎱 2 dozen balls per loser</span>
+        <span class="prize-pill">💷 Cash equivalent accepted</span>
+        <span class="prize-pill">∞ No cap on rounds · best 6 count</span>
+      </div>
+    </div>
+  </section>
+
   <!-- HOW IT WORKS (always) -->
   <section class="sec-pad">
     <div class="sec-head"><span class="ix">§</span><h2>How it works</h2><div class="rule"></div></div>
     <div class="rules">
-      <div class="rc"><div class="rk">The format</div><div class="rv">Every round scored in <b>Stableford points</b>. Your <b>best 6</b> count — submit up to <b>12</b>.</div></div>
+      <div class="rc"><div class="rk">The format</div><div class="rv">Every round scored in <b>Stableford points</b>. Your <b>best 6</b> count — play <b>as many as you like</b>, no cap.</div></div>
       <div class="rc"><div class="rk">The total</div><div class="rv">Six highest scores are <b>added together</b>. Biggest combined total leads.</div></div>
       <div class="rc"><div class="rk">Any course</div><div class="rv">Play anywhere — slope &amp; rating <b>normalise</b> every card.</div></div>
       <div class="rc"><div class="rk">The season</div><div class="rv">Runs to <b id="endLabel">—</b>. Medals settle on the last card.</div></div>
@@ -536,6 +740,7 @@
   $("sLeaderPts").textContent=leader.best6>0?leader.best6+" pts":"";
   $("sPct").textContent=pct+"%";$("sDays").textContent=daysLeft;
   $("endLabel").textContent=fL(C.endDate);$("footMeta").textContent=C.subtitle+" · "+C.format;
+  {const pe=$("prizeEnd");if(pe)pe.textContent=fL(C.endDate);}
   requestAnimationFrame(()=>$("sFill").style.width=pct+"%");
 
   /* helpers */
@@ -603,7 +808,7 @@
           <div class="lb-sub"><span class="hcp">HCP <b>${p.handicap??"—"}</b></span>${trendChip(p)}${sparkline(p.handicapHistory,PHEX[p.id])}</div>
         </div>
       </div>
-      <div class="lb-cards num">${p.played}<span class="sl">/${C.maxCards}</span></div>
+      <div class="lb-cards num">${p.played}</div>
       <div class="lb-formcol ta-r">${formStrip(p)}</div>
       <div class="lb-total"><span class="n" data-to="${p.best6}">0</span><small>${p.pos===1?(p.best6>0?'leader':'level'):(gap===0?'level':Math.abs(gap)+' to gold')}</small></div>
       <div class="lb-mobform">${formStrip(p)}</div>`;
@@ -635,7 +840,7 @@
     if(!p.played)body=`<div class="empty">No cards in yet — first round drops here.</div>`;
     else body=`<div class="rounds">`+p.sorted.map((r,i)=>{const counts=i<C.bestN;const cut=(i===C.bestN)?`<div class="cut"><span>best ${C.bestN} cut</span></div>`:"";return cut+`<div class="rnd ${counts?'counts':'dropped'}"><div class="ri">${i+1}</div><div><div class="rdate">${fL(r.date)}</div><div class="rcourse">${(r.course||'').toUpperCase()}</div></div><div class="rtag">${counts?'Counting':'Dropped'}</div><div class="rpts">${r.points}</div></div>`;}).join("")+`</div>`;
     const c=document.createElement("div");c.className="card";c.tabIndex=0;c.setAttribute("role","button");
-    c.innerHTML=`<div class="pc-head"><div class="pc-id"><span class="pc-av" style="background:${PCOL[p.id]||'var(--gold)'}">${initials(p.name)}</span><div class="pc-nm">${p.name}<small>${p.posLabel} · order of merit</small></div></div><div class="pc-best"><b>${p.best6}</b><span>Best 6</span></div></div>${body}<div class="pc-foot"><span>${p.played}/${C.maxCards} cards</span><span>${p.played?Math.min(p.played,C.bestN)+' counting':''}</span></div>`;
+    c.innerHTML=`<div class="pc-head"><div class="pc-id"><span class="pc-av" style="background:${PCOL[p.id]||'var(--gold)'}">${initials(p.name)}</span><div class="pc-nm">${p.name}<small>${p.posLabel} · order of merit</small></div></div><div class="pc-best"><b>${p.best6}</b><span>Best 6</span></div></div>${body}<div class="pc-foot"><span>${p.played} card${p.played===1?'':'s'}</span><span>${p.played?Math.min(p.played,C.bestN)+' counting':''}</span></div>`;
     c.addEventListener("click",()=>openPlayer(p.id));
     c.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openPlayer(p.id);}});
     cards.appendChild(c);
@@ -721,23 +926,47 @@
     buildH2H();
   }
 
-  /* head to head */
+  /* head to head — aggregate stats + true h2h on shared cards */
+  function h2hStats(A,B){
+    const am=new Map(A.rounds.map(r=>[r.date,r.points]));
+    let n=0,aw=0,bw=0,bigA=0,bigB=0,closest=null;
+    B.rounds.forEach(r=>{ if(!am.has(r.date))return; n++; const d=am.get(r.date)-r.points;
+      if(d>0){aw++;if(d>bigA)bigA=d;} else if(d<0){bw++;if(-d>bigB)bigB=-d;}
+      const ad=Math.abs(d); if(closest==null||ad<closest)closest=ad; });
+    return {n,aw,bw,bigA,bigB,closest};
+  }
+  function avgPositions(){
+    const dates=[...new Set(D.players.flatMap(p=>p.rounds.map(r=>r.date)))];
+    const acc={}; players.forEach(p=>acc[p.id]={s:0,n:0});
+    dates.forEach(d=>{
+      const present=players.map(p=>{const r=p.rounds.find(x=>x.date===d);return r?{id:p.id,pts:r.points}:null;}).filter(Boolean).sort((a,b)=>b.pts-a.pts);
+      present.forEach((x,i)=>{acc[x.id].s+=i+1;acc[x.id].n++;});
+    });
+    const out={}; for(const id in acc)out[id]=acc[id].n?Math.round(acc[id].s/acc[id].n*10)/10:null; return out;
+  }
   function buildH2H(){
     const host=$("h2h");
     const opts=players.map(p=>`<option value="${p.id}">${p.name}</option>`).join("");
     host.innerHTML=`<div class="h2h-pick"><select id="h2hA" aria-label="Player A">${opts}</select><span class="vs">vs</span><select id="h2hB" aria-label="Player B">${opts}</select></div><div class="h2h-card" id="h2hCard"></div>`;
     $("h2hA").value=players[0].id;$("h2hB").value=(players[1]||players[0]).id;
+    const apos=avgPositions();
     const render=()=>{
       const A=players.find(x=>x.id===$("h2hA").value),B=players.find(x=>x.id===$("h2hB").value);
-      const va=statVals(A),vb=statVals(B);
-      const row=(lab,a,b)=>{const an=a==null?-Infinity:a,bn=b==null?-Infinity:b;const wa=an!==bn&&an>bn,wb=an!==bn&&bn>an;
-        return `<div class="h2h-mrow"><div class="h2h-val a ${wa?'win':''}">${a==null?'—':a}</div><div class="h2h-lab">${lab}</div><div class="h2h-val b ${wb?'win':''}">${b==null?'—':b}</div></div>`;};
+      const va=statVals(A),vb=statVals(B),hh=h2hStats(A,B);
+      const rowHi=(lab,a,b)=>{const an=a==null?-Infinity:a,bn=b==null?-Infinity:b;
+        return `<div class="h2h-mrow"><div class="h2h-val a ${an!==bn&&an>bn?'win':''}">${a==null?'—':a}</div><div class="h2h-lab">${lab}</div><div class="h2h-val b ${an!==bn&&bn>an?'win':''}">${b==null?'—':b}</div></div>`;};
+      const rowLo=(lab,a,b)=>{const an=a==null?Infinity:a,bn=b==null?Infinity:b;
+        return `<div class="h2h-mrow"><div class="h2h-val a ${an!==bn&&an<bn?'win':''}">${a==null?'—':a}</div><div class="h2h-lab">${lab}</div><div class="h2h-val b ${an!==bn&&bn<an?'win':''}">${b==null?'—':b}</div></div>`;};
+      const h2hBlock=A.id===B.id?'':`
+        <div class="h2h-mrow" style="background:var(--cloud)"><div class="h2h-lab" style="grid-column:1/-1">Head to head · ${hh.n} shared card${hh.n===1?'':'s'}</div></div>
+        ${rowHi('Wins',hh.aw,hh.bw)}${rowHi('Biggest win',hh.bigA||null,hh.bigB||null)}${rowLo('Avg finish',apos[A.id],apos[B.id])}`;
       $("h2hCard").innerHTML=`<div class="h2h-top">
           <div class="h2h-side a"><span class="h2h-av" style="background:${PCOL[A.id]}">${initials(A.name)}</span><div class="nm">${A.short||A.name}<small>${A.posLabel}</small></div></div>
           <div class="h2h-vs">vs</div>
           <div class="h2h-side b"><div class="nm">${B.short||B.name}<small>${B.posLabel}</small></div><span class="h2h-av" style="background:${PCOL[B.id]}">${initials(B.name)}</span></div>
         </div>
-        ${row('Best 6',va.best6,vb.best6)}${row('Avg pts',va.avg||null,vb.avg||null)}${row('Best card',va.best||null,vb.best||null)}${row('Cards',va.rounds,vb.rounds)}${row('Cut score',va.cut,vb.cut)}`;
+        ${rowHi('Best 6',va.best6,vb.best6)}${rowHi('Avg pts',va.avg||null,vb.avg||null)}${rowHi('Best card',va.best||null,vb.best||null)}${rowHi('Cards',va.rounds,vb.rounds)}${rowHi('Cut score',va.cut,vb.cut)}
+        ${h2hBlock}`;
     };
     $("h2hA").onchange=render;$("h2hB").onchange=render;render();
   }
@@ -770,12 +999,229 @@
       ${mover?`<span class="mover"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l8 10h-5v6h-6v-6H4z"/></svg> Mover · ${mover.name.split(" ")[0]}</span>`:""}`;
   })();
 
+  /* ===================== analytics (Handicap · Form · Records · Weather) ===================== */
+  const chrono=p=>[...p.rounds].sort((a,b)=>a.date<b.date?-1:1);
+  const mean=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null;
+  const r1=n=>n==null?null:Math.round(n*10)/10;
+  const fmtHi=v=>v==null?"—":(v<0?"+"+(-v).toFixed(1):v.toFixed(1));
+  const stdev=a=>{if(!a||a.length<2)return null;const m=mean(a);return Math.sqrt(mean(a.map(x=>(x-m)**2)));};
+  const allRounds=()=>players.flatMap(p=>p.rounds.map(r=>({...r,pid:p.id,pname:p.name})));
+  const daysElapsed=Math.max(1,Math.round((now-start)/864e5));
+
+  function hcpStats(p){
+    const h=(p.handicapHistory||[]).filter(v=>typeof v==="number");
+    if(!h.length)return null;
+    const startHi=h[0],curHi=h[h.length-1],low=Math.min(...h);
+    let red=0,inc=0,bigCut=0;
+    for(let i=1;i<h.length;i++){const d=h[i]-h[i-1];if(d<-1e-9){red++;if(-d>bigCut)bigCut=-d;}else if(d>1e-9)inc++;}
+    return {h,startHi,curHi,low,red,inc,bigCut,change:r1(curHi-startHi)};
+  }
+  function projectHi(p){
+    const st=hcpStats(p);if(!st||st.h.length<3)return null;
+    const h=st.h,n=h.length,mx=(n-1)/2,my=mean(h);
+    let num=0,den=0;for(let i=0;i<n;i++){num+=(i-mx)*(h[i]-my);den+=(i-mx)**2;}
+    const b=den?num/den:0;
+    const horizon=Math.min(8,Math.max(1,Math.round((n-1)*(daysLeft/daysElapsed))));
+    let proj=h[n-1]+b*horizon;
+    proj=Math.max(st.curHi-6,Math.min(st.curHi+6,proj));
+    return r1(Math.max(-6,Math.min(54,proj)));
+  }
+  function formStats(p){
+    const c=chrono(p),pts=c.map(r=>r.points),nets=c.map(r=>r.net).filter(v=>typeof v==="number");
+    const avgN=n=>r1(mean(pts.slice(-n)));
+    const recent=mean(pts.slice(-3)),prior=mean(pts.slice(-6,-3));
+    let mom={k:"flat",t:"—"};
+    if(pts.length>=2){
+      if(prior==null)mom={k:"flat",t:"New"};
+      else if(recent>prior+1)mom={k:"up",t:"Improving"};
+      else if(recent<prior-1)mom={k:"down",t:"Declining"};
+      else mom={k:"flat",t:"Stable"};
+    }
+    return {n:pts.length,l3:avgN(3),l5:avgN(5),l10:avgN(10),rollNet:nets.length?r1(mean(nets.slice(-5))):null,mom};
+  }
+  function bestRound(key,dir){
+    let best=null;allRounds().forEach(r=>{const v=r[key];if(v==null)return;if(best==null||(dir>0?v>best.v:v<best.v))best={v,r};});return best;
+  }
+  function streakRecord(thresh){
+    let best=null;players.forEach(p=>{const c=chrono(p).map(r=>r.points);let cur=0,mx=0;c.forEach(v=>{if(v>=thresh){cur++;if(cur>mx)mx=cur;}else cur=0;});if(mx>0&&(best==null||mx>best.v))best={v:mx,p};});return best;
+  }
+
+  /* ---- Story So Far + Quick Stats (home) ---- */
+  function buildHome(){
+    const sc=(hot,k,v,m)=>`<div class="scard ${hot?'hot':''}"><div class="sk">${k}</div><div class="sv">${v}</div><div class="sm">${m}</div></div>`;
+    const cards=[];
+    cards.push(sc(true,"Current leader",leader.best6>0?leader.name:"All level",leader.best6>0?`<b>${leader.best6}</b> best-6 points`:"First card takes the lead"));
+    if(second){const gap=leader.best6-second.best6;cards.push(sc(false,"Closest challenger",second.name,leader.best6>0?(gap===0?"Level at the top":`<b>${gap}</b> off the lead`):"In the hunt"));}
+    let bc=null;players.forEach(p=>{const st=hcpStats(p);if(st&&st.bigCut>0&&(bc==null||st.bigCut>bc.v))bc={v:st.bigCut,p};});
+    cards.push(bc?sc(false,"Biggest cut",bc.p.name,`Index down <b>${bc.v.toFixed(1)}</b> in one move`):sc(false,"Biggest cut","—","Handicap moves show here"));
+    let mi=null;players.forEach(p=>{const c=chrono(p).map(r=>r.points);if(c.length<4)return;const rec=mean(c.slice(-3)),earlier=mean(c.slice(0,-3));if(earlier==null)return;const d=rec-earlier;if(mi==null||d>mi.d)mi={d,p};});
+    cards.push(mi&&mi.d>0?sc(false,"Most improved",mi.p.name,`Up <b>${r1(mi.d)}</b> pts on recent form`):sc(false,"Most improved","—","Needs a few more cards"));
+    let mc=null;players.forEach(p=>{if(p.played<3)return;const sd=stdev(p.rounds.map(r=>r.points));if(sd==null)return;if(mc==null||sd<mc.sd)mc={sd,p};});
+    cards.push(mc?sc(false,"Most consistent",mc.p.name,`Just <b>±${r1(mc.sd)}</b> pts a card`):sc(false,"Most consistent","—","3+ cards to qualify"));
+    let fp=null;players.forEach(p=>{const f=formStats(p);if(f.l3==null)return;if(fp==null||f.l3>fp.v)fp={v:f.l3,p};});
+    cards.push(fp?sc(false,"In form",fp.p.name,`<b>${fp.v}</b> avg over last 3`):sc(false,"In form","—","Form builds with cards"));
+    $("story").innerHTML=cards.join("");
+    const all=allRounds(),nets=all.map(r=>r.net).filter(v=>typeof v==="number");
+    const qc=(v,k)=>`<div class="qcell"><div class="v">${v==null?'—':v}</div><div class="k">${k}</div></div>`;
+    $("quickStats").innerHTML=qc(all.length,"Rounds played")+qc(all.length?r1(mean(all.map(r=>r.points))):null,"Avg Stableford")+qc(nets.length?r1(mean(nets)):null,"Avg net")+qc(all.length?Math.max(...all.map(r=>r.points)):null,"Best score");
+  }
+
+  /* ---- Form Guide ---- */
+  function buildForm(){
+    const host=$("formTable");if(host.dataset.done)return;host.dataset.done="1";
+    const chip=(v,k)=>`<div class="mechip"><div class="v">${v==null?'—':v}</div><div class="k">${k}</div></div>`;
+    host.innerHTML=players.map(p=>{const f=formStats(p);return `<div class="merow">
+      <div class="meplayer"><span class="lb-av" style="width:34px;height:34px;font-size:13px;background:${PCOL[p.id]}">${initials(p.name)}</span>
+        <div><div class="lb-nm" style="font-size:15px">${p.name}</div><div style="margin-top:4px"><span class="mpill ${f.mom.k}">${f.mom.t}</span></div></div></div>
+      <div class="mechips">${chip(f.l3,'Last 3')}${chip(f.l5,'Last 5')}${chip(f.l10,'Last 10')}${chip(f.rollNet,'Roll net')}${chip(f.n,'Cards')}</div></div>`;}).join("");
+    const rank=(label,key)=>{
+      const arr=players.map(p=>({p,v:formStats(p)[key]})).filter(x=>x.v!=null).sort((a,b)=>b.v-a.v);
+      const body=arr.length?arr.map((x,i)=>`<div class="rankrow"><span class="rp">${i+1}</span><span class="rnm">${x.p.short||x.p.name}</span><span class="rvv">${x.v}</span></div>`).join(""):`<div class="rankrow"><span class="rnm" style="color:var(--muted)">Not enough cards yet</span></div>`;
+      return `<div class="ranklist"><div class="rl-h">${label}</div>${body}</div>`;
+    };
+    $("formRanks").innerHTML=rank("Best last 3","l3")+rank("Best last 5","l5")+rank("Best last 10","l10");
+  }
+
+  /* ---- Handicap Centre + Improvement Tracker ---- */
+  function buildHcp(){
+    const host=$("hcpTable");if(host.dataset.done)return;host.dataset.done="1";
+    const chip=(v,k,cls)=>`<div class="mechip"><div class="v ${cls||''}">${v}</div><div class="k">${k}</div></div>`;
+    host.innerHTML=players.map(p=>{const st=hcpStats(p);
+      if(!st)return `<div class="merow"><div class="meplayer"><span class="lb-av" style="width:34px;height:34px;font-size:13px;background:${PCOL[p.id]}">${initials(p.name)}</span><div><div class="lb-nm" style="font-size:15px">${p.name}</div><div class="hcp" style="margin-top:2px">No index history</div></div></div></div>`;
+      const chCls=st.change<0?'imp':st.change>0?'dec':'';
+      const chTxt=st.change==null?'—':st.change<0?'▼'+Math.abs(st.change).toFixed(1):st.change>0?'▲'+st.change.toFixed(1):'▬';
+      return `<div class="merow">
+        <div class="meplayer"><span class="lb-av" style="width:34px;height:34px;font-size:13px;background:${PCOL[p.id]}">${initials(p.name)}</span>
+          <div><div class="lb-nm" style="font-size:15px">${p.name}</div><div class="hcp" style="margin-top:3px;display:flex;align-items:center;gap:6px">HCP <b>${p.handicap??'—'}</b> ${sparkline(st.h,PHEX[p.id])}</div></div></div>
+        <div class="mechips">${chip(chTxt,'Season',chCls)}${chip(fmtHi(st.low),'Lowest')}${chip(st.bigCut>0?'−'+st.bigCut.toFixed(1):'—','Big cut','imp')}${chip(st.red,'Cuts')}${chip(st.inc,'Rises')}</div></div>`;}).join("");
+    const stRows=players.map(p=>{const st=hcpStats(p);return st?`<div class="rankrow"><span class="rnm">${p.short||p.name}</span><span class="rvv">${fmtHi(st.startHi)} → <b>${fmtHi(st.curHi)}</b></span></div>`:"";}).join("")||`<div class="rankrow"><span class="rnm" style="color:var(--muted)">No history</span></div>`;
+    const ranked=players.map(p=>({p,st:hcpStats(p)})).filter(x=>x.st).map(x=>({p:x.p,imp:r1(x.st.startHi-x.st.curHi)})).sort((a,b)=>b.imp-a.imp);
+    const rkRows=ranked.length?ranked.map((x,i)=>`<div class="rankrow"><span class="rp">${i+1}</span><span class="rnm">${x.p.short||x.p.name}</span><span class="rvv ${x.imp>0?'imp':x.imp<0?'dec':''}">${x.imp>0?'−'+x.imp.toFixed(1):x.imp<0?'+'+(-x.imp).toFixed(1):'0.0'}</span></div>`).join(""):`<div class="rankrow"><span class="rnm" style="color:var(--muted)">No history yet</span></div>`;
+    const pjRows=players.map(p=>{const pj=projectHi(p);return pj==null?"":`<div class="rankrow"><span class="rnm">${p.short||p.name}</span><span class="rvv">${fmtHi(pj)}</span></div>`;}).join("")||`<div class="rankrow"><span class="rnm" style="color:var(--muted)">More rounds needed</span></div>`;
+    $("improveBlock").innerHTML=
+      `<div class="ranklist"><div class="rl-h">Start → current</div>${stRows}</div>`+
+      `<div class="ranklist"><div class="rl-h">Improvement ranking</div>${rkRows}</div>`+
+      `<div class="ranklist"><div class="rl-h">Projected by season end</div>${pjRows}</div>`;
+  }
+
+  /* ---- Season Records + Awards ---- */
+  function buildAwards(){
+    const A=(tphy,at,winner,av,pending)=>({tphy,at,winner,av,pending:!!pending});
+    const hs=players.map(p=>({p,st:hcpStats(p),f:formStats(p),sd:stdev(p.rounds.map(r=>r.points))}));
+    const list=[];
+    list.push(leader.best6>0?A("👑","Season Leader",leader.name,leader.best6+" pts"):A("👑","Season Leader",null,"Not awarded yet",true));
+    const hi=bestRound("points",1);
+    list.push(hi?A("🏆","Highest Stableford",hi.r.pname,hi.r.points+" pts · "+fS(hi.r.date)):A("🏆","Highest Stableford",null,"Not awarded yet",true));
+    let mi=null;hs.forEach(x=>{if(x.st&&x.st.change!=null&&x.st.change<0&&(mi==null||x.st.change<mi.st.change))mi=x;});
+    list.push(mi?A("📉","Most Improved Handicap",mi.p.name,Math.abs(mi.st.change).toFixed(1)+" shots off"):A("📉","Most Improved Handicap",null,"Not awarded yet",true));
+    let hh=null;hs.forEach(x=>{if(x.st&&x.st.red>0&&(hh==null||x.st.red>hh.st.red))hh=x;});
+    list.push(hh?A("🦸","Handicap Hero",hh.p.name,hh.st.red+" cut"+(hh.st.red>1?"s":"")):A("🦸","Handicap Hero",null,"Not awarded yet",true));
+    let mc=null;hs.forEach(x=>{if(x.p.played>=3&&x.sd!=null&&(mc==null||x.sd<mc.sd))mc=x;});
+    list.push(mc?A("🎯","Most Consistent",mc.p.name,"±"+r1(mc.sd)+" pts/card"):A("🎯","Most Consistent",null,"3+ cards needed",true));
+    let fp=null;hs.forEach(x=>{if(x.p.played>=2&&x.f.l3!=null&&(fp==null||x.f.l3>fp.f.l3))fp=x;});
+    list.push(fp?A("🔥","Form Player",fp.p.name,fp.f.l3+" avg · last 3"):A("🔥","Form Player",null,"2+ cards needed",true));
+    let cl=null;players.forEach(p=>{if(typeof p.movement==="number"&&p.movement>0&&(cl==null||p.movement>cl.movement))cl=p;});
+    list.push(cl?A("🚀","Biggest Climber",cl.name,"+"+cl.movement+" place"+(cl.movement>1?"s":"")):A("🚀","Biggest Climber",null,"After next update",true));
+    const lg=bestRound("gross",-1),ln=bestRound("net",-1);
+    list.push(lg?A("⛳","Lowest Gross",lg.r.pname,lg.r.gross+" · "+fS(lg.r.date)):A("⛳","Lowest Gross",null,"After next sync",true));
+    list.push(ln?A("🏌️","Lowest Net",ln.r.pname,ln.r.net+" · "+fS(ln.r.date)):A("🏌️","Lowest Net",null,"After next sync",true));
+    return list;
+  }
+  function buildRecords(){
+    const host=$("recBest");if(host.dataset.done)return;host.dataset.done="1";
+    const sub=t=>`<span style="font-size:13px;color:var(--muted)"> ${t}</span>`;
+    const pend=(rk,why)=>`<div class="rec"><div class="rk">${rk}</div><div class="rv pend">—</div><div class="rwhen">${why}</div></div>`;
+    const made=(rk,v,r)=>`<div class="rec"><div class="rk">${rk}</div><div class="rv">${v}</div><div class="rwho">${r.pname}</div><div class="rwhen">${fL(r.date)} · ${(r.course||'').toUpperCase()}</div></div>`;
+    const hi=bestRound("points",1),lg=bestRound("gross",-1),ln=bestRound("net",-1);
+    host.innerHTML=
+      (hi?made("Highest Stableford",hi.r.points+sub("pts"),hi.r):pend("Highest Stableford","Fills as cards land"))+
+      (lg?made("Lowest Gross",lg.r.gross+"",lg.r):pend("Lowest Gross","After next sync (needs gross)"))+
+      (ln?made("Lowest Net",ln.r.net+"",ln.r):pend("Lowest Net","After next sync (needs net)"));
+    const s30=streakRecord(30),s35=streakRecord(35);
+    let topCnt=players[0];players.forEach(p=>{if(Math.min(p.played,C.bestN)>Math.min(topCnt.played,C.bestN))topCnt=p;});
+    const cnt=Math.min(topCnt.played,C.bestN);
+    const sCard=(rk,s)=>s?`<div class="rec"><div class="rk">${rk}</div><div class="rv">${s.v}${sub("cards")}</div><div class="rwho">${s.p.name}</div></div>`:`<div class="rec"><div class="rk">${rk}</div><div class="rv pend">—</div><div class="rwhen">No streak yet</div></div>`;
+    $("recConsistency").innerHTML=sCard("Longest 30+ run",s30)+sCard("Longest 35+ run",s35)+
+      `<div class="rec"><div class="rk">Most counting cards</div><div class="rv">${cnt}${sub("/ "+C.bestN)}</div><div class="rwho">${cnt>0?topCnt.name:'—'}</div></div>`;
+    $("awards").innerHTML=buildAwards().map(a=>`<div class="award ${a.pending?'pending':''}"><span class="tphy">${a.tphy}</span><div class="ai"><div class="at">${a.at}</div><div class="aw">${a.winner||'—'}</div><div class="av">${a.av||''}</div></div></div>`).join("");
+    $("awardsNote").innerHTML="Birdie/par, front-nine & back-nine awards unlock once hole-by-hole scores are added to the scraper.";
+  }
+
+  /* ---- Weather Centre (open-meteo, free, no key) ---- */
+  const WMO={0:["Clear","☀️"],1:["Mainly clear","🌤️"],2:["Partly cloudy","⛅"],3:["Overcast","☁️"],45:["Fog","🌫️"],48:["Rime fog","🌫️"],51:["Light drizzle","🌦️"],53:["Drizzle","🌦️"],55:["Heavy drizzle","🌦️"],56:["Freezing drizzle","🌧️"],57:["Freezing drizzle","🌧️"],61:["Light rain","🌧️"],63:["Rain","🌧️"],65:["Heavy rain","🌧️"],66:["Freezing rain","🌧️"],67:["Freezing rain","🌧️"],71:["Light snow","🌨️"],73:["Snow","🌨️"],75:["Heavy snow","🌨️"],77:["Snow grains","🌨️"],80:["Showers","🌦️"],81:["Showers","🌦️"],82:["Heavy showers","⛈️"],85:["Snow showers","🌨️"],86:["Snow showers","🌨️"],95:["Thunderstorm","⛈️"],96:["Thunderstorm","⛈️"],99:["Thunderstorm","⛈️"]};
+  const wmo=c=>WMO[c]||["Cloudy","🌥️"];
+  const BANDS=[{n:"Calm",r:"Under 10 mph · pick your line"},{n:"One Club Wind",r:"10–15 mph · take one more club"},{n:"Two Club Wind",r:"15–20 mph · two clubs, flight it down"},{n:"Survival Mode",r:"20 mph+ · grip down and grind"}];
+  const windBand=w=>w<10?0:w<15?1:w<20?2:3;
+  const clubAdvice=i=>["No allowance needed — back yourself and swing free.","One extra club into the wind; trust the number downwind.","Two clubs into the breeze and knock-down anything inside 150.","Grip right down, low and hard — par is a brilliant score."][i];
+  const windAdvice=i=>["Barely a breath off the estuary.","A nudge off the Conwy estuary — felt on the exposed holes.","Proper Conwy wind — the back nine will bite.","Brutal off the sea — links golf at its meanest."][i];
+  function golfScore(wind,gust,rainP,temp){
+    let s=10;
+    s-=wind>=25?5:wind>=20?4:wind>=15?2.6:wind>=10?1.3:0;
+    if(gust>=35)s-=1.2;else if(gust>=28)s-=0.6;
+    s-=Math.min(4,(rainP||0)/22);
+    if(temp!=null){if(temp<5)s-=2.2;else if(temp<9)s-=1.1;else if(temp>27)s-=1;}
+    return Math.max(1,Math.min(10,Math.round(s*10)/10));
+  }
+  function renderWeather(host,w){
+    const cur=w.current,d=w.daily;
+    let rainP=null;
+    if(w.hourly&&w.hourly.time){
+      const key=(cur.time||"").slice(0,13);              // match on YYYY-MM-DDTHH
+      let idx=w.hourly.time.findIndex(t=>t.slice(0,13)===key);
+      if(idx<0){const nowMs=Date.parse(cur.time);idx=w.hourly.time.findIndex(t=>Date.parse(t)>=nowMs);}
+      if(idx>=0)rainP=w.hourly.precipitation_probability[idx];
+    }
+    const[desc,emo]=wmo(cur.weather_code);
+    const wind=Math.round(cur.wind_speed_10m),gust=Math.round(cur.wind_gusts_10m),temp=Math.round(cur.temperature_2m);
+    const score=golfScore(wind,gust,rainP,cur.temperature_2m),bi=windBand(wind);
+    const days=d.time.map((t,i)=>({t,code:d.weather_code[i],wind:Math.round(d.wind_speed_10m_max[i]),rain:d.precipitation_probability_max[i],tmax:Math.round(d.temperature_2m_max[i]),sc:golfScore(d.wind_speed_10m_max[i],d.wind_gusts_10m_max[i],d.precipitation_probability_max[i],d.temperature_2m_max[i])})).slice(0,8);
+    const bestSc=Math.max(...days.map(x=>x.sc));
+    const dn=iso=>new Date(iso+"T12:00:00").toLocaleDateString("en-GB",{weekday:"short"});
+    host.innerHTML=`
+      <div class="wx-now">
+        <div class="wx-top">
+          <div><div class="wx-place">Conwy Golf Club · now</div><div class="wx-temp">${temp}<small>°C</small></div><div class="wx-desc">${emo} ${desc}</div></div>
+          <div class="wx-rate"><div class="rn">${score}<small>/10</small></div><div class="rl">Golf rating</div></div>
+        </div>
+        <div class="wx-metrics">
+          <div class="wx-m"><div class="k">Wind</div><div class="v">${wind} mph</div></div>
+          <div class="wx-m"><div class="k">Gusts</div><div class="v">${gust} mph</div></div>
+          <div class="wx-m"><div class="k">Rain chance</div><div class="v">${rainP==null?'—':rainP+'%'}</div></div>
+          <div class="wx-m"><div class="k">Conwy scale</div><div class="v" style="font-size:15px">${BANDS[bi].n}</div></div>
+        </div>
+        <div class="wx-advice">
+          <div class="wx-tip"><b>Wind:</b> ${windAdvice(bi)}</div>
+          <div class="wx-tip"><b>Clubbing:</b> ${clubAdvice(bi)}</div>
+        </div>
+      </div>
+      <div class="subhead">Best upcoming days</div>
+      ${days.map(x=>{const[dd,ee]=wmo(x.code);return `<div class="wx-day ${x.sc===bestSc?'best':''}"><div class="d"><b>${dn(x.t)}</b>${fS(x.t)}</div><div class="meta"><span>${ee} ${dd}</span><span>${x.wind} mph</span><span>${x.rain==null?'—':x.rain+'% rain'}</span><span>${x.tmax}°</span></div><div class="sc">${x.sc}<small>/10</small></div></div>`;}).join("")}
+      <div class="subhead">The Conwy Wind Scale</div>
+      <div class="wx-scale">${BANDS.map((b,i)=>`<div class="wband ${i===bi?'on':''}"><div class="wn">${b.n}</div><div class="wr">${b.r}</div></div>`).join("")}</div>
+      <p class="note">Live forecast via <b>open-meteo</b> for Conwy (53.29°N, 3.85°W). Golf rating weighs wind, gusts, rain chance & temperature. Reopen the tab to refresh.</p>`;
+  }
+  async function buildWeather(){
+    const host=$("weatherHost");if(host.dataset.done)return;host.dataset.done="1";
+    host.innerHTML=`<div class="wx-loading">Reading the Conwy skies…</div>`;
+    try{
+      const u="https://api.open-meteo.com/v1/forecast?latitude=53.293&longitude=-3.846&current=temperature_2m,weather_code,wind_speed_10m,wind_gusts_10m&hourly=precipitation_probability&daily=weather_code,temperature_2m_max,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max&wind_speed_unit=mph&timezone=Europe%2FLondon&forecast_days=14";
+      const res=await fetch(u);if(!res.ok)throw 0;
+      renderWeather(host,await res.json());
+    }catch(e){host.dataset.done="";host.innerHTML=`<div class="wx-error">Couldn't reach the forecast right now.<br>Check your connection and reopen this tab.</div>`;}
+  }
+
+  buildHome();
+
   /* tabs */
   document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
     document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===t));
     document.querySelectorAll(".panel").forEach(pn=>pn.classList.toggle("show",pn.id==="tab-"+t.dataset.tab));
     if(t.dataset.tab==="race")drawRace();
     if(t.dataset.tab==="stats")buildStats();
+    if(t.dataset.tab==="form")buildForm();
+    if(t.dataset.tab==="hcp")buildHcp();
+    if(t.dataset.tab==="records")buildRecords();
+    if(t.dataset.tab==="weather")buildWeather();
     window.scrollTo({top:document.querySelector('.tabs-bar').offsetTop-1,behavior:'smooth'});
   }));
 })();
