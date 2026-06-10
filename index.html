@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Conwy Choppers — Order of Merit</title>
 <meta name="description" content="Conwy Choppers · Best 6 Stableford order of merit · Conwy Golf Club." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2313315C'/%3E%3Cpath d='M11 25V7l11 3.3L11 13.6' fill='none' stroke='%23E0BE54' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E" />
@@ -446,12 +446,13 @@
   .wx-wind-hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
   .wx-wind-spd{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:26px;color:#fff;line-height:1}
   .wx-wind-spd small{font-size:.46em;color:#A9C2E4;font-weight:400;margin-left:2px}
-  .wx-wind-ctx{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:#9DB6D6;text-align:right;line-height:1.4;max-width:180px}
-  .wx-wbar-track{height:9px;border-radius:99px;background:rgba(255,255,255,.1);position:relative;margin-bottom:22px;overflow:visible}
+  .wx-wind-ctx{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:#9DB6D6;text-align:right;line-height:1.4;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .wx-wbar-outer{position:relative;padding-top:20px;margin-bottom:10px}
+  .wx-wbar-track{height:9px;border-radius:99px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}
   .wx-wbar-fill{height:100%;border-radius:99px;transition:width .9s var(--ease)}
-  .wx-wbar-mk{position:absolute;top:-15px;transform:translateX(-50%);font-family:"IBM Plex Mono",monospace;font-size:8px;color:rgba(255,255,255,.35);white-space:nowrap}
-  .wx-wbar-mk::after{content:"";position:absolute;top:15px;left:50%;width:1px;height:9px;background:rgba(255,255,255,.18)}
-  .wx-wind-foot{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:10px;color:#9DB6D6;margin-top:-14px}
+  .wx-wbar-mk{position:absolute;top:0;transform:translateX(-50%);font-family:"IBM Plex Mono",monospace;font-size:8px;color:rgba(255,255,255,.35);white-space:nowrap;pointer-events:none}
+  .wx-wbar-mk::after{content:"";position:absolute;top:12px;left:50%;width:1px;height:8px;background:rgba(255,255,255,.18)}
+  .wx-wind-foot{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:10px;color:#9DB6D6;margin-top:6px}
   .wx-day .sc{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:19px;color:var(--sc-day,var(--gold-dp));text-align:right}
   .wx-day .sc small{display:block;font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
   .wx-day-wbar{height:4px;border-radius:99px;background:var(--cloud);margin-top:5px;overflow:hidden}
@@ -539,7 +540,8 @@
     .lb-formcol{display:none}
     .tabs-bar{display:none}              /* swap the scrolling text tabs … */
     .botnav{display:flex}               /* … for the bottom icon bar */
-    body{padding-bottom:74px}           /* clear the fixed bar */
+    body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
+    footer{margin-bottom:8px}
   }
   @media (max-width:430px){
     .brand .bt{display:none}
@@ -1340,12 +1342,12 @@
             <span class="wx-wind-spd">${wind}<small>mph</small></span>
             <span class="wx-wind-ctx">${windDir?windDir+' · '+conwyWindCtx(windDir):BANDS[bi].n}</span>
           </div>
-          <div class="wx-wbar-track">
-            <div class="wx-wbar-fill" style="width:${wBarPct}%;background:${wbarColor(wind)}"></div>
+          <div class="wx-wbar-outer">
             <span class="wx-wbar-mk" style="left:${10/30*100}%">10</span>
             <span class="wx-wbar-mk" style="left:${15/30*100}%">15</span>
             <span class="wx-wbar-mk" style="left:${20/30*100}%">20</span>
             <span class="wx-wbar-mk" style="left:${25/30*100}%">25</span>
+            <div class="wx-wbar-track"><div class="wx-wbar-fill" style="width:${wBarPct}%;background:${wbarColor(wind)}"></div></div>
           </div>
           <div class="wx-wind-foot"><span>Gusts ${gust} mph</span><span>${BANDS[bi].r}</span></div>
         </div>
