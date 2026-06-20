@@ -4,3 +4,8 @@ debug/
 .chrome-profile/
 data.prev.js
 .env
+daily-update.log
+launchd.out.log
+launchd.err.log
+scrape.run.log
+diag.mjs

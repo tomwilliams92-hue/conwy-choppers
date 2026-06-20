@@ -15,12 +15,15 @@
  * ================================================================== */
 import puppeteer from "puppeteer-core";
 import readline from "node:readline";
-import { writeFileSync, mkdirSync, readFileSync } from "node:fs";
+import { writeFileSync, mkdirSync, readFileSync, existsSync, unlinkSync } from "node:fs";
 import { parseHi, parseGross, toStableford, writeDataJs } from "./lib.mjs";
 
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const PROFILE = "./.chrome-profile";
 const DEBUG = process.argv.includes("--debug");
+const CONNECT = process.argv.includes("--connect"); // attach to an already-open, logged-in Chrome
+const DEBUG_PORT = 9222;
+const SIGNAL = "./.login-ready"; // assistant touches this to say "logged in — proceed"
 
 const COMPETITION = {
   club: "Conwy Golf Club",
@@ -65,13 +68,16 @@ const ask = q => new Promise(res => {
 async function extractTable(page, must) {
   return page.evaluate((must) => {
     const norm = s => s.replace(/\s+/g, " ").trim();
+    // Cell normaliser that PRESERVES line breaks (course & tee sit on separate lines,
+    // e.g. "Conwy(Caernarvonshire)\nBlue" — collapsing the newline broke the course lookup).
+    const normCell = s => (s || "").split("\n").map(x => x.replace(/[ \t \f\v]+/g, " ").trim()).filter(Boolean).join("\n");
     for (const t of document.querySelectorAll("table")) {
       const head = [...t.querySelectorAll("thead th, thead td")].map(c => norm(c.innerText).toLowerCase());
       const headers = head.length ? head : [...t.querySelectorAll("tr")][0]
         ? [...[...t.querySelectorAll("tr")][0].children].map(c => norm(c.innerText).toLowerCase()) : [];
       if (headers.length && must.every(m => headers.some(h => h.includes(m)))) {
         const rows = [...t.querySelectorAll("tbody tr")].map(tr =>
-          [...tr.querySelectorAll("td, th")].map(td => norm(td.innerText)));
+          [...tr.querySelectorAll("td, th")].map(td => normCell(td.innerText)));
         return { headers, rows: rows.filter(r => r.length) };
       }
     }
@@ -103,10 +109,11 @@ function prevState() {
     const data = Function('"use strict";return (' + m[1] + ')')();
     const ps = data.players.map(p => ({
       id: p.id,
+      rounds: p.rounds || [],
       best6: [...p.rounds].sort((a, b) => b.points - a.points).slice(0, data.competition.bestN)
         .reduce((s, r) => s + r.points, 0),
     })).sort((a, b) => b.best6 - a.best6);
-    const out = {}; ps.forEach((p, i) => out[p.id] = { pos: i + 1, best6: p.best6 });
+    const out = {}; ps.forEach((p, i) => out[p.id] = { pos: i + 1, best6: p.best6, rounds: p.rounds });
     return out;
   } catch { return {}; }
 }
@@ -137,26 +144,59 @@ async function dumpDebug(page, tag) {
 }
 
 (async () => {
-  console.log("→ Launching Chrome (its own window)…");
-  const browser = await puppeteer.launch({
-    executablePath: CHROME,
-    headless: false,
-    userDataDir: PROFILE,
-    defaultViewport: null,
-    args: ["--no-first-run", "--no-default-browser-check"],
-  });
+  let browser;
+  if (CONNECT) {
+    console.log(`→ Connecting to the Chrome you're logged in to (port ${DEBUG_PORT})…`);
+    browser = await puppeteer.connect({ browserURL: `http://127.0.0.1:${DEBUG_PORT}`, defaultViewport: null });
+  } else {
+    console.log("→ Launching Chrome (its own window)…");
+    browser = await puppeteer.launch({
+      executablePath: CHROME,
+      headless: false,
+      userDataDir: PROFILE,
+      defaultViewport: null,
+      args: ["--no-first-run", "--no-default-browser-check"],
+    });
+  }
   const page = (await browser.pages())[0] || (await browser.newPage());
 
   // ---- ensure logged in ----
   await page.goto("https://www.walesgolf.org/my-overview", { waitUntil: "networkidle2", timeout: 60000 });
   let scores = await extractTable(page, ["adj", "course rating", "slope"]);
+  if (!scores && CONNECT) {
+    console.log("\n⚠  Not logged in yet in the open Chrome window.");
+    console.log("   Log in to Wales Golf there, open My Overview so your scores show, then tell me.");
+    await browser.disconnect();
+    process.exit(2);
+  }
   if (!scores) {
-    console.log("\n⚠  Not logged in (or scores not visible yet).");
-    console.log("   Log in to Wales Golf in the Chrome window that just opened,");
-    console.log("   make sure you can see YOUR scores on My Overview, then…");
-    await ask("   press ENTER here to continue ▸ ");
-    await page.goto("https://www.walesgolf.org/my-overview", { waitUntil: "networkidle2", timeout: 60000 });
-    scores = await extractTable(page, ["adj", "course rating", "slope"]);
+    console.log("\n⚠  Not logged in yet.");
+    console.log("   Log in to Wales Golf in the Chrome window that just opened (incl. any 2FA),");
+    console.log("   and open My Overview so your scores show. This window will NOT reload while you do it.");
+    console.log("   The assistant tells me when you're done — then I read your scores. Waiting…");
+    // Make THIS window unmistakable: pop it to the front + paint a red banner on it.
+    try {
+      await page.bringToFront();
+      await page.evaluate(() => {
+        if (document.getElementById("__choppers_banner")) return;
+        const b = document.createElement("div");
+        b.id = "__choppers_banner";
+        b.textContent = "👇 LOG IN IN THIS WINDOW — Conwy Choppers leaderboard (your normal Chrome doesn't count)";
+        b.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:2147483647;background:#d11;color:#fff;font:bold 18px/1.4 system-ui,sans-serif;padding:14px 16px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.4)";
+        document.documentElement.appendChild(b);
+      });
+    } catch { /* page may be mid-load; banner is best-effort */ }
+    const deadline = Date.now() + 12 * 60 * 1000; // up to 12 min to log in at your own pace
+    while (!scores && Date.now() < deadline) {
+      await new Promise(r => setTimeout(r, 3000));
+      if (!existsSync(SIGNAL)) continue;            // touch NOTHING until the assistant signals
+      try {
+        await page.goto("https://www.walesgolf.org/my-overview", { waitUntil: "networkidle2", timeout: 60000 });
+        scores = await extractTable(page, ["adj", "course rating", "slope"]);
+      } catch { /* transient nav error — will retry on next signal */ }
+      if (scores) console.log("   ✓ Scores detected — continuing.");
+      else { try { unlinkSync(SIGNAL); } catch {} console.log("   Signalled, but still no scores — finish logging in, then signal again."); }
+    }
   }
 
   const byId = Object.fromEntries(TARGETS.map(t => [t.id, { ...t, rounds: [], skipped: [], hiSeries: [] }]));
@@ -183,7 +223,19 @@ async function dumpDebug(page, tag) {
 
   /* ---------- Josh + Callum from My Friends ---------- */
   await page.goto("https://www.walesgolf.org/my-friends", { waitUntil: "networkidle2", timeout: 60000 });
-  const friends = await extractTable(page, ["name", "adj", "handicap"]);
+  let friends = await extractTable(page, ["name", "adj", "handicap"]);
+  // The friends rows render a moment after the page settles — wait for them to populate.
+  for (let i = 0; i < 12 && (!friends || !friends.rows.length); i++) {
+    await new Promise(r => setTimeout(r, 1500));
+    friends = await extractTable(page, ["name", "adj", "handicap"]);
+  }
+  // SAFETY: if the friends table never loaded, don't publish a half-update that wipes Josh/Callum.
+  if (!friends || !friends.rows.length) {
+    console.error("\n✗ Couldn't read the My Friends table (page didn't load in time).");
+    console.error("  Leaving data.js UNCHANGED to avoid a partial update.");
+    if (CONNECT) await browser.disconnect(); else await browser.close();
+    process.exit(1);
+  }
   if (friends) {
     const H = friends.headers;
     const iName = colIndex(H, "name"), iDate = colIndex(H, "date"),
@@ -205,17 +257,37 @@ async function dumpDebug(page, tag) {
     await dumpDebug(page, "my-friends");
   }
 
-  await browser.close();
+  if (CONNECT) await browser.disconnect(); else await browser.close();
 
   /* ---------- build + write ---------- */
   const prev = prevState(); // read BEFORE we overwrite data.js
   const built = TARGETS.map(t => {
     const p = byId[t.id];
-    const rounds = p.rounds.sort((a, b) => b.points - a.points); // no cap — keep every card
+    let rounds = p.rounds;
+    // Friends' source (My Friends) only shows their LATEST round, so accumulate:
+    // keep every previously-recorded friend card and add any new one (de-dupe on date+course).
+    // Tom's source (My Overview) is his full history, so it stays authoritative (no merge).
+    if (t.source === "friend" && prev[t.id]?.rounds?.length) {
+      const seen = new Set(rounds.map(r => `${r.date}|${r.course}`));
+      for (const er of prev[t.id].rounds) {
+        const k = `${er.date}|${er.course}`;
+        if (!seen.has(k)) { rounds.push(er); seen.add(k); }
+      }
+    }
+    rounds = rounds.sort((a, b) => b.points - a.points); // no cap — keep every card
     const best6 = rounds.slice(0, COMPETITION.bestN).reduce((s, r) => s + r.points, 0);
     const { handicap, handicapTrend, handicapHistory } = summariseHcp(p.hiSeries);
     return { id: t.id, name: t.name, short: t.short, handicap, handicapTrend, handicapHistory, movement: null, rounds, _best6: best6 };
   });
+  // SAFETY: never overwrite the board with an empty read (expired login / page change).
+  // A successful scrape always returns each player's full history from the start date,
+  // so zero rounds means the read failed — leave data.js untouched and exit non-zero.
+  const totalRounds = built.reduce((s, p) => s + p.rounds.length, 0);
+  if (totalRounds === 0) {
+    console.error("\n✗ No rounds read (likely not logged in to Wales Golf, or the page changed).");
+    console.error("  Leaving data.js UNCHANGED so the leaderboard isn't wiped.");
+    process.exit(1);
+  }
   // position movement since last update
   const ranked = [...built].sort((a, b) => b._best6 - a._best6);
   const newPos = {}; ranked.forEach((p, i) => newPos[p.id] = i + 1);
