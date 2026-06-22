@@ -9,8 +9,8 @@ window.CHOPPERS_DATA = {
     "endDate": "2026-09-30",
     "lastUpdated": "2026-06-22",
     "bestN": 6,
-    "recap": "<b>Tom</b> leads on 100. Tom's best week (+35).",
-    "moverId": "tom",
+    "recap": "<b>Tom</b> leads on 100.",
+    "moverId": null,
     "celebrate": false
   },
   "players": [
@@ -18,14 +18,15 @@ window.CHOPPERS_DATA = {
       "id": "tom",
       "name": "Tom Williams",
       "short": "Tom",
-      "handicap": "+1.3",
-      "handicapTrend": 0,
+      "handicap": "+1.5",
+      "handicapTrend": -0.2,
       "handicapHistory": [
         -1.3,
         -1.3,
         -1.2,
         -1.3,
-        -1.3
+        -1.3,
+        -1.5
       ],
       "movement": 0,
       "rounds": [

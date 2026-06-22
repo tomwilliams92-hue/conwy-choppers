@@ -216,6 +216,16 @@ async function dumpDebug(page, tag) {
         adjGross: parseGross(r[iGross]), courseHcp: parseHi(r[iHcp]), // parseHi keeps "+1" as −1
       });
     }
+    // The scores-table column is the PRE-round index; the current official Handicap
+    // Index is the headline figure ("My Handicap Index® +1.5"). Use it as the latest
+    // point so the displayed handicap, trend and sparkline reflect today's real index.
+    const officialHI = await page.evaluate(() => {
+      const body = document.body.innerText.replace(/\s+/g, " ");
+      const m = body.match(/Handicap Index®?\s*([+\-]?\d+\.\d)/i);
+      return m ? m[1] : null;
+    });
+    const ohi = parseHi(officialHI);
+    if (ohi != null) byId.tom.hiSeries.push({ date: COMPETITION.lastUpdated, hi: ohi });
   } else {
     console.log("✗ Could not read your scores table.");
     await dumpDebug(page, "my-overview");
