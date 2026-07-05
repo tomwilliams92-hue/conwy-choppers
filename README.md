@@ -47,3 +47,28 @@ Verified against Callum's 5 Jun round: `36 + 29 + 72 − 101 = 36` ✓
 ```bash
 node shot.mjs "file://$(pwd)/index.html" shots/board.png
 ```
+
+## Daily automation (runs itself every morning)
+A launchd agent scrapes the scores and pushes to GitHub Pages at **07:00 daily**,
+unattended (`daily-update.sh`). If nothing changed, it publishes nothing.
+
+- **This home-folder copy (`~/conwy-choppers`) is the one that runs.** macOS blocks
+  scheduled jobs from reading anything under `~/Desktop` (TCC → "Operation not
+  permitted"), so the automation must live outside Desktop. The Desktop entry is a
+  symlink back to here — edit/run from either, it's the same files.
+- Agent: `~/Library/LaunchAgents/com.conwy.choppers.update.plist`
+  - Reload after editing: `launchctl bootout gui/$(id -u) <plist>; launchctl bootstrap gui/$(id -u) <plist>`
+  - Force a run now: `launchctl kickstart -k gui/$(id -u)/com.conwy.choppers.update`
+  - Watch it: `tail -f daily-update.log` (launchd errors go to `launchd.err.log`)
+- It only fires while the Mac is awake + logged in. To also wake the Mac in time:
+  `sudo pmset repeat wake MTWRFSU 06:57:00`
+- If the log says "login may need refreshing", the Wales Golf session in
+  `.chrome-profile` has expired — run `node scrape.mjs` once by hand and log back in.
+
+## Weather
+The Weather Centre pulls wind / temperature / conditions from the **Met Office
+UKMO 2 km model**, served keyless (and CORS-friendly) via open-meteo — the sharpest
+local read for a links course. Rain probability, which the UKMO feed doesn't expose,
+comes from open-meteo's default blend in a second parallel call. A direct Met Office
+DataHub key can't be used here: it's a server-side API (the key would be exposed in
+the static page, and it isn't CORS-enabled for browsers).
