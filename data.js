@@ -9,8 +9,8 @@ window.CHOPPERS_DATA = {
     "endDate": "2026-09-30",
     "lastUpdated": "2026-07-05",
     "bestN": 6,
-    "recap": "<b>Tom</b> leads on 134. Josh's best week (+27).",
-    "moverId": "josh",
+    "recap": "<b>Tom</b> leads on 134.",
+    "moverId": null,
     "celebrate": false
   },
   "players": [
