@@ -274,10 +274,13 @@ async function dumpDebug(page, tag) {
   const built = TARGETS.map(t => {
     const p = byId[t.id];
     let rounds = p.rounds;
-    // Friends' source (My Friends) only shows their LATEST round, so accumulate:
-    // keep every previously-recorded friend card and add any new one (de-dupe on date+course).
-    // Tom's source (My Overview) is his full history, so it stays authoritative (no merge).
-    if (t.source === "friend" && prev[t.id]?.rounds?.length) {
+    // Accumulate history for EVERYONE (de-dupe on date+course):
+    //  • Friends' source (My Friends) only ever shows each friend's LATEST round.
+    //  • Tom's source (My Overview) only shows a rolling window of his last ~5 rounds,
+    //    so older season rounds roll off the view and would otherwise vanish from the best-6.
+    // The fresh scrape stays authoritative for any round it still returns (those go into
+    // `seen` first); we only re-add previously-recorded rounds that have dropped out of view.
+    if (prev[t.id]?.rounds?.length) {
       const seen = new Set(rounds.map(r => `${r.date}|${r.course}`));
       for (const er of prev[t.id].rounds) {
         const k = `${er.date}|${er.course}`;

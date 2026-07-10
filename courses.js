@@ -20,6 +20,7 @@ export const COURSES = {
 
   // ---- Others (fill CR/Slope/Par from the Wales Golf scores table as needed) ----
   "bromborough|white":            { cr: 72.9, slope: 142, par: 72 },
+  "wallasey|white":               { cr: 73.0, slope: 133, par: 72 },
   // "ruthin-pwllglas|white":     { cr: 65.6, slope: 116, par: 70 },
   // "prestatyn|white":           { cr: 0,    slope: 0,   par: 0  },
   // "st melyd|white":            { cr: 0,    slope: 0,   par: 0  },
