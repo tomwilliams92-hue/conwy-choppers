@@ -9,8 +9,8 @@ window.CHOPPERS_DATA = {
     "endDate": "2026-09-30",
     "lastUpdated": "2026-07-11",
     "bestN": 6,
-    "recap": "<b>Tom</b> leads on 196.",
-    "moverId": null,
+    "recap": "<b>Tom</b> leads on 200. Tom's best week (+4).",
+    "moverId": "tom",
     "celebrate": false
   },
   "players": [
@@ -22,8 +22,8 @@ window.CHOPPERS_DATA = {
       "handicapTrend": -0.3,
       "handicapHistory": [
         -1.3,
-        -1.3,
         -1.5,
+        -1.6,
         -1.6,
         -1.6,
         -1.6
@@ -60,6 +60,14 @@ window.CHOPPERS_DATA = {
           "points": 33,
           "gross": 76,
           "net": 75,
+          "chcp": 1
+        },
+        {
+          "date": "2026-07-11",
+          "course": "Conwy(Caernarvonshire)",
+          "points": 32,
+          "gross": 77,
+          "net": 76,
           "chcp": 1
         },
         {
