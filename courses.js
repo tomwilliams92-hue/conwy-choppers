@@ -24,6 +24,9 @@ export const COURSES = {
   // CR/slope read off the Wales Golf scores table 2026-07-20; par 69 confirmed by
   // back-solving Wales Golf's own course handicap (+2 at HI +1.6 ⇒ par 69, not 68).
   "stmelyd|white":                { cr: 68.4, slope: 120, par: 69 },
+  // CR/slope from Josh's golf-profile table 2026-07-20; par 72 back-solves his
+  // course handicap on all three of his Abergele rounds (2025-2026).
+  "abergele|white":               { cr: 71.8, slope: 124, par: 72 },
   // "ruthin-pwllglas|white":     { cr: 65.6, slope: 116, par: 70 },
   // "prestatyn|white":           { cr: 0,    slope: 0,   par: 0  },
 };

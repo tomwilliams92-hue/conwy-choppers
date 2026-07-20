@@ -9,7 +9,7 @@ window.CHOPPERS_DATA = {
     "endDate": "2026-09-30",
     "lastUpdated": "2026-07-20",
     "bestN": 6,
-    "recap": "<b>Tom</b> leads on 200. Callum's best week (+33).",
+    "recap": "<b>Tom</b> leads on 200. Callum's best week (+66).",
     "moverId": "callum",
     "celebrate": false
   },
@@ -101,8 +101,15 @@ window.CHOPPERS_DATA = {
       "name": "Josh Morris",
       "short": "Josh",
       "handicap": "2.8",
-      "handicapTrend": null,
+      "handicapTrend": 0.1,
       "handicapHistory": [
+        2.9,
+        2.7,
+        2.7,
+        2.7,
+        2.9,
+        2.5,
+        2.5,
         2.8
       ],
       "movement": 0,
@@ -114,6 +121,22 @@ window.CHOPPERS_DATA = {
           "gross": 76,
           "net": 72,
           "chcp": 4
+        },
+        {
+          "date": "2026-07-14",
+          "course": "Abergele",
+          "points": 33,
+          "gross": 78,
+          "net": 75,
+          "chcp": 3
+        },
+        {
+          "date": "2026-05-30",
+          "course": "Conwy(Caernarvonshire)",
+          "points": 30,
+          "gross": 84,
+          "net": 78,
+          "chcp": 6
         },
         {
           "date": "2026-05-30",
@@ -130,11 +153,27 @@ window.CHOPPERS_DATA = {
         },
         {
           "date": "2026-07-04",
+          "course": "Conwy(Caernarvonshire)",
+          "points": 27,
+          "gross": 84,
+          "net": 81,
+          "chcp": 3
+        },
+        {
+          "date": "2026-07-04",
           "course": "Conwy (Caernarvonshire)",
           "points": 27,
           "gross": 84,
           "net": 81,
           "chcp": 3
+        },
+        {
+          "date": "2026-06-20",
+          "course": "Conwy(Caernarvonshire)",
+          "points": 26,
+          "gross": 88,
+          "net": 82,
+          "chcp": 6
         },
         {
           "date": "2026-06-20",
@@ -151,12 +190,27 @@ window.CHOPPERS_DATA = {
       "name": "Callum Bennett",
       "short": "Callum",
       "handicap": "21.3",
-      "handicapTrend": null,
+      "handicapTrend": -0.6,
       "handicapHistory": [
+        21.6,
+        21.9,
+        21.5,
+        21.3,
+        21.3,
+        21.3,
+        21.3,
         21.3
       ],
       "movement": 0,
       "rounds": [
+        {
+          "date": "2026-06-05",
+          "course": "Conwy(Caernarvonshire)",
+          "points": 36,
+          "gross": 101,
+          "net": 72,
+          "chcp": 29
+        },
         {
           "date": "2026-06-05",
           "course": "Conwy (Caernarvonshire)",
@@ -171,12 +225,36 @@ window.CHOPPERS_DATA = {
           "chcp": 22
         },
         {
+          "date": "2026-07-17",
+          "course": "Conwy(Caernarvonshire)",
+          "points": 28,
+          "gross": 109,
+          "net": 80,
+          "chcp": 29
+        },
+        {
+          "date": "2026-06-20",
+          "course": "Conwy(Caernarvonshire)",
+          "points": 17,
+          "gross": 120,
+          "net": 91,
+          "chcp": 29
+        },
+        {
           "date": "2026-06-20",
           "course": "Conwy (Caernarvonshire)",
           "points": 17,
           "gross": 120,
           "net": 91,
           "chcp": 29
+        },
+        {
+          "date": "2026-07-04",
+          "course": "Conwy(Caernarvonshire)",
+          "points": 15,
+          "gross": 116,
+          "net": 93,
+          "chcp": 23
         },
         {
           "date": "2026-07-04",
