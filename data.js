@@ -9,8 +9,8 @@ window.CHOPPERS_DATA = {
     "endDate": "2026-09-30",
     "lastUpdated": "2026-07-20",
     "bestN": 6,
-    "recap": "<b>Tom</b> leads on 200.",
-    "moverId": null,
+    "recap": "<b>Tom</b> leads on 200. Callum's best week (+33).",
+    "moverId": "callum",
     "celebrate": false
   },
   "players": [
@@ -79,6 +79,14 @@ window.CHOPPERS_DATA = {
           "chcp": 1
         },
         {
+          "date": "2026-07-19",
+          "course": "St Melyd",
+          "points": 31,
+          "gross": 72,
+          "net": 74,
+          "chcp": -2
+        },
+        {
           "date": "2026-07-08",
           "course": "Conwy(Caernarvonshire)",
           "points": 28,
@@ -113,6 +121,14 @@ window.CHOPPERS_DATA = {
           "points": 30
         },
         {
+          "date": "2026-07-19",
+          "course": "St Melyd",
+          "points": 28,
+          "gross": 79,
+          "net": 77,
+          "chcp": 2
+        },
+        {
           "date": "2026-07-04",
           "course": "Conwy (Caernarvonshire)",
           "points": 27,
@@ -145,6 +161,14 @@ window.CHOPPERS_DATA = {
           "date": "2026-06-05",
           "course": "Conwy (Caernarvonshire)",
           "points": 36
+        },
+        {
+          "date": "2026-07-19",
+          "course": "St Melyd",
+          "points": 33,
+          "gross": 94,
+          "net": 72,
+          "chcp": 22
         },
         {
           "date": "2026-06-20",

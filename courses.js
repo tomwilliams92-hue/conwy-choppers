@@ -21,9 +21,11 @@ export const COURSES = {
   // ---- Others (fill CR/Slope/Par from the Wales Golf scores table as needed) ----
   "bromborough|white":            { cr: 72.9, slope: 142, par: 72 },
   "wallasey|white":               { cr: 73.0, slope: 133, par: 72 },
+  // CR/slope read off the Wales Golf scores table 2026-07-20; par 69 confirmed by
+  // back-solving Wales Golf's own course handicap (+2 at HI +1.6 ⇒ par 69, not 68).
+  "stmelyd|white":                { cr: 68.4, slope: 120, par: 69 },
   // "ruthin-pwllglas|white":     { cr: 65.6, slope: 116, par: 70 },
   // "prestatyn|white":           { cr: 0,    slope: 0,   par: 0  },
-  // "st melyd|white":            { cr: 0,    slope: 0,   par: 0  },
 };
 
 export function courseKey(course, tee) {
