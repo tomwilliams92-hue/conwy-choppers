@@ -9,8 +9,8 @@ window.CHOPPERS_DATA = {
     "endDate": "2026-09-30",
     "lastUpdated": "2026-07-20",
     "bestN": 6,
-    "recap": "<b>Tom</b> leads on 200. Callum's best week (+66).",
-    "moverId": "callum",
+    "recap": "<b>Tom</b> leads on 200.",
+    "moverId": null,
     "celebrate": false
   },
   "players": [
@@ -139,11 +139,6 @@ window.CHOPPERS_DATA = {
           "chcp": 6
         },
         {
-          "date": "2026-05-30",
-          "course": "Conwy (Caernarvonshire)",
-          "points": 30
-        },
-        {
           "date": "2026-07-19",
           "course": "St Melyd",
           "points": 28,
@@ -160,24 +155,8 @@ window.CHOPPERS_DATA = {
           "chcp": 3
         },
         {
-          "date": "2026-07-04",
-          "course": "Conwy (Caernarvonshire)",
-          "points": 27,
-          "gross": 84,
-          "net": 81,
-          "chcp": 3
-        },
-        {
           "date": "2026-06-20",
           "course": "Conwy(Caernarvonshire)",
-          "points": 26,
-          "gross": 88,
-          "net": 82,
-          "chcp": 6
-        },
-        {
-          "date": "2026-06-20",
-          "course": "Conwy (Caernarvonshire)",
           "points": 26,
           "gross": 88,
           "net": 82,
@@ -212,11 +191,6 @@ window.CHOPPERS_DATA = {
           "chcp": 29
         },
         {
-          "date": "2026-06-05",
-          "course": "Conwy (Caernarvonshire)",
-          "points": 36
-        },
-        {
           "date": "2026-07-19",
           "course": "St Melyd",
           "points": 33,
@@ -241,24 +215,8 @@ window.CHOPPERS_DATA = {
           "chcp": 29
         },
         {
-          "date": "2026-06-20",
-          "course": "Conwy (Caernarvonshire)",
-          "points": 17,
-          "gross": 120,
-          "net": 91,
-          "chcp": 29
-        },
-        {
           "date": "2026-07-04",
           "course": "Conwy(Caernarvonshire)",
-          "points": 15,
-          "gross": 116,
-          "net": 93,
-          "chcp": 23
-        },
-        {
-          "date": "2026-07-04",
-          "course": "Conwy (Caernarvonshire)",
           "points": 15,
           "gross": 116,
           "net": 93,
