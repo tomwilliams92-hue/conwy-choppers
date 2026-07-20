@@ -59,6 +59,11 @@ function toISO(s) {
   return null;
 }
 
+/* Key a round by date + course with spacing/case normalised — the friends table
+ * writes "Conwy (Caernarvonshire)" where the profile/overview write
+ * "Conwy(Caernarvonshire)", which used to double-count merged history. */
+const roundKey = (date, course) => `${date}|${String(course || "").toLowerCase().replace(/\s+/g, "")}`;
+
 const ask = q => new Promise(res => {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
   rl.question(q, a => { rl.close(); res(a); });
@@ -251,16 +256,63 @@ async function dumpDebug(page, tag) {
     const iName = colIndex(H, "name"), iDate = colIndex(H, "date"),
           iCourse = colIndex(H, "played at"), iTee = colIndex(H, "marker"),
           iGross = colIndex(H, "adj"), iHi = colIndex(H, "handicap");
+    // The friends table only ever shows each friend's LATEST round, so any round
+    // played between updates used to vanish (Josh's Abergele 14 Jul was lost this
+    // way). Each row links to the friend's /golf-profile page, which carries their
+    // FULL score history in the same format as My Overview — incl. the platform's
+    // own Course Hdcp, so points match Wales Golf exactly. Grab the links now,
+    // before we navigate away from the friends page.
+    const profileLinks = await page.evaluate(() =>
+      [...document.querySelectorAll("tbody tr")].map(tr => ({
+        text: (tr.innerText || "").toLowerCase(),
+        href: (tr.querySelector("a[href*='golf-profile']") || {}).href || null,
+      })).filter(x => x.href));
     for (const r of friends.rows) {
       const name = (r[iName] || "").toLowerCase();
       const t = TARGETS.find(t => t.source === "friend" && name.includes(t.match));
       if (!t) continue;
-      const date = toISO(r[iDate]);
-      byId[t.id].hiSeries.push({ date, hi: parseHi(r[iHi]) });
-      addRound(byId[t.id], {
-        date, course: r[iCourse], tee: r[iTee],
-        adjGross: parseGross(r[iGross]), hi: parseHi(r[iHi]),
-      });
+      const link = (profileLinks.find(x => x.text.includes(t.match)) || {}).href;
+      let gotHistory = false;
+      if (link) {
+        try {
+          await page.goto(link, { waitUntil: "networkidle2", timeout: 60000 });
+          let hist = await extractTable(page, ["adj", "course rating", "slope"]);
+          for (let i = 0; i < 12 && (!hist || !hist.rows.length); i++) {
+            await new Promise(res => setTimeout(res, 1500));
+            hist = await extractTable(page, ["adj", "course rating", "slope"]);
+          }
+          if (hist && hist.rows.length) {
+            const h = hist.headers;
+            const jDate = colIndex(h, "played"), jCT = colIndex(h, "course"),
+                  jGross = colIndex(h, "adj"), jHcp = colIndex(h, "course hdcp"),
+                  jHi = colIndex(h, "handicap");
+            for (const row of hist.rows) {
+              const date = toISO(row[jDate]);
+              if (!date) continue; // expanded-scorecard sub-rows, not rounds
+              const ct = (row[jCT] || "").split("\n").map(s => s.trim()).filter(Boolean);
+              byId[t.id].hiSeries.push({ date, hi: parseHi(row[jHi]) });
+              addRound(byId[t.id], {
+                date, course: ct[0], tee: ct[1],
+                adjGross: parseGross(row[jGross]), courseHcp: parseHi(row[jHcp]),
+                hi: parseHi(row[jHi]),
+              });
+            }
+            gotHistory = true;
+          }
+        } catch { /* profile didn't load — fall back to the friends-row round */ }
+      }
+      if (!gotHistory) {
+        // Fallback: the friend's latest round from the friends table (old behaviour).
+        const date = toISO(r[iDate]);
+        byId[t.id].hiSeries.push({ date, hi: parseHi(r[iHi]) });
+        addRound(byId[t.id], {
+          date, course: r[iCourse], tee: r[iTee],
+          adjGross: parseGross(r[iGross]), hi: parseHi(r[iHi]),
+        });
+      }
+      // Profile rows carry the PRE-round index; the friends-table column is the
+      // current official one — push it last so the displayed handicap is today's.
+      byId[t.id].hiSeries.push({ date: COMPETITION.lastUpdated, hi: parseHi(r[iHi]) });
     }
   } else {
     console.log("✗ Could not read the friends table.");
@@ -281,9 +333,9 @@ async function dumpDebug(page, tag) {
     // The fresh scrape stays authoritative for any round it still returns (those go into
     // `seen` first); we only re-add previously-recorded rounds that have dropped out of view.
     if (prev[t.id]?.rounds?.length) {
-      const seen = new Set(rounds.map(r => `${r.date}|${r.course}`));
+      const seen = new Set(rounds.map(r => roundKey(r.date, r.course)));
       for (const er of prev[t.id].rounds) {
-        const k = `${er.date}|${er.course}`;
+        const k = roundKey(er.date, er.course);
         if (!seen.has(k)) { rounds.push(er); seen.add(k); }
       }
     }
@@ -325,8 +377,8 @@ async function dumpDebug(page, tag) {
     if (!raw.date || raw.date < COMPETITION.startDate || raw.date > COMPETITION.endDate) return;
     const res = toStableford(raw);
     if (!res.ok) { player.skipped.push({ date: raw.date, reason: res.reason }); return; }
-    // de-dupe on date+course
-    if (player.rounds.some(r => r.date === raw.date && r.course === raw.course)) return;
+    // de-dupe on date+course (normalised — see roundKey)
+    if (player.rounds.some(r => roundKey(r.date, r.course) === roundKey(raw.date, raw.course))) return;
     const gross = raw.adjGross ?? null;
     const chcp  = res.courseHcp ?? null;
     const net   = (gross != null && chcp != null) ? gross - chcp : null;
