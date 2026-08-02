@@ -768,7 +768,13 @@
   <button class="nb" data-tab="cards" aria-label="Scorecards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg><span class="nbl">Cards</span></button>
 </nav>
 
-<script src="data.js"></script>
+<script>
+// GitHub Pages serves data.js with cache-control: max-age=600, so a plain
+// <script src="data.js"> can show scores up to 10 minutes stale after an
+// update. The timestamp forces a fresh fetch every load. document.write keeps
+// this parser-blocking, so the init script below still sees CHOPPERS_DATA.
+document.write('<scr'+'ipt src="data.js?v='+Date.now()+'"><\/scr'+'ipt>');
+</script>
 <script>
 (function(){
   const D=window.CHOPPERS_DATA;
