@@ -9,8 +9,8 @@ window.CHOPPERS_DATA = {
     "endDate": "2026-09-30",
     "lastUpdated": "2026-08-14",
     "bestN": 6,
-    "recap": "<b>Tom</b> leads on 207.",
-    "moverId": null,
+    "recap": "<b>Tom</b> leads on 207. Josh's best week (+17).",
+    "moverId": "josh",
     "celebrate": false
   },
   "players": [
@@ -19,13 +19,13 @@ window.CHOPPERS_DATA = {
       "name": "Tom Williams",
       "short": "Tom",
       "handicap": "+0.1",
-      "handicapTrend": 1.2,
+      "handicapTrend": 0.8,
       "handicapHistory": [
-        -1.3,
         -0.9,
         -0.9,
         -0.9,
         -0.3,
+        -0.1,
         -0.1
       ],
       "movement": 0,
@@ -53,6 +53,22 @@ window.CHOPPERS_DATA = {
           "gross": 74,
           "net": 73,
           "chcp": 1
+        },
+        {
+          "date": "2026-08-14",
+          "course": "Royal Birkdale",
+          "points": 34,
+          "gross": 74,
+          "net": 74,
+          "chcp": 0
+        },
+        {
+          "date": "2026-08-11",
+          "course": "Hesketh",
+          "points": 34,
+          "gross": 73,
+          "net": 74,
+          "chcp": -1
         },
         {
           "date": "2026-07-29",
@@ -85,6 +101,22 @@ window.CHOPPERS_DATA = {
           "gross": 76,
           "net": 75,
           "chcp": 1
+        },
+        {
+          "date": "2026-08-13",
+          "course": "Hillside",
+          "points": 32,
+          "gross": 76,
+          "net": 76,
+          "chcp": 0
+        },
+        {
+          "date": "2026-08-12",
+          "course": "West Lancashire",
+          "points": 32,
+          "gross": 74,
+          "net": 75,
+          "chcp": -1
         },
         {
           "date": "2026-07-11",
@@ -125,6 +157,14 @@ window.CHOPPERS_DATA = {
           "gross": 78,
           "net": 80,
           "chcp": -2
+        },
+        {
+          "date": "2026-08-10",
+          "course": "Southport & Ainsdale",
+          "points": 27,
+          "gross": 80,
+          "net": 81,
+          "chcp": -1
         }
       ]
     },
@@ -133,19 +173,27 @@ window.CHOPPERS_DATA = {
       "name": "Josh Morris",
       "short": "Josh",
       "handicap": "4.4",
-      "handicapTrend": 1.6,
+      "handicapTrend": 1.4,
       "handicapHistory": [
-        2.5,
         2.8,
         3,
         3.2,
         3.4,
         3.2,
         4.3,
+        4.4,
         4.4
       ],
-      "movement": 0,
+      "movement": 1,
       "rounds": [
+        {
+          "date": "2026-08-14",
+          "course": "Formby Ladies",
+          "points": 36,
+          "gross": 70,
+          "net": 71,
+          "chcp": -1
+        },
         {
           "date": "2026-07-09",
           "course": "Wallasey",
@@ -155,12 +203,36 @@ window.CHOPPERS_DATA = {
           "chcp": 4
         },
         {
+          "date": "2026-08-11",
+          "course": "Hesketh",
+          "points": 35,
+          "gross": 77,
+          "net": 73,
+          "chcp": 4
+        },
+        {
           "date": "2026-07-14",
           "course": "Abergele",
           "points": 33,
           "gross": 78,
           "net": 75,
           "chcp": 3
+        },
+        {
+          "date": "2026-08-12",
+          "course": "West Lancashire",
+          "points": 31,
+          "gross": 80,
+          "net": 76,
+          "chcp": 4
+        },
+        {
+          "date": "2026-08-10",
+          "course": "Southport & Ainsdale",
+          "points": 31,
+          "gross": 81,
+          "net": 77,
+          "chcp": 4
         },
         {
           "date": "2026-08-02",
@@ -203,6 +275,14 @@ window.CHOPPERS_DATA = {
           "chcp": 3
         },
         {
+          "date": "2026-08-13",
+          "course": "Hillside",
+          "points": 26,
+          "gross": 88,
+          "net": 82,
+          "chcp": 6
+        },
+        {
           "date": "2026-06-20",
           "course": "Conwy(Caernarvonshire)",
           "points": 26,
@@ -219,7 +299,7 @@ window.CHOPPERS_DATA = {
       "handicap": "21.3",
       "handicapTrend": 0,
       "handicapHistory": [
-        21.5,
+        21.3,
         21.3,
         21.3,
         21.3,
@@ -228,7 +308,7 @@ window.CHOPPERS_DATA = {
         21.3,
         21.3
       ],
-      "movement": 0,
+      "movement": -1,
       "rounds": [
         {
           "date": "2026-06-05",
@@ -236,6 +316,14 @@ window.CHOPPERS_DATA = {
           "points": 36,
           "gross": 101,
           "net": 72,
+          "chcp": 29
+        },
+        {
+          "date": "2026-08-14",
+          "course": "Conwy(Caernarvonshire)",
+          "points": 35,
+          "gross": 102,
+          "net": 73,
           "chcp": 29
         },
         {

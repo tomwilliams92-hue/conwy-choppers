@@ -29,6 +29,18 @@ export const COURSES = {
   "abergele|white":               { cr: 71.8, slope: 124, par: 72 },
   // "ruthin-pwllglas|white":     { cr: 65.6, slope: 116, par: 70 },
   // "prestatyn|white":           { cr: 0,    slope: 0,   par: 0  },
+
+  // ---- Southport links trip, Aug 2026 ----
+  // CR/slope read off the Wales Golf scores tables 2026-08-14; par back-solved
+  // from the platform's own Course Hdcp (Tom's and Josh's rounds agree on every
+  // shared course, so the par is pinned exactly, not guessed).
+  "royalbirkdale|blue":           { cr: 71.8, slope: 143, par: 72 },
+  "hillside|blue":                { cr: 72.8, slope: 132, par: 72 },
+  "westlancashire|yellow":        { cr: 71.4, slope: 135, par: 71 },
+  // Wales Golf lists the Hesketh tee as "Yellow ." (trailing dot) — key kept verbatim.
+  "hesketh|yellow.":              { cr: 71.6, slope: 134, par: 72 },
+  "southport&ainsdale|yellow":    { cr: 72.5, slope: 134, par: 72 },
+  "formbyladies|red":             { cr: 66.0, slope: 112, par: 71 },
 };
 
 export function courseKey(course, tee) {
