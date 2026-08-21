@@ -19,8 +19,13 @@ window.CHOPPERS_DATA = {
       "name": "Tom Williams",
       "short": "Tom",
       "handicap": "+0.1",
-      "handicapTrend": null,
+      "handicapTrend": 0.8,
       "handicapHistory": [
+        -0.9,
+        -0.9,
+        -0.9,
+        -0.3,
+        -0.1,
         -0.1
       ],
       "movement": 0,
@@ -300,7 +305,7 @@ window.CHOPPERS_DATA = {
         21.3,
         21.3,
         21.3,
-        21.3,
+        21.1,
         21.1
       ],
       "movement": 0,
