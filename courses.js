@@ -27,6 +27,10 @@ export const COURSES = {
   // CR/slope from Josh's golf-profile table 2026-07-20; par 72 back-solves his
   // course handicap on all three of his Abergele rounds (2025-2026).
   "abergele|white":               { cr: 71.8, slope: 124, par: 72 },
+  // CR/slope read off Callum's Wales Golf scores table 2026-08-21; par 69 pinned
+  // exactly by back-solving the platform's own Course Hdcp (23 at HI 21.1 —
+  // par 68 gives 24, par 70 gives 22, only 69 fits).
+  "rhos-on-sea|white":            { cr: 69.4, slope: 119, par: 69 },
   // "ruthin-pwllglas|white":     { cr: 65.6, slope: 116, par: 70 },
   // "prestatyn|white":           { cr: 0,    slope: 0,   par: 0  },
 

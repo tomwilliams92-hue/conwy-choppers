@@ -9,8 +9,8 @@ window.CHOPPERS_DATA = {
     "endDate": "2026-09-30",
     "lastUpdated": "2026-08-21",
     "bestN": 6,
-    "recap": "<b>Tom</b> leads on 207.",
-    "moverId": null,
+    "recap": "<b>Tom</b> leads on 207. Callum's best week (+6).",
+    "moverId": "callum",
     "celebrate": false
   },
   "players": [
@@ -325,6 +325,14 @@ window.CHOPPERS_DATA = {
           "gross": 102,
           "net": 73,
           "chcp": 29
+        },
+        {
+          "date": "2026-08-21",
+          "course": "Rhos-on-Sea",
+          "points": 34,
+          "gross": 94,
+          "net": 71,
+          "chcp": 23
         },
         {
           "date": "2026-07-22",
