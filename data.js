@@ -9,9 +9,9 @@ window.CHOPPERS_DATA = {
     "endDate": "2026-09-30",
     "lastUpdated": "2026-09-01",
     "bestN": 6,
-    "recap": "<b>New leader!</b> Callum tops the board on 213. Callum's best week (+13).",
-    "moverId": "callum",
-    "celebrate": true
+    "recap": "<b>Callum</b> leads on 213.",
+    "moverId": null,
+    "celebrate": false
   },
   "players": [
     {
@@ -28,7 +28,7 @@ window.CHOPPERS_DATA = {
         -0.1,
         -0.1
       ],
-      "movement": -2,
+      "movement": 0,
       "rounds": [
         {
           "date": "2026-08-02",
@@ -316,7 +316,7 @@ window.CHOPPERS_DATA = {
         21.1,
         20.4
       ],
-      "movement": 2,
+      "movement": 0,
       "rounds": [
         {
           "date": "2026-08-30",
