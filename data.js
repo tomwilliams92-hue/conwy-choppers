@@ -9,8 +9,8 @@ window.CHOPPERS_DATA = {
     "endDate": "2026-09-30",
     "lastUpdated": "2026-09-07",
     "bestN": 6,
-    "recap": "<b>Callum</b> leads on 213.",
-    "moverId": null,
+    "recap": "<b>Callum</b> leads on 213. Tom's best week (+4).",
+    "moverId": "tom",
     "celebrate": false
   },
   "players": [
@@ -28,8 +28,16 @@ window.CHOPPERS_DATA = {
         -0.1,
         -0.2
       ],
-      "movement": 0,
+      "movement": 1,
       "rounds": [
+        {
+          "date": "2026-09-06",
+          "course": "Conwy(Caernarvonshire)",
+          "points": 38,
+          "gross": 72,
+          "net": 70,
+          "chcp": 2
+        },
         {
           "date": "2026-08-02",
           "course": "Conwy(Caernarvonshire)",
@@ -192,7 +200,7 @@ window.CHOPPERS_DATA = {
         3.8,
         3.2
       ],
-      "movement": 0,
+      "movement": -1,
       "rounds": [
         {
           "date": "2026-08-30",

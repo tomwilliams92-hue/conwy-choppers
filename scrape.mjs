@@ -59,10 +59,14 @@ function toISO(s) {
   return null;
 }
 
-/* Key a round by date + course with spacing/case normalised — the friends table
- * writes "Conwy (Caernarvonshire)" where the profile/overview write
- * "Conwy(Caernarvonshire)", which used to double-count merged history. */
-const roundKey = (date, course) => `${date}|${String(course || "").toLowerCase().replace(/\s+/g, "")}`;
+/* Key a round by date + course + gross, with spacing/case normalised — the friends
+ * table writes "Conwy (Caernarvonshire)" where the profile/overview write
+ * "Conwy(Caernarvonshire)", which used to double-count merged history.
+ * Gross is part of the key because two rounds on the SAME day at the SAME course
+ * are legitimate (36 holes / morning + afternoon) — keying on date+course alone
+ * silently threw the second card away. */
+const roundKey = (date, course, gross) =>
+  `${date}|${String(course || "").toLowerCase().replace(/\s+/g, "")}|${gross ?? ""}`;
 
 const ask = q => new Promise(res => {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
@@ -333,9 +337,9 @@ async function dumpDebug(page, tag) {
     // The fresh scrape stays authoritative for any round it still returns (those go into
     // `seen` first); we only re-add previously-recorded rounds that have dropped out of view.
     if (prev[t.id]?.rounds?.length) {
-      const seen = new Set(rounds.map(r => roundKey(r.date, r.course)));
+      const seen = new Set(rounds.map(r => roundKey(r.date, r.course, r.gross)));
       for (const er of prev[t.id].rounds) {
-        const k = roundKey(er.date, er.course);
+        const k = roundKey(er.date, er.course, er.gross);
         if (!seen.has(k)) { rounds.push(er); seen.add(k); }
       }
     }
@@ -377,8 +381,9 @@ async function dumpDebug(page, tag) {
     if (!raw.date || raw.date < COMPETITION.startDate || raw.date > COMPETITION.endDate) return;
     const res = toStableford(raw);
     if (!res.ok) { player.skipped.push({ date: raw.date, reason: res.reason }); return; }
-    // de-dupe on date+course (normalised — see roundKey)
-    if (player.rounds.some(r => roundKey(r.date, r.course) === roundKey(raw.date, raw.course))) return;
+    // de-dupe on date+course+gross (normalised — see roundKey)
+    const key = roundKey(raw.date, raw.course, raw.adjGross ?? null);
+    if (player.rounds.some(r => roundKey(r.date, r.course, r.gross) === key)) return;
     const gross = raw.adjGross ?? null;
     const chcp  = res.courseHcp ?? null;
     const net   = (gross != null && chcp != null) ? gross - chcp : null;
