@@ -320,8 +320,18 @@ window.CHOPPERS_DATA = {
       "id": "callum",
       "name": "Callum Bennett",
       "short": "Callum",
-      "handicap": null,
-      "handicapTrend": null,
+      "handicap": "20.4",
+      "handicapTrend": -0.9,
+      "handicapHistory": [
+        21.3,
+        21.3,
+        21.3,
+        21.3,
+        21.3,
+        21.1,
+        21.1,
+        20.4
+      ],
       "movement": 0,
       "rounds": [
         {
